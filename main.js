@@ -4234,11 +4234,14 @@ async function main(){ // main asyncronous thread; mostly initializes the user s
 		getById("selectEffectAmountInput3").value = session.effectValue;
 	}
 
+	// Temporarily disabled local testing
+	/*
 	if (location.protocol !== 'https:') {
 		if (!(session.cleanOutput)) {
 			warnUser("SSL (https) is not enabled. This site will not work without it!<br /><br /><a href='https://"+window.location.host+window.location.pathname+window.location.search+"'>Try accessing the site from here instead.</a>", false, false);
 		}
 	}
+	*/
 	
 	if (session.sensorData) {
 		setupSensorData(parseInt(session.sensorData));

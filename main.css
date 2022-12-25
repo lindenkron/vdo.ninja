@@ -196,12 +196,11 @@ input {
 	-webkit-app-region: no-drag;
 }
 
-button.grey {
+.directorHeaderButton {
 	-webkit-app-region: no-drag;
-	padding: 10px;
-	margin: 10px 0px;
+	padding: 8px;
 	cursor: pointer;
-	border-radius: 2px;
+	border-radius: 5px;
 	background-color: var(--button-color);
 	color: white;
 }
@@ -256,7 +255,6 @@ button {
 	-webkit-app-region: no-drag;
 	padding: 7px 10px 6px 6px;
 	user-select: none;
-	margin: 10px 0px;
 	cursor: pointer;
 	border-radius: 2px;
 }
@@ -646,22 +644,6 @@ hr {
 	border-radius: var(--video-rounded);
 }
 
-#gridlayout,#directorlayout {
-	padding: 0;
-	width: 100%;
-	height: 100%;
-	grid-gap: 0;
-	overflow: hidden;
-	justify-items: stretch;
-	grid-auto-flow: dense;
-	grid-auto-columns: minmax(50%, auto);
-	grid-auto-rows: minmax(50%, auto);
-	border: 0;
-	margin: 0;
-}
-#gridlayout{
-	z-index:-1;
-}
 .invite_setting_group {
 	margin: 20px 0px;
 	background-color: #d2d2d2;
@@ -680,15 +662,33 @@ hr {
 	padding: 6px;
 }
 
-.directorsgrid {
-	justify-items: normal;
-	grid-auto-columns: minmax(100px, 530px);
-	grid-auto-rows: minmax(100px, 300px);
-	display: block ! important;
-	overflow-y: auto !important;
+.directorHeader {
+	width: 100%;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
 }
 
-.directorsgrid .vidcon video {
+.directorHeaderWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 5px;
+    width: 100%;
+}
+
+.directorWrapper {
+	padding: 0;
+	width: 100%;
+	display: flex;
+	gap: 5px;
+	flex-wrap: wrap;
+	justify-items: stretch;
+	border: 0;
+	margin: 0;
+}
+
+.directorWrapper .vidcon video {
 	margin: 0 5px;
 	padding:0;
 	width: 100%;
@@ -696,7 +696,7 @@ hr {
 	max-width: 260px;
 }
 
-.directorsgrid .vidcon {
+.directorWrapper .vidcon {
 	display: inline-block;
 	width: 269.7px !important;
 	background: #7E7E7E;
@@ -714,7 +714,7 @@ hr {
 	display: var(--show-codirectors) !important;
 }
 
-.directorsgrid .vidcon>.las {
+.directorWrapper .vidcon>.las {
 	color: black;
 	background: #999999;
 	width: 90%;
@@ -1784,6 +1784,7 @@ input[type=range]:focus::-ms-fill-upper {
 	position: absolute;
 	z-index: 1;
 	top: -10px;
+	overflow: visible;
 	font-family: "Lato", sans-serif;
 }
 .tooltip:hover .tooltiptext {
@@ -2581,7 +2582,7 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
 	-webkit-transform: scaleX(-1);
 }
 .popup-screen {
-	align-text: center;
+	text-align: center;
 	position: absolute;
 	display:none;
 	top:0;
@@ -2832,12 +2833,13 @@ button.toggleSettings{
 }
 
 .hidden {
-	display:none!important;
+	display: none !important;
 	visibility: hidden;
-	width:0px;
-	height:0px;
+	width: 0px;
+	height: 0px;
 	opacity: 0;
 }
+
 .grabLinks a:visited {
 	color: black !important;
 }
@@ -3257,70 +3259,114 @@ div#chatBody a {
 		font-size: 100%;
 	}
 }
-.directorMargins {
-	margin: var(--director-margin);
-}
+
 .hideLinksClass {
 	background-color: var(--container-color);
-	width:1191px;
 	padding: 10px;
-	margin: 5px 10px 10px 10px;
+	border-radius: 5px;
 }
+
+.roomNotes {
+	background: var(--container-color);
+	padding: 10px;
+	width: 100%;
+	border-radius: 5px;
+
+	color: #ccc;
+}
+
+.directorContainer .documentation, .directorContainerParameters .documentation {
+    position: absolute;
+    right: 6;
+    bottom: 6px;
+    font-size: 12px;
+    border-radius: 3px;
+    background-color: rgba(0,0,0,0.5);
+    padding: 2px;
+	color: #888;
+}
+
 .directorContainer {
 	background-color: var(--container-color);
-	display: grid;
-	grid-template-columns: 1fr ;
-	margin: 10px 0px 10px 10px;
+	display: flex;
+	position: relative;
 	padding: 10px;
-	max-width: 1191px
+	width: calc(50% - 2.5px);
+	border-radius: 5px;
+}
+.directorContainerContent {
+    padding: 10px;
+	position: relative;
+	color: white;
+	display: flex;
+    flex-direction: column;
+    width: 100%;
+	background-color: var(--blue-accent);
+	font-size: 14px;
+	/*Possibly remove the min-width*/
+	min-width:250px;
+}
+.directorContainerContent .parameter {
+	display: flex;
+    align-items: center;
+	gap: 3px;
+	padding: 2px 0px 2px 0px;
+	height: 40-px;
+	border-bottom: 1px rgba(255,255,255,0.1) dotted;
+}
+
+.directorContainerContent .parameter:last-child {
+	border-bottom: none;
+}
+.directorContainerContent .parameter span {
+	padding-left: 2px;
+}
+.directorContainerContent h2 {
+	text-transform: uppercase;
+	font-size:1.2em;
+}
+.directorContainerContent button {
+	bottom: 0;
+}
+.directorContainerContent button i {
+	margin-right: 5px;
+}
+.directorContainerParameters {
+    background-color: var(--container-color);
+    display: flex;
+    position: relative;
+    padding: 10px;
+    padding-bottom: 30px;
+    border-radius: 5px;
+    width: 100%;
+}
+.directorContainerContent:first-of-type {
+	border-radius: 5px 0px 0px 5px;
+}
+.directorContainerContent:last-of-type {
+	border-radius: 0px 5px 5px 0px;
+}
+
+#directorInvite .directorContainerContent, #directorScene .directorContainerContent {
+	border-radius: 5px;
+}
+
+#customizeParameters2 .directorContainerContent {
+    background-color: var(--green-accent);
 }
 
 #directorLinksButton{
 	cursor:pointer;
 }
-.directorContainer.half {
-	background-color: var(--container-color);
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	padding: 10px 10px;
-	width: 591px;
+
+.controls {
+    display: flex;
+    gap: 10px;
 }
-.directorBlock {
-	padding: 10px 10px 5px 10px;
-	margin: var(--regular-margin);
-	color: white;
-	position:relative;
-	max-width: 100%;
-	overflow: hidden;
-}
-.directorBlock:nth-child(1) {
-	background-color: var(--blue-accent);
-}
-.directorBlock:nth-child(2) {
-	background-color: var(--green-accent);
-}
-.directorBlock:nth-child(3) {
-	background-color: var(--olive-accent);
-}
-.directorBlock:nth-child(4) {
-	background-color: var(--red-accent);
-}
-.directorBlock button {
-	bottom: 0;
-	margin: 10px;
-}
-.directorBlock button i {
-	margin-right: 5px;
-}
+
 a.task {
 	width: 100%;
 	margin-top: 10px;
-}
-.directorBlock h2 {
-	text-transform: uppercase;
-	margin-bottom: 10px;
-	margin-left: 5px;
-	font-size:1.2em;
 }
 .shift {
 	display: inline-block;
@@ -3347,23 +3393,6 @@ a.task {
 #toggleroomnotes {
 	grid-column: 4;
 	grid-row: 1;
-}
-div#roomnotes2 {
-	background: var(--container-color);
-	padding: 10px !important;
-	margin: 0 var(--regular-margin) 10px var(--regular-margin);
-	width: 100%;
-}
-.directorsgrid .directorContainer:nth-child(2) button {
-	grid-row: 1;
-	grid-column: 4;
-}
-.directorsgrid .directorContainer:nth-child(2) span {
-	grid-row: 1;
-	grid-column: 1;
-}
-.directorsgrid button {
-	text-transform: lowercase;
 }
 .controlsGrid {
     display: flex;
@@ -3521,12 +3550,13 @@ i.las.la-circle {
 }
 div#guestFeeds {
 	background: var(--container-color);
-	padding: 5px 0 15px 20px;
-	display: inline-block;
-	margin: 0px var(--regular-margin) 80px var(--regular-margin);
+	gap: 10px;
+	margin: 5px;
+	padding: 10px;
+	border-radius: 5px;
 }
 
-div#guestFeeds:empty {
+.guestsWrapper:empty {
 	display:none;
 }
 #hiddenElements{
@@ -3888,13 +3918,11 @@ div.message-card.info:before {
 }
 
 .switch {
-	position: relative;
-	margin:5px 5px 2px 5px;
-	width: 40px;
-	height: 24px;
-	bottom:20px;
-	border-radius: 2px;
-	display: inline-block;
+    display: flex;
+    width: 40px;
+    min-width: 40px;
+    height: 24px;
+    border-radius: 2px;
 }
 
 .switch input {
@@ -3913,18 +3941,26 @@ div.message-card.info:before {
 	-webkit-transition: .3s;
 	transition: .3s;
 	position: absolute;
+	border-radius: 5px;
 }
 
 .slider:before {
 	content: "";
-	height: 17px;
-	width: 17px;
+	height: 18px;
+	width: 18px;
 	left: 3px;
 	bottom: 3px;
 	background-color: white;
 	-webkit-transition: .3s;
 	transition: .3s;
 	position: absolute;
+	border-radius: 3px;
+}
+
+.switchWithText {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 input:checked + .slider {
@@ -4513,7 +4549,7 @@ body.darktheme .column>h2{
 body.darktheme .multiselect .multiselect-contents {
 	background-color:unset;
 }
-body.darktheme .directorsgrid .vidcon > .las {
+body.darktheme .directorWrapper .vidcon > .las {
 	background-color: #424242;
 }
 body.darktheme .form-group .multiselect {
@@ -4532,7 +4568,7 @@ body.darktheme .column .las {
 body.darktheme label {
 	filter: brightness(0.85);
 }
-body.darktheme #roomHeader{
+body.darktheme #directorHeader{
 	filter: brightness(0.85);
 }
 body.darktheme div.multiselect {
@@ -4568,7 +4604,7 @@ body.darktheme select{
 body.darktheme .white {
 	filter: brightness(0.85);
 }
-body.darktheme .directorsgrid .vidcon {
+body.darktheme .directorWrapper .vidcon {
 	background-color: #2b2b2bdd;
 	color: #978c8c;
 }

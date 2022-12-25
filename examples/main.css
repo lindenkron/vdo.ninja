@@ -461,7 +461,7 @@ hr {
 	margin: 10px 0px;
 }
 
-.directorsgrid {
+.directorWrapper {
 	justify-items: normal;
 	grid-auto-columns: minmax(100px, 530px);
 	grid-auto-rows: minmax(100px, 300px);
@@ -469,7 +469,7 @@ hr {
 	overflow-y: auto !important;
 }
 
-.directorsgrid .vidcon video {
+.directorWrapper .vidcon video {
 	margin: 0 5px;
 	padding:0;
 	width: 100%;
@@ -477,7 +477,7 @@ hr {
 	max-width: 260px;
 }
 
-.directorsgrid .vidcon {
+.directorWrapper .vidcon {
 	display: inline-block !important;
 	width: 269.7px !important;
 	background: #7E7E7E;
@@ -485,7 +485,7 @@ hr {
 	vertical-align: top;
 }
 
-.directorsgrid .vidcon>.las {
+.directorWrapper .vidcon>.las {
 	color: black;
 	background: #999999;
 	width: 90%;
@@ -2347,7 +2347,7 @@ input[type=checkbox] {
 	padding: 10px 10px;
 	width: 591px;
 }
-.directorBlock {
+.directorContainerContent {
 	padding: 10px 10px 5px 10px;
 	margin: var(--regular-margin);
 	color: white;
@@ -2355,23 +2355,23 @@ input[type=checkbox] {
 	max-width: 100%;
     overflow: hidden;
 }
-.directorBlock:nth-child(1) {
+.directorContainerContent:nth-child(1) {
 	background-color: var(--blue-accent);
 }
-.directorBlock:nth-child(2) {
+.directorContainerContent:nth-child(2) {
 	background-color: var(--green-accent);
 }
-.directorBlock:nth-child(3) {
+.directorContainerContent:nth-child(3) {
 	background-color: var(--olive-accent);
 }
-.directorBlock:nth-child(4) {
+.directorContainerContent:nth-child(4) {
 	background-color: var(--red-accent);
 }
-.directorBlock button {
+.directorContainerContent button {
     bottom: 0;
 	margin: 10px;
 }
-.directorBlock button i {
+.directorContainerContent button i {
 	margin-right: 5px;
 }
 .task {
@@ -2379,7 +2379,7 @@ input[type=checkbox] {
 	width: 100%;
 	margin-top: 10px;
 }
-.directorBlock h2 {
+.directorContainerContent h2 {
 	text-transform: uppercase;
 	margin-bottom: 10px;
 	margin-left: 5px;
@@ -2395,15 +2395,15 @@ div#roomnotes2 {
 	margin: 0 var(--regular-margin) 10px var(--regular-margin);
 	width: 100%;
 }
-.directorsgrid .directorContainer:nth-child(2) button {
+.directorWrapper .directorContainer:nth-child(2) button {
 	grid-row: 1;
 	grid-column: 4;
 }
-.directorsgrid .directorContainer:nth-child(2) span {
+.directorWrapper .directorContainer:nth-child(2) span {
 	grid-row: 1;
 	grid-column: 1;
 }
-.directorsgrid button {
+.directorWrapper button {
 	text-transform: lowercase;
 }
 .controlsGrid {
