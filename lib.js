@@ -3215,12 +3215,12 @@ function switchModes(state=null){
 		session.switchMode = state;
 	}
 	if (session.switchMode){
-		getById("directorlayout").classList.add("hidden");
+		getById("directorWrapper").classList.add("hidden");
 		getById("gridlayout").classList.remove("hidden");
 		updateMixer();
 	} else {
 		
-		getById("directorlayout").classList.remove("hidden");
+		getById("directorWrapper").classList.remove("hidden");
 		getById("gridlayout").classList.add("hidden");
 		
 		for (var UUID in session.rpcs){
@@ -12006,32 +12006,32 @@ function clearDirectorSettings(){ // make sure to wipe the director's room setti
 function saveDirectorSettings(){
 	var settings = {};
 	
-	if (getById("customizeLinks").classList.contains("hidden")){
-		settings.customizeLinks = true;
+	if (getById("toggleParameters").classList.contains("hidden")){
+		settings.toggleParameters = true;
 	} 
 	
-	var customizeLinks1 = getById("customizeLinks1").querySelectorAll("input");
-	settings.customizeLinks1 = {};
-	for (var i=0;i<customizeLinks1.length;i++){
-		settings.customizeLinks1[customizeLinks1[i].dataset.param] = customizeLinks1[i].checked;
+	var customizeParameters1 = getById("customizeParameters1").querySelectorAll("input");
+	settings.customizeParameters1 = {};
+	for (var i=0;i<customizeParameters1.length;i++){
+		settings.customizeParameters1[customizeParameters1[i].dataset.param] = customizeParameters1[i].checked;
 	}
 	
-	var customizeLinks3 = getById("customizeLinks3").querySelectorAll("input");
-	settings.customizeLinks3 = {};
-	for (var i=0;i<customizeLinks3.length;i++){
-		settings.customizeLinks3[customizeLinks3[i].dataset.param] = customizeLinks3[i].checked;
+	var customizeParameters2 = getById("customizeParameters2").querySelectorAll("input");
+	settings.customizeParameters2 = {};
+	for (var i=0;i<customizeParameters2.length;i++){
+		settings.customizeParameters2[customizeParameters2[i].dataset.param] = customizeParameters2[i].checked;
 	}
 	
-	var directorLinks1 = getById("directorLinks1").querySelectorAll("input");
-	settings.directorLinks1 = {};
-	for (var i=0;i<directorLinks1.length;i++){
-		settings.directorLinks1[directorLinks1[i].dataset.param] = directorLinks1[i].checked;
+	var directorInvite = getById("directorInvite").querySelectorAll("input");
+	settings.directorInvite = {};
+	for (var i=0;i<directorInvite.length;i++){
+		settings.directorInvite[directorInvite[i].dataset.param] = directorInvite[i].checked;
 	}
 	
-	var directorLinks2 = getById("directorLinks2").querySelectorAll("input");
-	settings.directorLinks2 = {};
-	for (var i=0;i<directorLinks2.length;i++){
-		settings.directorLinks2[directorLinks2[i].dataset.param] = directorLinks2[i].checked;
+	var directorScene = getById("directorScene").querySelectorAll("input");
+	settings.directorScene = {};
+	for (var i=0;i<directorScene.length;i++){
+		settings.directorScene[directorScene[i].dataset.param] = directorScene[i].checked;
 	}
 	setStorage("directorCustomize", settings);
 }
@@ -12039,43 +12039,44 @@ function saveDirectorSettings(){
 function loadDirectorSettings(){
 	var settings = getStorage("directorCustomize");
 	log("LOAD DIRECTOR SETTING");
-	if (settings.customizeLinks){
+	warnlog(settings);
+	if (settings.toggleParameters){
 		try{
 			hideDirectorinvites(getById("directorLinksButton"), false);
 		} catch(e){errorlog(e);}
 	} 
 	
-	if (settings.customizeLinks1){
-		var customizeLinks1 = getById("customizeLinks1");
-		Object.keys(settings.customizeLinks1).forEach((key, index) => {
+	if (settings.customizeParameters1){
+		var customizeParameters1 = getById("customizeParameters1");
+		Object.keys(settings.customizeParameters1).forEach((key, index) => {
 			try {
-				if (customizeLinks1.querySelector('[data-param="'+key+'"]').checked != settings.customizeLinks1[key]){
-					customizeLinks1.querySelector('[data-param="'+key+'"]').checked = settings.customizeLinks1[key];
-					customizeLinks1.querySelector('[data-param="'+key+'"]').onchange();
+				if (customizeParameters1.querySelector('[data-param="'+key+'"]').checked != settings.customizeParameters1[key]){
+					customizeParameters1.querySelector('[data-param="'+key+'"]').checked = settings.customizeParameters1[key];
+					customizeParameters1.querySelector('[data-param="'+key+'"]').onchange();
 				}
 			} catch(e){errorlog(e);}
 		});
 	}
 	
-	if (settings.customizeLinks3){
-		var customizeLinks3 = getById("customizeLinks3");
-		Object.keys(settings.customizeLinks3).forEach((key, index) => {
+	if (settings.customizeParameters2){
+		var customizeParameters2 = getById("customizeParameters2");
+		Object.keys(settings.customizeParameters2).forEach((key, index) => {
 			try {
-				if (customizeLinks3.querySelector('[data-param="'+key+'"]').checked == settings.customizeLinks3[key]){
-					customizeLinks3.querySelector('[data-param="'+key+'"]').checked = settings.customizeLinks3[key];
-					customizeLinks3.querySelector('[data-param="'+key+'"]').onchange();
+				if (customizeParameters2.querySelector('[data-param="'+key+'"]').checked == settings.customizeParameters2[key]){
+					customizeParameters2.querySelector('[data-param="'+key+'"]').checked = settings.customizeParameters2[key];
+					customizeParameters2.querySelector('[data-param="'+key+'"]').onchange();
 				}
 			} catch(e){errorlog(e);}
 		});
 	}
 	
-	if (settings.directorLinks1){
-		var directorLinks1 = getById("directorLinks1");
-		Object.keys(settings.directorLinks1).forEach((key, index) => {
+	if (settings.directorInvite){
+		var directorInvite = getById("directorInvite");
+		Object.keys(settings.directorInvite).forEach((key, index) => {
 			try {
-				if (directorLinks1.querySelector('[data-param="'+key+'"]').checked == settings.directorLinks1[key]){
-					directorLinks1.querySelector('[data-param="'+key+'"]').checked = settings.directorLinks1[key];
-					directorLinks1.querySelector('[data-param="'+key+'"]').onchange();
+				if (directorInvite.querySelector('[data-param="'+key+'"]').checked == settings.directorInvite[key]){
+					directorInvite.querySelector('[data-param="'+key+'"]').checked = settings.directorInvite[key];
+					directorInvite.querySelector('[data-param="'+key+'"]').onchange();
 				}
 			} catch(e){
 				errorlog("key :"+key);
@@ -12084,13 +12085,13 @@ function loadDirectorSettings(){
 		});
 	}
 	
-	if (settings.directorLinks2){
-		var directorLinks2 = getById("directorLinks2");
-		Object.keys(settings.directorLinks2).forEach((key, index) => {
+	if (settings.directorScene){
+		var directorScene = getById("directorScene");
+		Object.keys(settings.directorScene).forEach((key, index) => {
 			try {
-				if (directorLinks2.querySelector('[data-param="'+key+'"]').checked == settings.directorLinks2[key]){
-					directorLinks2.querySelector('[data-param="'+key+'"]').checked = settings.directorLinks2[key];
-					directorLinks2.querySelector('[data-param="'+key+'"]').onchange();
+				if (directorScene.querySelector('[data-param="'+key+'"]').checked == settings.directorScene[key]){
+					directorScene.querySelector('[data-param="'+key+'"]').checked = settings.directorScene[key];
+					directorScene.querySelector('[data-param="'+key+'"]').onchange();
 				}
 			} catch(e){
 				errorlog("key :"+key);
@@ -14540,25 +14541,27 @@ async function registerToken(){ // this lets us use a server+password validation
 
 function hideDirectorinvites(ele, skip=true) {
 
-	if (getById("directorLinks2").style.display == "none") {
+	if (getById("directorScene").style.display == "none") {
 		ele.innerHTML = '<i class="las la-caret-down"></i><span data-translate="hide-the-links"> LINKS (GUEST INVITES & SCENES)</span>';
-		getById("directorLinks2").style.display = "inline-block";
-		getById("customizeLinks").classList.remove("hidden");
+		getById("directorScene").style.display = "inline-block";
+		getById("help_directors_room").style.display = "inline-block";
+		getById("toggleParameters").classList.remove("hidden");
 	} else {
 		ele.innerHTML = '<i class="las la-caret-right"></i><span data-translate="hide-the-links"> LINKS (GUEST INVITES & SCENES)</span>'
-		getById("directorLinks2").style.display = "none";
+		getById("directorScene").style.display = "none";
 		getById("help_directors_room").style.display = "none";
 		getById("roomnotes2").style.display = "none";
-		getById("customizeLinks").classList.add("hidden");
+		getById("toggleParameters").classList.add("hidden");
 	}
-	if (getById("directorLinks1").style.display == "none") {
-		getById("directorLinks1").style.display = "inline-block";
-		getById("customizeLinks").classList.remove("hidden");
+	if (getById("directorInvite").style.display == "none") {
+		getById("directorInvite").style.display = "inline-block";
+		getById("help_directors_room").style.display = "inline-block";
+		getById("toggleParameters").classList.remove("hidden");
 	} else {
-		getById("directorLinks1").style.display = "none";
+		getById("directorInvite").style.display = "none";
 		getById("help_directors_room").style.display = "none";
 		getById("roomnotes2").style.display = "none";
-		getById("customizeLinks").classList.add("hidden");
+		getById("toggleParameters").classList.add("hidden");
 
 	}
 	if (skip){
@@ -14704,7 +14707,7 @@ async function toggleWidgetURL(ele){
 async function createRoomCallback(passAdd, passAdd2) {
 
 	if (!session.switchMode){
-		getById("directorlayout").classList.remove("hidden");
+		getById("directorWrapper").classList.remove("hidden");
 		getById("gridlayout").classList.add("hidden");
 	}
 
@@ -14737,9 +14740,9 @@ async function createRoomCallback(passAdd, passAdd2) {
 	var queue = "";
 	if (session.queue){
 		queue = "&queue";
-		getById("directorLinks2").style.opacity = "0.2";
-		getById("directorLinks2").style.pointerEvents = "none";
-		getById("directorLinks2").style.cursor = "not-allowed";
+		getById("directorScene").style.opacity = "0.2";
+		getById("directorScene").style.pointerEvents = "none";
+		getById("directorScene").style.cursor = "not-allowed";
 	}
 
 	var showdirectorFlag = getById("showdirectorFlag");
@@ -14879,10 +14882,10 @@ async function createRoomCallback(passAdd, passAdd2) {
 
 	if (session.cleanDirector == false && session.cleanOutput==false) {
 
-		getById("roomHeader").style.display = "";
+		getById("directorHeader").style.display = "";
 		//getById("directorLinks").style.display = "";
-		getById("directorLinks1").style.display = "inline-block";
-		getById("directorLinks2").style.display = "inline-block";
+		getById("directorInvite").style.display = "inline-block";
+		getById("directorScene").style.display = "inline-block";
 		
 
 		getById("director_block_1").dataset.raw = "https://" + location.host + location.pathname + "?room=" + session.roomid + broadcastString + passAdd + wss + queue + token;
@@ -28936,31 +28939,25 @@ function EnterButtonChat(event) {
 	}
 }
 
-function showCustomizer(arg, ele) {
-	//getById("directorLinksButton").innerHTML='<i class="las la-caret-right"></i><span data-translate="hide-the-links"> LINKS (GUEST INVITES & SCENES)</span>'
-	getById("showCustomizerButton1").style.backgroundColor = "";
-	getById("showCustomizerButton2").style.backgroundColor = "";
-	getById("showCustomizerButton3").style.backgroundColor = "";
-	getById("showCustomizerButton4").style.backgroundColor = "";
-	getById("showCustomizerButton1").style.boxShadow = "";
-	getById("showCustomizerButton2").style.boxShadow = "";
-	getById("showCustomizerButton3").style.boxShadow = "";
-	getById("showCustomizerButton4").style.boxShadow = "";
+function toggleParameters(arg, ele) {
+	getById("parameterButton1").style.backgroundColor = "";
+	getById("parameterButton2").style.backgroundColor = "";
 
+	if (getById("customizeParameters" + arg).style.display != "none") {
+		getById("customizeParameters1").style.display = "none";
+		getById("customizeParameters2").style.display = "none";
 
-	if (getById("customizeLinks" + arg).style.display != "none") {
-		getById("customizeLinks").style.display = "none";
-		getById("customizeLinks" + arg).style.display = "none";
+		getById("customizeParameters" + arg).style.display = "none";
+		getById("parameterButton" + arg).style.backgroundColor = "";
 	} else {
-		//directorLinks").style.display="none";
-		getById("showCustomizerButton" + arg).style.backgroundColor = "#1e0000";
-		getById("showCustomizerButton" + arg).style.boxShadow = "inset 0px 0px 1px #b90000";
-		getById("customizeLinks1").style.display = "none";
-		getById("customizeLinks3").style.display = "none";
-		getById("customizeLinks").style.display = "block";
-		getById("customizeLinks" + arg).style.display = "block";
+		getById("customizeParameters1").style.display = "none";
+		getById("customizeParameters2").style.display = "none";
+		
+		getById("parameterButton" + arg).style.backgroundColor = "#1e0000";
+		getById("customizeParameters" + arg).style.display = "flex";
 	}
 }
+
 
 var PPTHotkey = getStorage("PPTHotkey") || false;
 if (PPTHotkey){
