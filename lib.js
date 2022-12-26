@@ -15793,13 +15793,14 @@ function createControlBox(UUID, soloLink, streamID) {
 		getById("deleteme").parentNode.removeChild(getById("deleteme"));
 	}
 	var controls = getById("controls_blank").cloneNode(true);
-	controls.classList.remove("hidden");
+	controls.style.display = "flex";
 	controls.id = "controls_" + UUID;
+	controls.className = "controlsWrapper";
 
 	var container = document.createElement("div");
 	container.id = "container_" + UUID; // needed to delete on user disconnect
 	container.UUID = UUID;
-	container.className = "vidcon directorMargins";
+	container.className = "vidcon";
 	
 	if (session.orderby){
 		try {
@@ -33459,7 +33460,7 @@ function createControlBoxScreenshare(UUID, soloLink, streamID) {
 		getById("guestFeeds").appendChild(container);
 	}
 
-	controls.querySelector(".controlsGrid").classList.add("notmain");
+	controls.querySelector(".controlsWrapper").classList.add("notmain");
 	
 	if (!session.rpcs[UUID].voiceMeter) {
 		if (session.meterStyle==1){

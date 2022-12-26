@@ -955,7 +955,7 @@
 						<h2 title="Invite a guest or camera source to publish into the group room"><i class="las la-video director-link-icons" ></i><span data-translate="invite-a-guest">INVITE A GUEST</span></h2>
 						<span data-translate='invite-users-to-join'>Guests can use the link to join the group room</span>
 						<a onclick='copyFunction(this,event)' id="director_block_1" class='task grabLinks' data-menu="context-menu" style='cursor:copy;background-color: #0003;'></a>
-						<div class="controls">
+						<div class="controlsHeader">
 							<div class="switchWithText">
 								<label class="switch" title="If disabled, the invited guest will not be able to see or hear anyone in the room.">
 									<input type="checkbox" checked data-param="&do" onchange="updateLinkInverse(1,this);saveDirectorSettings();">
@@ -974,7 +974,7 @@
 						<h2 title="Use this link in the OBS Browser Source to capture the video or audio"><i class="las la-th-large director-link-icons"></i> <span data-translate="capture-a-group-scene">CAPTURE A GROUP SCENE</span></h2>
 						<span data-translate='this-is-obs-browser-source-link'>Use in OBS or other studio software to capture the group video mix</span>
 						<a onclick='copyFunction(this,event)'  data-drag="1" draggable="true"  id="director_block_3" data-menu="context-menu" class='task grabLinks' style='cursor:grab;background-color: #0003;'></a>
-						<div class="controls">
+						<div class="controlsHeader">
 							<div class="switchWithText">
 								<label class="switch" title="If disabled, you must manually add a video to a scene for it to appear.">
 									<input type="checkbox" checked data-param="&scene" onchange="updateLinkScene(3,this);saveDirectorSettings();">
@@ -1360,8 +1360,8 @@
 		<div id="overlayClockContainer2" data-menu='context-menu-clock' data-initial="600" class="hidden"><span id="overlayClock2"></span></div>
 		<div id="overlayMsgs" onclick="this.innerHTML = '';" style="display:none"></div>
 		<div id="bigPlayButton" onclick="this.innerHTML = '';" style="display:none"></div>
-		<div id="controls_blank" class="hidden controlCenterBox">
-			<div class="controlsGrid">
+		<div id="controls_blank" style="display: none;">
+			<div class="controlsRow">
 			
 				<button data-action-type="forward" class="mainonly advanced" title="Move the user to another room, controlled by another director" onclick="directMigrate(this, event);">
 					<i class="las la-paper-plane"></i>
@@ -1372,6 +1372,8 @@
 					<i class="las la-envelope"></i>
 					<span data-translate="send-direct-chat">Message</span>
 				</button>
+			</div>
+			<div class="controlsRow">	
 				<span class="director-message-box hidden" data-action-type="messaging-box">
 					
 					<textarea data-action-type="messaging-box-text" placeholder="Enter your message here"></textarea>
@@ -1387,7 +1389,9 @@
 						<span data-translate="send-message">send message</span>
 					</button>
 					
-				</span>	
+				</span>
+			</div>		
+			<div class="controlsRow">		
 				<button data-action-type="hangup" class="mainonly"  title="Force the user to Disconnect. They can always reconnect." onclick="directHangup(this, event);">
 					<i class="las la-sign-out-alt"  style="color:#900"></i>
 					<span data-translate="disconnect-guest" >Hangup</span>
@@ -1620,8 +1624,8 @@
 			</div>	
 		</div>
 		
-		<div id="controls_directors_blank" class="hidden controlCenterBox">
-			<div class="controlsGrid">
+		<div id="controls_directors_blank" style="display: none;">
+			<div class="controlsWrapper">
 
 				<button data-action-type="addToScene" data-scene="1"  title="Add this Video to any remote '&scene=1'" onclick="directEnable(this, event, true);">
 					<i class="las la-plus-square"></i>
