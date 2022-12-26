@@ -3226,13 +3226,14 @@ div#chatBody a {
 
 .directorContainer .documentation, .directorContainerParameters .documentation {
     position: absolute;
-    right: 6;
-    bottom: 6px;
+    right: 0;
+    bottom: 0;
     font-size: 12px;
-    border-radius: 3px;
-    background-color: rgba(0,0,0,0.5);
-    padding: 2px;
-	color: #888;
+    border-radius: 0px 0px 3px 3px;
+    padding: 6px 10px 6px 10px;
+    color: #999;
+    margin-bottom: -18px;
+    background-color: var(--container-color);
 }
 
 .directorContainer {
@@ -3285,8 +3286,7 @@ div#chatBody a {
     display: flex;
     position: relative;
     padding: 10px;
-    padding-bottom: 30px;
-    border-radius: 5px;
+    border-radius: 5px 5px 0px 5px;
     width: 100%;
 }
 .directorContainerContent:first-of-type {
