@@ -205,6 +205,12 @@ input {
 	color: white;
 }
 
+.ellipsis {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
 button.hint {
 	-webkit-box-shadow: inset 0px 0px 25px #0004;
 	-moz-box-shadow: inset 0px 0px 25px #0004;
@@ -626,14 +632,8 @@ hr {
 .vidcon {
 	max-width: 100%;
 	border: 0;
-}
+    border-radius: 5px;
 
-.vidcon:nth-of-type(3n) {
-	grid-column: 2;
-}
-
-.vidcon:nth-of-type(3n) {
-	grid-row: span;
 }
 
 .tile {
@@ -689,11 +689,8 @@ hr {
 }
 
 .directorWrapper .vidcon video {
-	margin: 0 5px;
-	padding:0;
-	width: 100%;
-	height: 148px;
-	max-width: 260px;
+	padding: 0;
+	--border-radius: 5px;
 }
 
 .directorWrapper .vidcon {
@@ -1125,8 +1122,6 @@ button.glyphicon-button.active.focus {
 	90% { transform: translate(1px, 2px) rotate(0deg); }
 	100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
-
-
 
 button.btnArmTransferRoom{
 	width:auto;
@@ -2086,6 +2081,7 @@ span[data-action-type="stats-graphs-details-container"]>span{
 
 .controlVideoBox {
 	position:relative;
+    height: 152px;
 }
 
 .container-inner {
@@ -2207,11 +2203,6 @@ iframe {
 .toggleSize {
 	font-size: 32px;
 	color: white;
-}
-.controlsGrid-1x1 {
-	margin-left: auto;
-    margin-right: 0;
-    text-align: right;
 }
 .director-message-box{
     display: flex;
@@ -3171,7 +3162,6 @@ div#chatBody a {
 
 .debugStats::-webkit-scrollbar-thumb:hover {
 	background: rgb(158, 158, 158);
-	;
 }
 .debugStats h1 {
 	font-size: 1rem;
@@ -3359,11 +3349,10 @@ div#chatBody a {
 	cursor:pointer;
 }
 
-.controls {
+.controlsHeader {
     display: flex;
     gap: 10px;
 }
-
 a.task {
 	width: 100%;
 	margin-top: 10px;
@@ -3390,103 +3379,26 @@ a.task {
 .shift.locked>span{
 	margin-left: 7px;
 }
-#toggleroomnotes {
-	grid-column: 4;
-	grid-row: 1;
+.controlsWrapper {
+    flex-wrap: wrap;
+    flex-direction: column;
 }
-.controlsGrid {
+.controlsRow {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
 }
-.controlsGrid button {
-    margin: 5px;
-    text-align: right;
-    flex: 0 1 calc(50% - 10px);
+.controlsRow button {
+	--margin: 5px;
+	--text-align: right;
 }
-.controlsGrid > div {
-	width: 100%;
-	display: flex;
+.controlsRow span button {
+	--margin-right: 0;
+	--padding-left: 3px;
+	--text-align: right;
 }
-
-.controlsGrid input {
-	margin: 5px;
-}
-
-button[data-action-type="messaging-box-close"] {
-	flex: 0 1 25%;
-}
-button[data-action-type="messaging-box-send"] {
-	flex: 1 0 50%
-}
-
-.controlsGrid > span.tooltip {
-    display: flex;
-    flex: 1 calc(50% - 10px);
-    align-items: center;
-}
-
-.advanced {
-	display: var(--advanced-mode);
-}
-
-#widget {
-	position: absolute;
-    width: 25%;
-    height: 100%;
-    right: 0;
-    top: 0;
-}
-#localMuteElement{
-	top: 1vh;
-	right: 1vh;
-}
-#localVoiceMeter{
-	width: 10px;
-	height: 10px;
-	top: 8px;
-	right: 10px;
-}
-.advanced {
-	display: var(--advanced-mode);
-}
-.controlCenterBox{
-	margin-top:2px;
-}
-
-.contolboxLabel {
-	float: left;
-	top: 2px;
-	margin-left: 5px;
-	position: relative;
-	cursor: pointer;
-}					
-.fullwindowButton {
-	transition: opacity 0.3s;
-	width: 4vh;
-	height: 4vh;
-	max-width: 30px;
-	max-height: 30px;
-	min-width: 15px;
-	min-height: 15px;
-	position: absolute;
-	display: none;
-	z-index: 6;
-	right: 4vh;
-	top : 4vh;
-	color: white;
-	cursor: pointer;
-}
-.fullwindowButtonimg {
-	user-select: none;
-	background-color:#0007;
-	width:4vh;
-}
-#widget {
-	position: absolute;
-    width: 25%;
-    height: 100%;
-    right: 0;
-    top: 0;
+.controlsRow input {
+	margin: 5px var(--regular-margin);
 }
 
 .pull-right {
@@ -3636,7 +3548,6 @@ a#reshare {
 	pointer-events:none;
 }
 
-
 .video-label.zoom {
 	bottom: 0;
 	left: 0;
@@ -3746,7 +3657,6 @@ a#reshare {
 	transition: height 0.1s ease, background-color 0.1s ease;
 }
 
-
 .hasMedia > .video-meter2 {
 	display:block;
 }
@@ -3756,7 +3666,6 @@ a#reshare {
 .hasMedia > .video-meter {
 	display:block;
 }
-
 
 #voiceMeterTemplate{
 	display:none;
@@ -3798,7 +3707,6 @@ a#reshare {
 	padding: 2.2px 1.5px 2px 2px;
 	margin: 0 0 0 5px;
 }
-
 
 #help_directors_room{
 	cursor:pointer;
@@ -4081,8 +3989,6 @@ input:checked + .slider:before {
 	box-shadow: 0px 5px 10px -5px #a5a566;
 	color: white!important;
 }
-
-
 
 .cameraTip {
 	width: 100%;
