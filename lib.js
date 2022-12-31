@@ -7672,19 +7672,19 @@ function toggleSceneStats(button){
 		});
 		
 		if (getById("container_" + UUID).querySelector('[data-action-type="stats-graphs-bitrate"]')){
-			getById("container_" + UUID).querySelector('[data-action-type="stats-graphs-bitrate"]').classList.remove("hidden");
+			getById("container_" + UUID).querySelector('.controlsGraphs').classList.remove("hidden");
 		}
 		if (getById("container_" + UUID).querySelector('[data-action-type="stats-graphs-details"]')){
-			getById("container_" + UUID).querySelector('[data-action-type="stats-graphs-details"]').classList.remove("hidden");
+			getById("container_" + UUID).querySelector('.controlsGraphs').classList.remove("hidden");
 		}
 		session.sendRequest({'requestStatsContinuous':true, }, UUID);
 	} else {
 		session.sendRequest({'requestStatsContinuous':false, }, UUID);
 		if (getById("container_" + UUID).querySelector('[data-action-type="stats-graphs-bitrate"]')){
-			getById("container_" + UUID).querySelector('[data-action-type="stats-graphs-bitrate"]').classList.add("hidden");
+			getById("container_" + UUID).querySelector('.controlsGraphs').classList.add("hidden");
 		}
 		if (getById("container_" + UUID).querySelector('[data-action-type="stats-graphs-details"]')){
-			getById("container_" + UUID).querySelector('[data-action-type="stats-graphs-details"]').classList.add("hidden");
+			getById("container_" + UUID).querySelector('.controlsGraphs').classList.add("hidden");
 		}
 	}	
 }
@@ -10300,7 +10300,8 @@ function directorAdvanced(ele) {
 function directorSendMessage(ele) {
 	
 	var UUID = ele.dataset.UUID;
-	var target = document.querySelector("[data--u-u-i-d='"+UUID+"'][data-action-type='messaging-box']");
+	var target = document.querySelector("#controls_"+UUID+" .controlsMessage");
+	//var target = document.querySelector("[data--u-u-i-d='"+UUID+"'][data-action-type='messaging-box']");
 	if (!target){return;}
 	
 	if (target.classList.contains("hidden")){
@@ -10332,7 +10333,7 @@ function directorSendMessage(ele) {
 			} else if (e.keyCode == 27) {
 				e.preventDefault();
 				inputField.value = "";
-				target.parentNode.removeChild(target);
+				//target.parentNode.removeChild(target);
 			}
 		});
 	}
@@ -10342,9 +10343,10 @@ function directorSendMessage(ele) {
 		sendButton.onclick = function() {
 			var chatMsg = {};
 			chatMsg.chat = inputField.value;
-			if (sendButton.parentNode.overlay) {
-				chatMsg.overlay = sendButton.parentNode.overlay;
+			if (target.overlay) {
+				chatMsg.overlay = target.overlay;
 			}
+			console.log(chatMsg)
 			session.sendRequest(chatMsg, ele.dataset.UUID);
 			inputField.value = "";
 			//target.parentNode.removeChild(target);
@@ -10355,20 +10357,18 @@ function directorSendMessage(ele) {
 	if (closeButton){
 		closeButton.onclick = function() {
 			inputField.value = "";
-			target.classList.add("hidden");
-			ele.classList.remove("pressed");
 		};
 	}
 
 	var overlayMsg = target.querySelector("[data-action-type='messaging-box-toggle']");
 	if (overlayMsg){
 		overlayMsg.onclick = function(e) {
-			log(e.target.parentNode.parentNode);
-			if (e.target.parentNode.parentNode.overlay === true) {
-				e.target.parentNode.parentNode.overlay = false;
+			console.log(target.overlay)
+			if (target.overlay === true) {
+				target.overlay = false;
 				e.target.parentNode.innerHTML = "<i class='las la-bell-slash' style='font-size:170%; color:#DDD; cursor:pointer;'></i>";
 			} else {
-				e.target.parentNode.parentNode.overlay = true;
+				target.overlay = true;
 				e.target.parentNode.innerHTML = "<i class='las la-bell' style='font-size:170%; color:#FFF; cursor:pointer;'></i>";
 			}
 		}
@@ -10791,7 +10791,7 @@ function directEnable(ele, event, director=false) { // A directing room only is 
 	if (!((event.ctrlKey) || (event.metaKey))) {
 		if (ele.value==1) {
 			ele.value = 0;
-			ele.classList.remove("pressed");
+			ele.classList.remove("pressedGreen");
 			if (ele.children[1]){
 				ele.children[1].innerHTML = "Add to Scene "+scene;
 			}
@@ -10824,7 +10824,7 @@ function directEnable(ele, event, director=false) { // A directing room only is 
 			}
 		} else {
 			ele.value = 1;
-			ele.classList.add("pressed");
+			ele.classList.add("pressedGreen");
 			if (ele.children[1]){
 				ele.children[1].innerHTML = "Remove";
 			}
@@ -11071,9 +11071,9 @@ function syncOtherState(sid){
 					if (ele.nodeName.toLowerCase() == "input"){
 						ele.value = parseInt(others[other]);
 					} else if (parseInt(others[other])){
-						ele.classList.add("pressed");
+						ele.classList.add("pressedGreen");
 					} else {
-						ele.classList.remove("pressed");
+						ele.classList.remove("pressedGreen");
 					}
 				}
 			}
@@ -11103,12 +11103,11 @@ function syncGroup(groups, UUID){
 		return;
 	}
 	groups.forEach(group=>{
-		var ele  = getById("container_" + UUID).querySelector('[data-action-type="toggle-group"][data--u-u-i-d="'+UUID+'"][data-group="'+group+'"]');
+		var ele  = getById("controls_" + UUID).querySelector('[data-action-type="toggle-group"][data--u-u-i-d="'+UUID+'"][data-group="'+group+'"]');
 		if (!ele){
-			var newGroup = htmlToElement('<button style="margin: 0 5px 10px 5px;" class="pressed" data-sid="'+session.rpcs[UUID].streamID+'" data--u-u-i-d="'+UUID+'" data-action-type="toggle-group" data-group="'+group+'"   title="Add to Group: '+group+'" onclick="changeGroup(this, event);"><span ><i class="las la-users" style="color:#060"></i>'+group+'</span></button>');
-
+			var newGroup = htmlToElement('<button class="pressedGreen" data-sid="'+session.rpcs[UUID].streamID+'" data--u-u-i-d="'+UUID+'" data-action-type="toggle-group" data-group="'+group+'"   title="Add to Group: '+group+'" onclick="changeGroup(this, event);"><i class="las la-users" style="color:#060"></i><span>'+group+'</span></button>');
 			var added = false;
-			getById("container_" + UUID).querySelectorAll('.customGroup>[data-group]').forEach(ele=>{
+			getById("controls_" + UUID).querySelectorAll('.controlsGroups>[data-group]').forEach(ele=>{
 				log(ele);
 				if (!added && ele.dataset.group>group+""){
 					ele.parentNode.insertBefore(newGroup, ele);
@@ -11116,24 +11115,25 @@ function syncGroup(groups, UUID){
 				}
 			});
 			if (!added){
-				var newGroupCon = getById("container_" + UUID).querySelector(".customGroup");
+				var newGroupCon = getById("controls_" + UUID).querySelector(".controlsGroups");
 				if (!newGroupCon){
 					newGroupCon = document.createElement("div");
-					newGroupCon.classList.add("customGroup");
-					getById("container_" + UUID).appendChild(newGroupCon);
+					newGroupCon.classList.add("controlsRow").add("controlsGroups");
+					getById("controls_" + UUID).appendChild(newGroupCon);
 				}
 				newGroupCon.appendChild(newGroup);
 			}
 		}
+		getById("controls_" + UUID).querySelector(".controlsGroups").classList.remove("hidden")
 	});
 	
 	var elements = document.querySelectorAll('[data-action-type="toggle-group"][data--u-u-i-d="'+UUID+'"][data-group]');
 	if (elements.length){
 		for (var i=0;i<elements.length;i++){
 			if (session.rpcs[UUID].group.includes(elements[i].dataset.group)){
-				elements[i].classList.add("pressed");
+				elements[i].classList.add("pressedGreen");
 			} else {
-				elements[i].classList.remove("pressed");
+				elements[i].classList.remove("pressedGreen");
 			}
 		}
 		log("synced group");
@@ -15120,8 +15120,6 @@ function requestInfocus(ele) {
 	}
 }
 
-
-
 function requestAudioSettings(ele) {
 	var UUID = ele.dataset.UUID;
 	if (ele.value == 1) {
@@ -15229,7 +15227,7 @@ async function createDirectorOnlyBox() {
 		controls.innerHTML += "<div style='padding:5px;word-wrap: break-word; overflow:hidden; white-space: nowrap; overflow: hidden; font-size:0.7em; text-overflow: ellipsis;' title='A direct solo view of the video/audio stream with nothing else'> \
 				<a class='soloLink advanced task' data-menu='context-menu' data-sololink='true' data-drag='1' draggable='true' onclick='copyFunction(this,event)' \
 				value='" + soloLink + "' href='" + soloLink + "'/>" + sanitizeChat(soloLink) + "</a>\
-				<button class='pull-right' style='width:100%;background-color:#ecfaff;' onclick='copyFunction(this.previousElementSibling,event)'><i class='las la-user'></i> copy solo view link</button>\
+				<button class='pull-right' style='width:100%;background-color:#ecfaff;' onclick='copyFunction(this.previousElementSibling,event)'><i class='las la-user'></i>Copy Solo View Link</button>\
 			</div>\
 			<div id='groups'></div>";
 		if (session.directorUUID){
@@ -15881,7 +15879,7 @@ function createControlBox(UUID, soloLink, streamID) {
 		controls.innerHTML += "<div class='soloButton' title='A direct solo view of the video/audio stream with nothing else. Its audio can be remotely controlled from here'> \
 				<a class='soloLink advanced task'  data-menu='context-menu' data-sololink='true' data-drag='1' draggable='true' onclick='copyFunction(this,event)' \
 				value='" + soloLink + "' href='" + soloLink + "'/>" + sanitizeChat(soloLink) + "</a>\
-				<button class='pull-right' style='width:100%;background-color:#ecfaff;' onclick='copyFunction(this.previousElementSibling,event)'><i class='las la-user'></i> copy solo view link</button>\
+				<button class='pull-right' style='width:100%;background-color:#ecfaff;' onclick='copyFunction(this.previousElementSibling,event)'><i class='las la-user'></i>Copy Solo View Link</button>\
 			</div>";
 	}
 	
@@ -16027,10 +16025,10 @@ function createControlBox(UUID, soloLink, streamID) {
 	session.group.forEach(group=>{
 		var ele  = controls.querySelector('[data-action-type="toggle-group"][data--u-u-i-d="'+UUID+'"][data-group="'+group+'"]');
 		if (!ele){
-			var newGroup = htmlToElement('<button style="margin: 0 5px 10px 5px;" data-sid="'+session.rpcs[UUID].streamID+'" data--u-u-i-d="'+UUID+'" data-action-type="toggle-group" data-group="'+group+'"   title="Add to Group: '+group+'" onclick="changeGroup(this, event);"><span ><i class="las la-users" style="color:#060"></i>'+group+'</span></button>');
+			var newGroup = htmlToElement('<button data-sid="'+session.rpcs[UUID].streamID+'" data--u-u-i-d="'+UUID+'" data-action-type="toggle-group" data-group="'+group+'"   title="Add to Group: '+group+'" onclick="changeGroup(this, event);"><i class="las la-users" style="color:#060"></i><span>'+group+'</span></button>');
 
 			var added = false;
-			container.querySelectorAll('.customGroup>[data-group]').forEach(ele=>{
+			container.querySelectorAll('.controlsGroups>[data-group]').forEach(ele=>{
 				log(ele);
 				if (!added && ele.dataset.group>group+""){
 					ele.parentNode.insertBefore(newGroup, ele);
@@ -16038,10 +16036,11 @@ function createControlBox(UUID, soloLink, streamID) {
 				}
 			});
 			if (!added){
-				var newGroupCon = container.querySelector(".customGroup");
+				var newGroupCon = container.querySelector(".controlsGroups");
 				if (!newGroupCon){
 					newGroupCon = document.createElement("div");
-					newGroupCon.classList.add("customGroup");
+					/*newGroupCon.classList.add("controlsGroups");*/
+					newGroupCon.classList.add("controlsRow").add("controlsGroups");
 					container.appendChild(newGroupCon);
 				}
 				newGroupCon.appendChild(newGroup);
@@ -16179,8 +16178,9 @@ function toggle(ele, tog = false, inline = true) {
 	}
 }
 
-function toggleByDataset(filter) {
-	var elements = document.querySelectorAll('[data-cluster="'+filter+'"]'); // ie:  .cluster1
+function toggleByDataset(ele,filter) {
+	var UUID = ele.getAttribute('data--u-u-i-d');
+	var elements = document.querySelectorAll('#controls_' + UUID + ' [data-cluster="'+filter+'"]'); 
 	for (var i = 0; i < elements.length; i++) {
 	  elements[i].classList.toggle('hidden');
 	}
@@ -17593,10 +17593,7 @@ function gotDevicesRemote(deviceInfos, UUID) {
 			}
 		} else {
 			var videoSelect = document.createElement("select");
-			videoSelect.id = "remoteVideoSelect_"+UUID;
-			videoSelect.style = "max-width:170px;font-size: 70% !important; margin: 5px 5px 5px 0; padding:2px;";
-			
-			
+			videoSelect.id = "remoteVideoSelect_"+UUID;			
 			
 			videoSelect.onchange = function(){
 				if (session.rpcs[UUID].stats.info && session.rpcs[UUID].stats.info.consent){
@@ -17610,7 +17607,6 @@ function gotDevicesRemote(deviceInfos, UUID) {
 			
 			var buttonGO = document.createElement("button");
 			buttonGO.innerHTML = '<i class="las la-video"></i> refresh';
-			buttonGO.style = "padding: 5px;";
 			buttonGO.title = "This will refresh the current device";
 			buttonGO.id = "requestVideoDevice_"+UUID;
 			buttonGO.onclick = function(){
@@ -17636,23 +17632,21 @@ function gotDevicesRemote(deviceInfos, UUID) {
 		} else {
 			var audioSelect = document.createElement("select");
 			audioSelect.id = "remoteAudioSelect_"+UUID;
-			audioSelect.style = "max-width:170px;font-size: 70% !important; margin: 5px 5px 5px 0; padding:2px;";
 			
 			
 			audioSelect.onchange = function(){
 				log("ON CHANGE");
 				if (session.rpcs[UUID].stats.info && session.rpcs[UUID].stats.info.consent){
-					getById("requestAudioDevice_"+UUID).innerHTML = '<i class="las la-microphone-alt"></i> apply';
+					getById("requestAudioDevice_"+UUID).innerHTML = '<i class="las la-microphone-alt"></i><span>apply</span>';
 					getById("requestAudioDevice_"+UUID).title = "This will update the remote device to the selected one";
 				} else {
-					getById("requestAudioDevice_"+UUID).innerHTML = '<i class="las la-microphone-alt"></i> request';
+					getById("requestAudioDevice_"+UUID).innerHTML = '<i class="las la-microphone-alt"></i><span>request</span>';
 					getById("requestAudioDevice_"+UUID).title = "This will ask the remote guest for permission to change";
 				}
 			}
 			
 			var buttonGO = document.createElement("button");
-			buttonGO.innerHTML = '<i class="las la-microphone-alt"></i> refresh';
-			buttonGO.style = "padding: 5px;";
+			buttonGO.innerHTML = '<i class="las la-microphone-alt"></i><span>refresh</span>';
 			buttonGO.title = "This will refresh the current device";
 			buttonGO.id = "requestAudioDevice_"+UUID;
 			
@@ -17678,7 +17672,6 @@ function gotDevicesRemote(deviceInfos, UUID) {
 		} else {
 			var audioOutputSelect = document.createElement("select");
 			audioOutputSelect.id = "remoteAudioOutputSelect_"+UUID;
-			audioOutputSelect.style = "max-width:170px;font-size: 70% !important; margin: 5px 5px 5px 0; padding:2px;";
 			
 			audioOutputSelect.onchange = function(){
 				if (session.rpcs[UUID].stats.info && session.rpcs[UUID].stats.info.consent){
@@ -17691,8 +17684,7 @@ function gotDevicesRemote(deviceInfos, UUID) {
 			}
 			
 			var buttonGO = document.createElement("button");
-			buttonGO.innerHTML = '<i class="las la-headphones"></i> refresh';
-			buttonGO.style = "padding: 5px;";
+			buttonGO.innerHTML = '<i class="las la-headphones"></i><span>refresh</span>';
 			buttonGO.title = "This will refresh the current device";
 			buttonGO.id =  "requestAudioOutputDevice_"+UUID;
 			buttonGO.onclick = function(){
@@ -17746,10 +17738,10 @@ function gotDevicesRemote(deviceInfos, UUID) {
 		
 		
 		if (!matched){
-			getById("requestVideoDevice_"+UUID).innerHTML = '<i class="las la-video"></i> request';
+			getById("requestVideoDevice_"+UUID).innerHTML = '<i class="las la-video"></i><span>request</span>';
 			getById("requestVideoDevice_"+UUID).title = "This will ask the remote guest for permission to change";
 		} else {
-			getById("requestVideoDevice_"+UUID).innerHTML = '<i class="las la-video"></i> refresh';
+			getById("requestVideoDevice_"+UUID).innerHTML = '<i class="las la-video"></i><span>refresh</span>';
 			getById("requestVideoDevice_"+UUID).title = "This will reconnect the guest's active video source.";
 		}
 			
@@ -30246,31 +30238,30 @@ function addAudioPipeline(UUID, track){  // INBOUND AUDIO EFFECTS ; audio tracks
 
 function changeGroupDirector(ele, state=null){
 	var group = ele.dataset.group;
-	
 	var index = session.group.indexOf(group);
 	
 	var change = false;
 	
 	if (state===true){
-		ele.classList.add("pressed");
+		ele.classList.add("pressedGreen");
 		if (index === -1){
 			session.group.push(group);
 			change=true;
 		}
 	} else if (state === false){
-		ele.classList.remove("pressed");
+		ele.classList.remove("pressedGreen");
 		if (index > -1){
 			session.group.splice(index, 1);
 			change=true;
 		}
-	} else if (ele.classList.contains("pressed")){
-		ele.classList.remove("pressed");
+	} else if (ele.classList.contains("pressedGreen")){
+		ele.classList.remove("pressedGreen");
 		if (index > -1){
 			session.group.splice(index, 1);
 			change=true;
 		}
 	} else {
-		ele.classList.add("pressed");
+		ele.classList.add("pressedGreen");
 		if (index === -1){
 			session.group.push(group);
 			change=true;
@@ -30303,7 +30294,7 @@ function changeGroupDirectorAPI(group, state=null, update=true){
 			if (update){
 				ele.click();
 			} else if (state===true){
-				ele.classList.add("pressed");
+				ele.classList.add("pressedGreen");
 			}
 			if (session.group.indexOf(group)===-1){
 				return false;
@@ -30321,7 +30312,7 @@ function changeGroupDirectorAPI(group, state=null, update=true){
 	
 	if (eleGroup.showDirector){
 		if (!ele){
-			ele = htmlToElement('<button style="margin: 0 5px 10px 5px;" data-sid="'+session.streamID+'" data-action-type="toggle-group" data-group="'+group+'"   title="Add to Group: '+group+'" onclick="changeGroupDirector(this);"><span ><i class="las la-users" style="color:#060"></i>'+group+'</span></button>');
+			ele = htmlToElement('<button data-sid="'+session.streamID+'" data-action-type="toggle-group" data-group="'+group+'"   title="Add to Group: '+group+'" onclick="changeGroupDirector(this);"><i class="las la-users" style="color:#060"></i><span>'+group+'</span></button>');
 
 			var added = false;
 			eleGroup.querySelectorAll('[data-group]').forEach(ele2=>{
@@ -30352,7 +30343,7 @@ function changeGroupDirectorAPI(group, state=null, update=true){
 	
 	if (state===true){
 		if (eleGroup.showDirector){
-			ele.classList.add("pressed");
+			ele.classList.add("pressedGreen");
 		} else {
 			ele.classList.add("green");
 		}
@@ -30362,7 +30353,7 @@ function changeGroupDirectorAPI(group, state=null, update=true){
 		}
 	} else if (state === false){
 		if (eleGroup.showDirector){
-			ele.classList.remove("pressed");
+			ele.classList.remove("pressedGreen");
 		} else {
 			ele.classList.remove("green");
 		}
@@ -30372,7 +30363,7 @@ function changeGroupDirectorAPI(group, state=null, update=true){
 		}
 	} else if (ele.classList.contains("green")){
 		if (eleGroup.showDirector){
-			ele.classList.remove("pressed");
+			ele.classList.remove("pressedGreen");
 		} else {
 			ele.classList.remove("green");
 		}
@@ -30382,7 +30373,7 @@ function changeGroupDirectorAPI(group, state=null, update=true){
 		}
 	} else {
 		if (eleGroup.showDirector){
-			ele.classList.add("pressed");
+			ele.classList.add("pressedGreen");
 		} else {
 			ele.classList.add("green");
 		}
@@ -30454,28 +30445,27 @@ function changeGroupViewDirectorAPI(group, state=null){
 
 
 function changeGroup(ele, state=null){
-
 	var group = ele.dataset.group;
 	
 	var index = session.rpcs[ele.dataset.UUID].group.indexOf(group);
 	
 	if (state===true){
-		ele.classList.add("pressed");
+		ele.classList.add("pressedGreen");
 		if (index === -1){
 			session.rpcs[ele.dataset.UUID].group.push(group);
 		}
 	} else if (state === false){
-		ele.classList.remove("pressed");
+		ele.classList.remove("pressedGreen");
 		if (index > -1){
 			session.rpcs[ele.dataset.UUID].group.splice(index, 1);
 		}
-	} else if (ele.classList.contains("pressed")){
-		ele.classList.remove("pressed");
+	} else if (ele.classList.contains("pressedGreen")){
+		ele.classList.remove("pressedGreen");
 		if (index > -1){
 			session.rpcs[ele.dataset.UUID].group.splice(index, 1);
 		}
 	} else {
-		ele.classList.add("pressed");
+		ele.classList.add("pressedGreen");
 		if (index === -1){
 			session.rpcs[ele.dataset.UUID].group.push(group);
 		}
@@ -30498,14 +30488,14 @@ function changeChannelOffset(UUID, channel){
 	var ele = document.querySelectorAll('[data-action-type="add-channel"][data--u-u-i-d="' + UUID + '"]');
 	for (var i=0;i<ele.length;i++){
 		if (channel===i){
-			if (ele[i].classList.contains("pressed")){
-				ele[i].classList.remove("pressed");
+			if (ele[i].classList.contains("pressedGreen")){
+				ele[i].classList.remove("pressedGreen");
 				channel=false;
 			} else {
-				ele[i].classList.add("pressed");
+				ele[i].classList.add("pressedGreen");
 			}
 		} else {
-			ele[i].classList.remove("pressed");
+			ele[i].classList.remove("pressedGreen");
 		}
 	}
 	session.rpcs[UUID].channelOffset = channel;
@@ -33636,10 +33626,10 @@ function createControlBoxScreenshare(UUID, soloLink, streamID) {
 	session.group.forEach(group=>{
 		var ele  = controls.querySelector('[data-action-type="toggle-group"][data--u-u-i-d="'+UUID+'"][data-group="'+group+'"]');
 		if (!ele){
-			var newGroup = htmlToElement('<button style="margin: 0 5px 10px 5px;" data-sid="'+session.rpcs[UUID].streamID+'" data--u-u-i-d="'+UUID+'" data-action-type="toggle-group" data-group="'+group+'" title="Add to Group: '+group+'" onclick="changeGroup(this, event);"><span ><i class="las la-users" style="color:#060"></i>'+group+'</span></button>');
+			var newGroup = htmlToElement('<button data-sid="'+session.rpcs[UUID].streamID+'" data--u-u-i-d="'+UUID+'" data-action-type="toggle-group" data-group="'+group+'" title="Add to Group: '+group+'" onclick="changeGroup(this, event);"><i class="las la-users" style="color:#060"></i><span>'+group+'</span></button>');
 
 			var added = false;
-			container.querySelectorAll('.customGroup>[data-group]').forEach(ele=>{
+			container.querySelectorAll('.controlsGroups>[data-group]').forEach(ele=>{
 				log(ele);
 				if (!added && ele.dataset.group>group+""){
 					ele.parentNode.insertBefore(newGroup, ele);
@@ -33647,10 +33637,10 @@ function createControlBoxScreenshare(UUID, soloLink, streamID) {
 				}
 			});
 			if (!added){
-				var newGroupCon = container.querySelector(".customGroup");
+				var newGroupCon = container.querySelector(".controlsGroups");
 				if (!newGroupCon){
 					newGroupCon = document.createElement("div");
-					newGroupCon.classList.add("customGroup");
+					newGroupCon.classList.add("controlsRow").add("controlsGroups");
 					container.appendChild(newGroupCon);
 				}
 				newGroupCon.appendChild(newGroup);

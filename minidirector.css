@@ -9,7 +9,7 @@ button[data-action-type='solo-chat'] {
 button[data-action-type='recorder-local'] {
 	display:none! important;
 }
-span[data-action-type='ordering'] {
+div[data-action-type='ordering'] {
 	display:none! important;
 }
 button[data-action-type='open-file-share'] {
@@ -107,7 +107,7 @@ button[data-action-type='advanced-camera-settings']{
 .hideDropMenu {
 	display:none;
 }
-.orderspan{
+.orderDiv{
 	display:none! important;
 }
 #directorHeader{
