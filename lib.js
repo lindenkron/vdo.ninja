@@ -15208,12 +15208,17 @@ async function createDirectorOnlyBox() {
 			<button ondrop='dropSlot(event)' draggable='true' ondragend='dragendSlot(event)' ondragstart='dragSlot(event)' ondragover='allowDropSlot(event)' onclick='changeSlot(event, this);'>"+slotName+"</button></div>";
 		
 	}
-	buttons += "<div title='Does not impact scene order.' class='shift'><i class='las la-angle-left' onclick='shiftPC(this,-1, true);'></i><i class='las la-angle-right' onclick='shiftPC(this,1, true)';></i></div>\
-		<div class='streamID' style='user-select: none;'>ID: <span style='user-select: text;'>" + session.streamID + "</span>\
-			<i class='las la-copy' data-sid='" + session.streamID + "'  onclick='copyFunction(this.dataset.sid,event)' title='Copy this Stream ID to the clipboard' style='cursor:pointer'></i>\
+	buttons += "\
+	<div class='containerTitleBar'>\
+		<div title='Does not impact scene order.' class='shift'><i class='las la-angle-left' onclick='shiftPC(this,-1, true);'></i><i class='las la-angle-right' onclick='shiftPC(this,1, true)';></i></div>\
+		<div class='streamID' style='user-select: none;'>\
 			<span id='label_director' class='addALabel' title='Click here to edit the label for this stream. Changes will propagate to all viewers of this stream' data-translate='add-a-label'>"+miscTranslations["add-a-label"]+"</span>\
+			<span class='labelID'>ID:</span>\
+			<span class='labelStreamID' style='user-select: text;'>" + session.streamID + "</span>\
+			<i class='las la-copy' data-sid='" + session.streamID + "'  onclick='copyFunction(this.dataset.sid,event)' title='Copy this Stream ID to the clipboard' style='cursor:pointer'></i>\
 		</div>\
-		<div id='videoContainer_director'></div>";
+	</div>\
+	<div id='videoContainer_director'></div>";
 	
 	container.innerHTML = buttons;
 	
@@ -15460,6 +15465,7 @@ async function createDirectorScreenshareOnlyBox() { // sstype=3
 			} else {
 				ee.target.innerText = newlabel;
 				ee.target.classList.remove("addALabel");
+				// ee.target.classList.add("addALabel");
 			}
 			session.label = newlabel;
 			var data = {};
@@ -15468,11 +15474,12 @@ async function createDirectorScreenshareOnlyBox() { // sstype=3
 			session.sendMessage(data);
 		}
 	}
-	labelID.style.float = "left";
-	labelID.style.top = "2px";
-	labelID.style.marginLeft = "5px";
-	labelID.style.position  = "relative";
-	labelID.style.cursor="pointer";
+	// labelID.style.float = "left";
+	// labelID.style.top = "2px";
+	// labelID.style.marginLeft = "15px";
+	// labelID.style.position  = "relative";
+	// labelID.style.cursor="pointer";
+
 	if (session.label){
 		labelID.innerText = session.label;
 	}
@@ -15927,10 +15934,19 @@ function createControlBox(UUID, soloLink, streamID) {
 			<button ondrop='dropSlot(event)' draggable='true' ondragend='dragendSlot(event)' ondragstart='dragSlot(event)' ondragover='allowDropSlot(event)' onclick='changeSlot(event, this);'>"+slotName+"</button></div>";
 	
 	}
-	buttons += "<div title='Does not impact scene order.' class='shift'><i class='las la-angle-left' data--u-u-i-d='"+UUID+"' onclick='shiftPC(this,-1);'></i><span onclick='lockPosition(this);' style='cursor:pointer;' data-locked='0' data--u-u-i-d='"+UUID+"' id='position_"+UUID+"'><i class='las la-lock-open'></i></span><i class='las la-angle-right' data--u-u-i-d='"+UUID+"' onclick='shiftPC(this,1);'></i></div><div class='streamID' style='user-select: none;'>ID: <span style='user-select: text;'>" + streamID + "</span>\
-	<i class='las la-copy' data-sid='" + streamID + "' onclick='copyFunction(this.dataset.sid,event)' title='Copy this Stream ID to the clipboard' style='cursor:pointer'></i>\
-	<span id='label_" + UUID + "' class='addALabel' title='Click here to edit the label for this stream. Changes will propagate to all viewers of this stream'></span>\
-	</div>";
+	buttons += "\
+	<div class='containerTitleBar'>\
+		<div title='Does not impact scene order.' class='shift'>\
+			<i class='las la-angle-left' data--u-u-i-d='"+UUID+"' onclick='shiftPC(this,-1);'></i>\
+			<span onclick='lockPosition(this);' style='cursor:pointer;' data-locked='0' data--u-u-i-d='"+UUID+"' id='position_"+UUID+"'><i class='las la-lock-open'></i></span>\
+			<i class='las la-angle-right' data--u-u-i-d='"+UUID+"' onclick='shiftPC(this,1);'></i>\
+		</div>\
+		<div class='streamID' style='user-select: none;'>\
+			<span id='label_" + UUID + "' class='addALabel' title='Click here to edit the label for this stream. Changes will propagate to all viewers of this stream'></span>\
+			<span class='labelID'>ID:</span>\
+			<span class='labelStreamID' style='user-select: text;'>" + streamID + "</span>\
+			<i class='las la-copy' data-sid='" + streamID + "' onclick='copyFunction(this.dataset.sid,event)' title='Copy this Stream ID to the clipboard' style='cursor:pointer'></i>\
+		</div>";
 
 	container.innerHTML = buttons;
 	updateLockedElements();
@@ -30719,6 +30735,12 @@ function createStyleCanvas(UUID){  // append the delay Node to the track??? WOUL
 
 
 function applyStyleEffect(UUID){
+	// setTimeout(function(UUID){
+	// 	var labelID = getById("label_"+UUID);
+	// 	if (labelID){
+	// 		labelID.style = "";
+	// 	}
+	// },5,UUID);
 	if (!session.rpcs[UUID].canvas || !session.rpcs[UUID].canvasCtx){return;}
 	
 	/* session.rpcs[UUID].canvasContainer = document.createElement("div");
@@ -33555,12 +33577,20 @@ function createControlBoxScreenshare(UUID, soloLink, streamID) {
 		buttons += "<div draggable='true' title='Drag to swap layout positions' ondragend='dragendSlot(event)' ondragstart='dragSlot(event)' ondrop='dropSlot(event)' ondragover='allowDropSlot(event)' data-slot='"+biggestSlot+"' data-sid='"+streamID+"'  data--u-u-i-d='"+UUID+"' class='slotsbar'>\
 			<button ondrop='dropSlot(event)' draggable='true' ondragend='dragendSlot(event)' ondragstart='dragSlot(event)' ondragover='allowDropSlot(event)' onclick='changeSlot(event, this);'>"+slotName+"</button></div>";
 	}
-	
-	buttons += "<div title='Does not impact scene order.' class='shift'><i class='las la-angle-left' data--u-u-i-d='"+UUID+"' onclick='shiftPC(this,-1);'></i><span onclick='lockPosition(this);' style='cursor:pointer;' data-locked='0' data--u-u-i-d='"+UUID+"' id='position_"+UUID+"'><i class='las la-lock-open'></i></span><i class='las la-angle-right' data--u-u-i-d='"+UUID+"' onclick='shiftPC(this,1);'></i></div><div class='streamID' style='user-select: none;'>ID: <span style='user-select: text;'>" + streamID + "</span>\
-	<i class='las la-copy' data-sid='" + streamID + "' onclick='copyFunction(this.dataset.sid,event)' title='Copy this Stream ID to the clipboard' style='cursor:pointer'></i>\
-	<span id='label_" + UUID + "' class='addALabel' title='Click here to edit the label for this stream. Changes will propagate to all viewers of this stream'></span>\
+	buttons += "\
+	<div class='containerTitleBar'>\
+	<div title='Does not impact scene order.' class='shift'>\
+		<i class='las la-angle-left' data--u-u-i-d='"+UUID+"' onclick='shiftPC(this,-1);'></i>\
+		<span onclick='lockPosition(this);' style='cursor:pointer;' data-locked='0' data--u-u-i-d='"+UUID+"' id='position_"+UUID+"'><i class='las la-lock-open'></i></span>\
+		<i class='las la-angle-right' data--u-u-i-d='"+UUID+"' onclick='shiftPC(this,1);'></i>\
+	</div>\
+	<div class='streamID' style='user-select: none;'>\
+		<span id='label_" + UUID + "' class='addALabel' title='Click here to edit the label for this stream. Changes will propagate to all viewers of this stream'></span>\
+		<span class='labelID'>ID:</span>\
+		<span class='labelStreamID'>style='user-select: text;'>" + streamID + "</span>\
+		<i class='las la-copy' data-sid='" + streamID + "' onclick='copyFunction(this.dataset.sid,event)' title='Copy this Stream ID to the clipboard' style='cursor:pointer'></i>\
 	</div>";
-	
+
 	container.innerHTML = buttons;
 	updateLockedElements();
 	
