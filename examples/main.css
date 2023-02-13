@@ -1458,6 +1458,7 @@ img {
 	color: #FFF;
 	border-radius: 38px;
 	text-align: center;
+	z-index: 10;
 	margin: 5px;
 	pointer-events: auto;
 	outline:none;
@@ -2026,7 +2027,6 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
 	background-color: #FFF;
 	display: inline-block;
 	vertical-align: middle;
-	padding: 3px;
 	font-size: 93%;
 	max-width: 100%;
 }
@@ -2051,23 +2051,7 @@ div.multiselect {
 	padding: 4px 10px 10px 10px;
 	background-color: #f3f3f3;
 }
-.multiselect .multiselect-contents {
-	display: block;
-	margin: 0;
-	font-size: 80%;
-	padding: 3px 5px 1px;
-	border-top: 0;
-	border-bottom-left-radius: 4px;
-	border-bottom-right-radius: 4px;
-	text-align: left;
-	background-color: white;
-}
-.multiselect .multiselect-contents li {
-	list-style: none;
-	font-size: 120%;
-	padding: 2px;
-	overflow: hidden;
-}
+
 .select .select-trigger:hover {
 	cursor: pointer;
 	cursor: hand;

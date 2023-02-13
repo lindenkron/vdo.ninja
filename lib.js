@@ -6159,11 +6159,12 @@ function drawOnScreen(){
         }, false);
 		canvas.remove();
 		
+		// getById("startDrawScreen").classList.remove("hidden");
 		getById("startDrawScreen").classList.remove("hidden");
-		
-		document.querySelectorAll(".drawActive").forEach(ele=>{
-			ele.classList.add("hidden");
-		});
+		getById("drawButtons").classList.add("hidden")
+		// document.querySelectorAll(".drawActive").forEach(ele=>{
+		// 	ele.classList.add("hidden");
+		// });
 		
 		delete canvas;
 		drawOnScreenObject = null;
@@ -6185,12 +6186,14 @@ function drawOnScreen(){
         canvas.addEventListener("mouseout", function (e) {
             findxy('out', e)
         }, false);
-		
+
 		getById("startDrawScreen").classList.add("hidden");
+		getById("drawButtons").classList.remove("hidden")
+		// getById("startDrawScreen").classList.add("hidden");
 		
-		document.querySelectorAll(".drawActive").forEach(ele=>{
-			ele.classList.remove("hidden");
-		});
+		// document.querySelectorAll(".drawActive").forEach(ele=>{
+		// 	ele.classList.remove("hidden");
+		// });
     }
     
    object.color =  function color(obj) {
@@ -10543,9 +10546,7 @@ async function toggleSettings(forceShow = false) { // TODO: I need to have this 
 			await enumerateDevices().then(gotDevices2).then(function() {});
 		}
 
-		getById("popupSelector").style.display = "inline-block"
-		getById("settingsbutton").classList.add("float2");
-		getById("settingsbutton").classList.remove("float");
+		getById("popupSelector").style.display = "flex"
 		
 		loadTFLITEImages() // only triggers if effects==5 is true
 		
@@ -10560,10 +10561,8 @@ async function toggleSettings(forceShow = false) { // TODO: I need to have this 
 			return false;
 		});
 
-		getById("popupSelector").style.right = "-400px";
+		getById("popupSelector").style.right = "-505px";
 
-		getById("settingsbutton").classList.add("float");
-		getById("settingsbutton").classList.remove("float2");
 		setTimeout(function() {
 			getById("popupSelector").style.display = "none";
 		}, 200);
@@ -16221,7 +16220,7 @@ function toggle(ele, tog = false, inline = true) {
 		if (inline) {
 			x.style.display = "inline-block";
 		} else {
-			x.style.display = "block";
+			x.style.display = "flex";
 		}
 	} else {
 		x.style.display = "none";
@@ -23928,7 +23927,7 @@ function updateDirectorsAudio(dataN, UUID) {
 			input.id = "constraints_" + i + "_"+n + "_"+UUID;
 			input.className = "constraintCameraInput";
 			input.name = "constraints_" + i + "_"+n;
-			input.style = "display:inline; padding:2px; margin:0 10px;";
+			// input.style = "display:inline; padding:2px; margin:0 10px;";
 			input.dataset.keyname = i;
 			input.dataset.track = n;
 			input.dataset.UUID = UUID;
@@ -23977,7 +23976,7 @@ function updateDirectorsAudio(dataN, UUID) {
 			input.id = "constraints_" + i + "_"+n+ "_"+UUID;
 			input.className = "constraintCameraInput";
 			input.name = "constraints_" + i + "_"+n;
-			input.style = "display:inline; padding:2px; margin:0 10px;";
+			// input.style = "display:inline; padding:2px; margin:0 10px;";
 			input.dataset.keyname = i;
 			input.dataset.track = n;
 			input.dataset.UUID = UUID;
@@ -24154,7 +24153,7 @@ function updateDirectorsAudio(dataN, UUID) {
 					input.id = "constraints_" + i + "_"+n+ "_"+UUID;
 					input.className = "constraintCameraInput";
 					input.name = input.id;
-					input.style = "display:inline; padding:2px; margin:0 10px;";
+					// input.style = "display:inline; padding:2px; margin:0 10px;";
 					input.dataset.keyname = i;
 					input.dataset.track = n;
 					input.dataset.deviceId = data.deviceId;
@@ -24196,7 +24195,7 @@ function updateDirectorsAudio(dataN, UUID) {
 					input.id = "constraints_" + i + "_"+n+ "_"+UUID;
 					input.className = "constraintCameraInput";
 					input.name = input.id;
-					input.style = "display:inline; padding:2px; margin:0 10px;";
+					// input.style = "display:inline; padding:2px; margin:0 10px;";
 					input.dataset.keyname = i;
 					input.dataset.track = n;
 					input.dataset.UUID = UUID;
@@ -24585,7 +24584,7 @@ function updateDirectorsVideo(data, UUID) {
 				input.className = "constraintCameraInput";
 				input.name = input.id;
 				input.dataset.UUID = UUID;
-				input.style = "display:inline; padding:2px; margin:0 10px;";
+				// input.style = "display:inline; padding:2px; margin:0 10px;";
 				input.dataset.keyname = i;
 				input.onchange = function(e) {
 					//getById("label_"+e.target.dataset.keyname+ "_" + e.target.dataset.UUID).innerText =e.target.dataset.keyname+": "+e.target.value;
@@ -24628,7 +24627,7 @@ function updateDirectorsVideo(data, UUID) {
 				input.id = "constraints_" + + i + "_"+UUID;
 				input.className = "constraintCameraInput";
 				input.name = input.id;
-				input.style = "display:inline; padding:2px; margin:0 10px;";
+				// input.style = "display:inline; padding:2px; margin:0 10px;";
 				input.dataset.UUID = UUID;
 				input.dataset.keyname = i;
 				input.onchange = function(e) {
@@ -24735,12 +24734,13 @@ function listAudioSettings() {
 						getById("advancedOptionsAudio").style.display = "inline-block";
 					}
 					var div = document.createElement("div");
+					div.className = "constraintsContainer";
 					var label = document.createElement("label");
 					var i = "masterGain";
 					//label.id = "label_" + i;
 					label.htmlFor = "constraints_" + i;
 					label.innerText = capitalizeFirstLetter(i).replace(/([a-z])([A-Z])/g, '$1 $2') + ":";
-					label.style = "display:inline-block; padding:0;margin-top: 15px";
+					label.className = "constraintsContainerLabel";
 
 					var input = document.createElement("input");
 					input.min = 0;
@@ -24752,8 +24752,8 @@ function listAudioSettings() {
 					input.dataset.keyname = i;
 					input.dataset.labelname = label.innerHTML;
 					input.id = "constraints_" + i;
-					input.style = "display:block; width:100%;";
 					input.name = "constraints_" + i;
+					input.classList.add("contraintsRange");
 					
 					input.value = session.webAudios[webAudio].gainNode.gain.value * 100;
 					//label.innerHTML += " " + parseInt(session.webAudios[webAudio].gainNode.gain.value * 100);
@@ -24782,8 +24782,8 @@ function listAudioSettings() {
 
 					getById("popupSelector_constraints_audio").appendChild(div);
 					div.appendChild(label);
-					div.appendChild(manualInput);
 					div.appendChild(input);
+					div.appendChild(manualInput);
 					break;
 				}
 			}
@@ -25077,6 +25077,7 @@ function listAudioSettings() {
 				if (session.webAudios[webAudio].gatingNode) {
 					
 					var div = document.createElement("div");
+					div.className = "constraintsContainer";
 					var label = document.createElement("label");
 					
 					var i = "noiseGating";
@@ -25084,7 +25085,7 @@ function listAudioSettings() {
 					label.id = "label_" + i + "_"+ii;
 					label.htmlFor = "constraints_" + i + "_"+ii;
 					label.innerText = capitalizeFirstLetter(i).replace(/([a-z])([A-Z])/g, '$1 $2') + ":";
-					label.style = "display:inline-block; padding:0;margin: 15px 0px 29px;";
+					label.className = "constraintsContainerLabel";
 					label.dataset.keyname = i;
 					label.title = "This will reduce the gain ~80% when there is no one talking loudly";
 					var input = document.createElement("select");
@@ -25108,7 +25109,7 @@ function listAudioSettings() {
 					input.id = "constraints_" + i + "_"+ii;
 					input.className = "constraintCameraInput";
 					input.name = "constraints_" + i + "_"+ii;
-					input.style = "display:inline; padding:2px; margin:0 10px;";
+					// input.style = "display:inline; padding:2px; margin:0 10px;";
 					input.dataset.keyname = i;
 					
 					input.onchange = function(e) {
@@ -25263,11 +25264,12 @@ function listAudioSettings() {
 					}
 
 					var div = document.createElement("div");
+					div.className = "constraintsContainer";
 					var label = document.createElement("label");
 					label.id = "label_" + i + "_"+ii;
 					label.htmlFor = "constraints_" + i + "_"+ii;
 					label.innerText = capitalizeFirstLetter(i).replace(/([a-z])([A-Z])/g, '$1 $2') + ":";
-					label.style = "display:inline-block; padding:0;margin: 15px 0px 29px;";
+					label.className = "constraintsContainerLabel";
 					label.dataset.keyname = i;
 					
 					var input = document.createElement("select");
@@ -25321,7 +25323,7 @@ function listAudioSettings() {
 					input.className = "constraintCameraInput";
 					input.name = "constraints_" + i + "_"+ii;
 					input.dataset.deviceid = track0.id;
-					input.style = "display:inline; padding:2px; margin:0 10px;";
+					// input.style = "display:inline; padding:2px; margin:0 10px;";
 					input.dataset.keyname = i;
 					input.onchange = function(e) {
 						applyAudioHack(e.target.dataset.keyname, e.target.value, e.target.dataset.deviceid);
@@ -25359,7 +25361,7 @@ function listAudioSettings() {
 					input.id = "constraints_" + i + "_"+ii;
 					input.className = "constraintCameraInput";
 					input.name = "constraints_" + i + "_"+ii;
-					input.style = "display:inline; padding:2px; margin:0 10px;";
+					// input.style = "display:inline; padding:2px; margin:0 10px;";
 					input.dataset.keyname = i;
 					input.onchange = function(e) {
 						//getById("label_"+e.target.dataset.keyname).innerHTML =e.target.dataset.keyname+": "+e.target.value;
@@ -25431,8 +25433,8 @@ function listAudioSettings() {
 
 					getById("popupSelector_constraints_audio").appendChild(div);
 					div.appendChild(label);
-					div.appendChild(manualInput);
 					div.appendChild(input);
+					div.appendChild(manualInput);
 					break;
 				}
 			}
@@ -26008,7 +26010,7 @@ function listCameraSettings() {
 				input.id = "constraints_" + i;
 				input.className = "constraintCameraInput";
 				input.name = "constraints_" + i;
-				input.style = "display:inline; padding:2px; margin:0 10px;";
+				// input.style = "display:inline; padding:2px; margin:0 10px;";
 				input.dataset.keyname = i;
 				input.onchange = function(e) {
 					//getById("label_"+e.target.dataset.keyname).innerHTML =e.target.dataset.keyname+": "+e.target.value;
@@ -26049,7 +26051,7 @@ function listCameraSettings() {
 				input.id = "constraints_" + i;
 				input.className = "constraintCameraInput";
 				input.name = "constraints_" + i;
-				input.style = "display:inline; padding:2px; margin:0 10px;";
+				// input.style = "display:inline; padding:2px; margin:0 10px;";
 				input.dataset.keyname = i;
 				input.onchange = function(e) {
 					//getById("label_"+e.target.dataset.keyname).innerHTML =e.target.dataset.keyname+": "+e.target.value;
@@ -26073,9 +26075,7 @@ function listCameraSettings() {
 		if (getStorage("camera_"+session.currentCameraConstraints.deviceId)){ 
 			var button = document.createElement("button");
 			button.innerHTML = "Reset video settings to default";
-			button.style.display = "block";
-			button.style.padding = "20px";
-			button.style.margin = "32px 20px 20px 20px";
+			button.className = "videoResetSettingsButton";
 			button.dataset.deviceId = session.currentCameraConstraints.deviceId;
 			button.onclick = function(){
 				var deviceId = this.dataset.deviceId;
