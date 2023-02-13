@@ -121,7 +121,7 @@
 					
 					<div id="dirroomid" style="font-size: 140%; color: #99c; display: inline-block;"></div>
 					<span id="saveRoom" onclick="saveRoom(this)" style='cursor:pointer;margin-left:10px;' title="Will remember the room, prompting you the next time you visit if you wish to load this director's room again">💾</span>
-					<span id="togglePreviewMode" onclick="switchModes()" style='cursor:pointer;margin-left:2px;' title="Toggle between the director control-room view and a scene preview-mode.">🪟</span>
+					<span id="togglePreviewMode" onclick="switchModes()" style='cursor:pointer;margin-left:2px;' title="Toggle between the director control-room view and a scene preview-mode.">♻</span>
 				</span>
 			</div>
 			<div id="head2" class="hidden" style="display: inline-block; text-decoration: none; font-size: 60%; color: white;">
@@ -265,7 +265,7 @@
 						<br />
 						<br />
 						
-						<table >
+						<table>
 						 <tr>
 							<th style="text-align:right;" class="labelLarge">
 								<b>
@@ -380,11 +380,7 @@
 					<span data-translate="add-your-camera">Add your Camera to OBS</span>
 				</h2>
 				<div class="container-inner">
-					<br />
-					<p>
-						<video id="previewWebcam" class="previewWebcam task" title="Right-click this video for additional options" data-menu="context-menu-video" oncanplay="updateStats();" controlsList="nodownload" muted autoplay playsinline ></video>
-					</p>
-					<div id="infof"></div>
+					<video id="previewWebcam" class="previewWebcam task" title="Right-click this video for additional options" data-menu="context-menu-video" oncanplay="updateStats();" controlsList="nodownload" muted autoplay playsinline ></video>
 					<button onclick="this.disabled=true;setTimeout(function(){requestBasicPermissions();},20);" id="getPermissions" style="display:none;" data-ready="false" >
 						<span data-translate="ask-for-permissions">Allow Access to Camera/Microphone</span>
 					</button>
@@ -393,31 +389,32 @@
 							<span data-translate="waiting-for-camera">Waiting for Camera to Load</span>
 						</button>
 					</span>
-					<div id="consentWarning" class="startupWarning hidden">
-						<i class="las la-exclamation-circle"></i>
-						<p><span data-translate="privacy-disabled">Privacy warning: The director will be able to remotely change your camera, microphone, and URL.</span></p>
-					</div>
-					<div id="guestTips" style="display:none">
-						<p data-translate="for-the-best-possible-experience-make-sure">For the best possible experience, make sure</p>
-						<span><i class="las la-plug"></i><span data-translate="your-device-is-powered">Your device is powered</span></span>
-						<span><i class="las la-ethernet"></i><span data-translate="your-connection-is-hardwired-instead-of-wifi">Your connection is hardwired instead of wifi</span></span>
-						<span><i class="las la-headphones"></i><span data-translate="you-are-using-headphones-earphones">You are using headphones / earphones</span></span>
-					</div>
-					<div id="videoMenu" class="videoMenu">
-						<span style="padding-right:2px;display:inline-block;position:relative;top:1px;"><i class="las la-video"></i><span data-translate="video-source"> Video Source </span></span>
-						<span style="display:inline-block;padding-top: 5px;">
-							<select id="videoSourceSelect" alt="Video source list"></select>
-							<span id="gear_webcam" onclick="toggle(document.getElementById('videoSettings'));">
-								<i class="las la-cog" style="font-size: 140%; vertical-align: middle;" aria-hidden="true"></i>
-							</span>
-						</span>
-						<div id="cameraTip1" class="cameraTip hidden">
-							<i class="las la-info-circle"></i>
-							<p><span id="cameraTipContext1"></span></p>
+					<div class="roomJoinSettings">
+						<div id="consentWarning" class="startupWarning hidden">
+							<i class="las la-exclamation-circle"></i>
+							<p><span data-translate="privacy-disabled">Privacy warning: The director will be able to remotely change your camera, microphone, and URL.</span></p>
 						</div>
-					</div>
-					<br />
-					<center>
+						<div id="guestTips" style="display:none">
+							<p data-translate="for-the-best-possible-experience-make-sure">For the best possible experience, make sure</p>
+							<span><i class="las la-plug"></i><span data-translate="your-device-is-powered">Your device is powered</span></span>
+							<span><i class="las la-ethernet"></i><span data-translate="your-connection-is-hardwired-instead-of-wifi">Your connection is hardwired instead of wifi</span></span>
+							<span><i class="las la-headphones"></i><span data-translate="you-are-using-headphones-earphones">You are using headphones / earphones</span></span>
+						</div>
+						<div id="videoMenu" class="videoMenu">
+							<div class="menuTitle">
+								<i class="las la-video"></i><span data-translate="video-source"> Video Source </span>
+							</div>
+							<div class="menuContent">
+								<select id="videoSourceSelect" alt="Video source list"></select>
+								<span id="gear_webcam" onclick="toggle(document.getElementById('videoSettings'));">
+									<i class="las la-cog" style="font-size: 140%; vertical-align: middle;" aria-hidden="true"></i>
+								</span>
+							</div>
+							<div id="cameraTip1" class="cameraTip hidden">
+								<i class="las la-info-circle"></i>
+								<p><span id="cameraTipContext1"></span></p>
+							</div>
+						</div>
 						<div id="videoSettings" style="display: none;">
 							<form id="webcamquality">
 								<input type="radio" id="fullhd" alt="1080p60 video capture" name="resolution" value="0" />
@@ -437,105 +434,103 @@
 								<div id="webcamstats" style="padding: 5px 0 0 0;"></div>
 							</form>
 						</div>
-					</center>
-					<div id="audioMenu" class="form-group multiselect" alt="tip: Hold CTRL (command) to select Multiple" title="tip: Hold CTRL (command) to select Multiple">
-						<span class='gear_microphone hidden'>
-							<input type="checkbox" id='micStereoMonoInput' alt="Mono microphone audio"  onchange="toggleMonoStereoMic(this);">Mono
-						</span>
-						<a id="multiselect-trigger" class="form-control multiselect-trigger" >
-							<div  class="audioTitle">
-								<i class="las la-microphone-alt"></i><span data-translate="select-audio-source"> Audio Source(s) </span>
-								<i id='chevarrow1' class="chevron bottom" aria-hidden="true"></i>
-								<div class="meter" id="meter1"></div><div class="meter2" id="meter2"></div>
+						<div id="audioMenu" class="form-group multiselect" alt="tip: Hold CTRL (command) to select Multiple" title="tip: Hold CTRL (command) to select Multiple">
+							<span class='gear_microphone hidden'>
+								<input type="checkbox" id='micStereoMonoInput' alt="Mono microphone audio"  onchange="toggleMonoStereoMic(this);">Mono
+							</span>
+							<a id="multiselect-trigger" class="form-control multiselect-trigger" >
+								<div  class="audioTitle">
+									<i class="las la-microphone-alt"></i><span data-translate="select-audio-source"> Audio Source(s) </span>
+									<i id='chevarrow1' class="chevron bottom" aria-hidden="true"></i>
+									<div class="meter" id="meter1"></div><div class="meter2" id="meter2"></div>
+								</div>
+							</a>
+							<ul id="audioSource" class="multiselect-contents" >
+								<li>
+									<input type="checkbox" id="multiselect1" name="multiselect1" style="display: none;" checked value="ZZZ" />
+									<label for="multiselect1">
+										<span data-translate="no-audio"> No Audio</span>
+									</label>
+								</li>
+							</ul>
+							<div id="audioTip1" class="cameraTip hidden">
+								<i class="las la-info-circle"></i>
+								<p><span id="audioTipContext1"></span></p>
 							</div>
-						</a>
-						<ul id="audioSource" class="multiselect-contents" >
-							<li>
-								<input type="checkbox" id="multiselect1" name="multiselect1" style="display: none;" checked value="ZZZ" />
-								<label for="multiselect1">
-									<span data-translate="no-audio"> No Audio</span>
-								</label>
-							</li>
-						</ul>
-						<div id="audioTip1" class="cameraTip hidden">
-							<i class="las la-info-circle"></i>
-							<p><span id="audioTipContext1"></span></p>
 						</div>
-					</div>
-					<br style="line-height: 0;" />
-					<div id="headphonesDiv" class="audioMenu">
-						<div class="audioTitle2">
-						<i class="las la-headphones"></i><span data-translate="select-output-source"> Audio Output Destination
-						</span><button onclick="playtone()" class="white" style="margin:0 0 0 15px;padding: 2px 10px 0px 10px;" type="button">Test</button></div>
-						<select id="outputSource" alt="Audio output device" ></select>
-						<div id="headphoneTip1" class="cameraTip hidden">
-							<i class="las la-info-circle"></i>
-							<p><span id="headphoneTipContext1"></span></p>
+						<div id="headphonesDiv" class="audioMenu">
+							<div class="menuTitle">
+							<i class="las la-headphones"></i><span data-translate="select-output-source"> Audio Output Destination
+							</span><button onclick="playtone()" class="white" style="margin:0 0 0 15px;padding: 2px 10px 0px 10px;" type="button">Test</button></div>
+							<select id="outputSource" alt="Audio output device" ></select>
+							<div id="headphoneTip1" class="cameraTip hidden">
+								<i class="las la-info-circle"></i>
+								<p><span id="headphoneTipContext1"></span></p>
+							</div>
 						</div>
-					</div>
-					
-					<div id="avatarDiv" class="hidden">
-						<div style="text-align: left;display: inline-block;">
-							<i class="las la-robot"></i><span data-translate="select-avatar-image"> Default Avatar / Placeholder Image </span>
-						</div>
-						<div id="selectAvatarImage" style="margin-top:10px;">
-							<img src="./media/avatar.webp" loading="lazy" id="defaultAvatar1" style="max-width:130px;max-height:73.5px;display:inline-block;margin:10px;cursor:pointer;" onclick="changeAvatarImage(event, this);"/>
-							<label class="selected" id="noAvatarSelected" style="width:130px;display:inline-block;margin:0 1px; text-align: center; cursor:pointer;">
-							  <i class="las la-minus-circle" style="font-size: 3em;"></i><br />No Image Selected
-							  <button onclick="changeAvatarImage(event, this)" style="position: fixed; top: -100em; margin-left:10px; border:1px solid #555;"></button>
-							</label>
-							<label style="width:130px;display:inline-block;margin:10px 1px; text-align: center; cursor:pointer;">
-							  <i class="las la-hdd" style="font-size: 3em;"></i><br />Select Local Image
-							  <input type="file" onchange="changeAvatarImage(event, this)" accept="image/*" style="position: fixed; top: -100em; margin-left:10px; border:1px solid #555;"> 
-							</label>
-						</div>
-					</div>
-					
-					<div id="effectsDiv">
-						<div style="text-align: left;display: inline-block;">
-							<i class="las la-robot"></i><span data-translate="select-digital-effect"> Digital Video Effects </span>
-						</div>
-						<select id="effectSelector" alt="Digital video effect options"  onchange="effectsDynamicallyUpdate(event, this);">
-							<option value="0" data-translate="no-effects-applied">No effects applied</option>	
-							<option value="3" data-translate="blurred-background">Blurred background</option>
-							<option value="4" data-translate="digital-greenscreen">Digital greenscreen</option>	
-							<option value="5" data-translate="virtual-background">Virtual background</option>
-							<option value="6" data-translate="face-mesh" title="experimental">Face mesh (slow load) 👨‍🔬</option>
-							<option value="7" data-translate="digital-zoom">Digital zoom</option>
-							<option value="anon" data-translate="anonymous-mask" title="experimental">Anonymous mask 👨‍🔬</option>
-							<option value="dog" data-translate="dog-face" title="experimental">Dog ears and nose 👨‍🔬</option>
-							<option value="1" disabled title='Enable the Chrome experimental features flag to use: chrome://flags/#enable-experimental-web-platform-features' class='facetracker' data-translate="face-tracker">Face Tracker</option>
-						</select>
-						<span data-warnSimdNotice="true" style='display:none; font-size: 140%; margin-left:10px; vertical-align: middle; cursor:pointer' title="Improve performance and quality with this tip" onclick="smdInfo();">
-							<i class="las la-info-circle"></i>
-						</span>
-						<span data-effectsNotice="true" style='display:none; font-size: 140%; margin-left:10px; vertical-align: middle; cursor:pointer' title="Improve performance and quality with this tip" onclick="warnUser('Use a Chromium Based Browser');">
-							<i class="las la-info-circle"></i>
-						</span>
 						
-						<div id="selectImageTFLITE" style="display:none;margin-top:10px;">
+						<div id="avatarDiv" class="hidden">
+							<div style="text-align: left;display: inline-block;">
+								<i class="las la-robot"></i><span data-translate="select-avatar-image"> Default Avatar / Placeholder Image </span>
+							</div>
+							<div id="selectAvatarImage" style="margin-top:10px;">
+								<img src="./media/avatar.webp" loading="lazy" id="defaultAvatar1" style="max-width:130px;max-height:73.5px;display:inline-block;margin:10px;cursor:pointer;" onclick="changeAvatarImage(event, this);"/>
+								<label class="selected" id="noAvatarSelected" style="width:130px;display:inline-block;margin:0 1px; text-align: center; cursor:pointer;">
+								<i class="las la-minus-circle" style="font-size: 3em;"></i><br />No Image Selected
+								<button onclick="changeAvatarImage(event, this)" style="position: fixed; top: -100em; margin-left:10px; border:1px solid #555;"></button>
+								</label>
+								<label style="width:130px;display:inline-block;margin:10px 1px; text-align: center; cursor:pointer;">
+								<i class="las la-hdd" style="font-size: 3em;"></i><br />Select Local Image
+								<input type="file" onchange="changeAvatarImage(event, this)" accept="image/*" style="position: fixed; top: -100em; margin-left:10px; border:1px solid #555;"> 
+								</label>
+							</div>
+						</div>
+						
+						<div id="effectsDiv">
+							<div style="text-align: left;display: inline-block;">
+								<i class="las la-robot"></i><span data-translate="select-digital-effect"> Digital Video Effects </span>
+							</div>
+							<select id="effectSelector" alt="Digital video effect options"  onchange="effectsDynamicallyUpdate(event, this);">
+								<option value="0" data-translate="no-effects-applied">No effects applied</option>	
+								<option value="3" data-translate="blurred-background">Blurred background</option>
+								<option value="4" data-translate="digital-greenscreen">Digital greenscreen</option>	
+								<option value="5" data-translate="virtual-background">Virtual background</option>
+								<option value="6" data-translate="face-mesh" title="experimental">Face mesh (slow load) 👨‍🔬</option>
+								<option value="7" data-translate="digital-zoom">Digital zoom</option>
+								<option value="anon" data-translate="anonymous-mask" title="experimental">Anonymous mask 👨‍🔬</option>
+								<option value="dog" data-translate="dog-face" title="experimental">Dog ears and nose 👨‍🔬</option>
+								<option value="1" disabled title='Enable the Chrome experimental features flag to use: chrome://flags/#enable-experimental-web-platform-features' class='facetracker' data-translate="face-tracker">Face Tracker</option>
+							</select>
+							<span data-warnSimdNotice="true" style='display:none; font-size: 140%; margin-left:10px; vertical-align: middle; cursor:pointer' title="Improve performance and quality with this tip" onclick="smdInfo();">
+								<i class="las la-info-circle"></i>
+							</span>
+							<span data-effectsNotice="true" style='display:none; font-size: 140%; margin-left:10px; vertical-align: middle; cursor:pointer' title="Improve performance and quality with this tip" onclick="warnUser('Use a Chromium Based Browser');">
+								<i class="las la-info-circle"></i>
+							</span>
+							
+							<div id="selectImageTFLITE" style="display:none;margin-top:10px;">
+								
+							</div>
+							<div id="selectEffectAmount" style="display:none;margin-top:10px;">
+								<label for="selectEffectAmountInput" style="width: 113px;display: inline-block;">Effect Amount</label>
+								<input id="selectEffectAmountInput" style="display: inline-block;width: 350px; max-width: 60%;margin:6px 0;" name="selectEffectAmountInput" title="Adjust the amount of effect applied" type="range" oninput="changeEffectAmount(event, this)" onchange="changeEffectAmount(event, this)" min="0" step="1" max="20">
+							</div>
 							
 						</div>
-						<div id="selectEffectAmount" style="display:none;margin-top:10px;">
-							<label for="selectEffectAmountInput" style="width: 113px;display: inline-block;">Effect Amount</label>
-							<input id="selectEffectAmountInput" style="display: inline-block;width: 350px; max-width: 60%;margin:6px 0;" name="selectEffectAmountInput" title="Adjust the amount of effect applied" type="range" oninput="changeEffectAmount(event, this)" onchange="changeEffectAmount(event, this)" min="0" step="1" max="20">
+						<div id="addPasswordBasic" >
+							<i class="las la-key"></i><span data-translate="add-a-password"> Add a Password</span>
+							<input type="text" id="passwordBasicInput" placeholder="optional" style="border: solid 1px #AAA;
+								padding: 4px 6px;
+								width: 200px;
+								margin: 0 6px;"/>
 						</div>
 						
-					</div>
-					<div id="addPasswordBasic" >
-						<i class="las la-key"></i><span data-translate="add-a-password"> Add a Password</span>
-						<input type="text" id="passwordBasicInput" placeholder="optional" style="border: solid 1px #AAA;
-							padding: 4px 6px;
-							width: 200px;
-							margin: 0 6px;"/>
-					</div>
-					
-					<div id="SafariWarning" class="startupWarning hidden">
-						<i class="las la-exclamation-circle"></i>
-						<p><span data-translate="use-chrome-instead">Consider using a Chromium-based browser instead.<br />
- 						Safari is more prone to having audio issues</span></p>
-					</div>
-					
+						<div id="SafariWarning" class="startupWarning hidden">
+							<i class="las la-exclamation-circle"></i>
+							<p><span data-translate="use-chrome-instead">Consider using a Chromium-based browser instead.<br />
+							Safari is more prone to having audio issues</span></p>
+						</div>
+					</div>	
 				</div>
 				<div class="outer close">
 					<div class="inner">
@@ -1690,7 +1685,7 @@
 						<input type="checkbox" id='micStereoMonoInput3' onchange="toggleMonoStereoMic(this);">Mono
 					</span>
 					<a id="multiselect-trigger3" class="form-control multiselect-trigger" >
-						<div id="audioTitle2" class="title">
+						<div id="menuTitle" class="title">
 							<i class="las la-microphone-alt"></i><span data-translate="select-audio-source"> Audio Source(s) </span>
 							<i id="chevarrow2" class="chevron bottom" aria-hidden="true"></i>
 							<div class="meter" id="meter3"></div><div class="meter2" id="meter4"></div>
@@ -1700,9 +1695,7 @@
 						<li>
 						</li>
 					</ul>
-					
 				</div>
-				<br />
 				<span id="headphonesDiv3" style="display: block;">
 					<div class="title">
 						<i class="las la-headphones"></i>
@@ -1762,49 +1755,53 @@
 				
 				
 				<div class="hidden" id="grabDirectorSoloLinkParent" title="The solo view link of the Director's video."><i class="las la-user"></i> Director's solo link:<a onclick="copyFunction(this,event)" data-drag="1" draggable="true" id="grabDirectorSoloLink" data-menu="context-menu" class="task" ></a></div>
-				<br />
-				<button onclick="toggleSettings()" class="toggleSettings"><i class="chevron right" style="font-size:150%;top:3px;position:relative;"></i> <b><span data-translate="close-settings">Close Settings</span></b></button>
-				
-				<button id='advancedOptionsAudio' onclick="this.classList.toggle('highlight');toggle(getById('popupSelector_constraints_audio'),false,false); getById('popupSelector_constraints_loading').style.visibility='visible';" class="advancedToggle">
-				<i class="las la-sliders-h" style="font-size:150%;top:3px;position:relative;"></i> <b>Audio</b></button>
-				
-				<button id='advancedOptionsCamera' onclick="this.classList.toggle('highlight');toggle(getById('popupSelector_constraints_video'),false,false);  getById('popupSelector_constraints_loading').style.visibility='visible';" class="advancedToggle">
-				<i class="las la-sliders-h" style="font-size:150%;top:3px;position:relative;"></i> <b>Video</b></button>
-				
-				<span class="mobileHide">
-					<button id='advancedOptionsGeneral' onclick="this.classList.toggle('highlight');toggle(getById('popupSelector_user_settings'),false,false);  getById('popupSelector_user_settings').style.visibility='visible';" style='padding: 10px 12px 12px 8px;margin: 0px 0px 0px 10px;'>
-					<i class="las la-user-cog" style="font-size:150%;top:1.5px;position:relative;"></i> <b><span data-translate="user">User</span></b></button>
+
+				<div class="toggleSettingsButtons">
+					<button onclick="toggleSettings()" class="toggleSettings"><span data-translate="close-settings">Close Settings</span></button>
+
+					<span class="mobileHide">
+						<button id='advancedOptionsGeneral' onclick="this.classList.toggle('highlight');toggle(getById('popupSelector_user_settings'),false,false);  getById('popupSelector_user_settings').style.visibility='visible';">
+						<i class="las la-user-cog"></i> <b><span data-translate="user">User</span></b></button>
+					</span>
+
+					<button id='advancedOptionsCamera' onclick="this.classList.toggle('highlight');toggle(getById('popupSelector_constraints_video'),false,false);  getById('popupSelector_constraints_loading').style.visibility='visible';" class="advancedToggle">
+						<i class="las la-sliders-h"></i> <b>Video</b></button>		
+
+					<button id='advancedOptionsAudio' onclick="this.classList.toggle('highlight');toggle(getById('popupSelector_constraints_audio'),false,false); getById('popupSelector_constraints_loading').style.visibility='visible';" class="advancedToggle">
+					<i class="las la-sliders-h"></i> <b>Audio</b></button>
+				</div>
+
+				<span id="popupSelector_user_settings" class="popupSelector_constraints" style="display: none; visibility:hidden">
+					<label title="Choose a hotkey for Hold-to-Talk. If using Electron Capture, elevate privilleges to have it become global">Hold-to-Talk Hot-key</label>
+					<input type="text" id="pptHotKey"  placeholder="press a key here"  onkeypress="event.preventDefault;event.stopPropagation();return false;" onkeyup="event.preventDefault;event.stopPropagation();return false;" onkeydown="setHotKey();"/>
+					<button class='hotkeyClearButton' onclick="setHotKey(false);" >Clear</button>
+					<label title="Draw on the Screen">Draw-on-Screen</label>
+					<button id='startDrawScreen' class='startDrawButton' title="CTRL (cmd) + ALT + D to toggle" onclick="drawOnScreen();">Enable</button>
+					<div id='drawButtons' class='drawButtons hidden'>
+						<button class='drawActive' onclick="drawOnScreenObject.stop();" title="CTRL (cmd) + ALT + D to toggle" style="background-color: #e4cbbd">Stop</button>
+						<button class='drawActive' onclick="drawOnScreenObject.color(this);" data-color='red' style="background-color:red;">✏️</button>
+						<button class='drawActive' onclick="drawOnScreenObject.color(this);" data-color='blue' style="background-color:blue;">✏️</button>
+						<button class='drawActive' onclick="drawOnScreenObject.color(this);" data-color='green' style="background-color:green;">✏️</button>
+						<button class='drawActive' onclick="drawOnScreenObject.color(this);" data-color='black' style="background-color:black;">✏️</button>
+						<button class='drawActive' onclick="drawOnScreenObject.color(this);" data-color='white' style="background-color:white;">🎨</button>
+						<button class='drawActive' onclick="drawOnScreenObject.erase();">Clear</button>
+					</div>
+					<label title="More">Extra features</label>
+					<button class="generalButton" onclick="cycleStyleOptions();" id='toggleWaveformButton' title="Audio-only sources can be stylized in different ways">Cycle between several audio-visualizations styles</button>
+					<button class="generalButton" onclick="clearStorage();" title="Clear site's local storage and settings">Clear site's local browser storage and saved settings</button>
 				</span>
 				
+				<span id="popupSelector_constraints_video" style="display: none;">
+				</span>
+
 				<span id="popupSelector_constraints_audio" class="popupSelector_constraints" style="display: none;">
-				
 				</span>
-				<span id="popupSelector_constraints_video" class="popupSelector_constraints" style="display: none;">
-				
-				</span>
+
 				<span id="popupSelector_constraints_loading" style="display: none; visibility:hidden">
 					<i class='las la-spinner icn-spinner' style='margin:30px;font-size:400%;color:white;'></i>
 				</span>
 				
-				<span id="popupSelector_user_settings" style="display: none; visibility:hidden">
-					<label title="Choose a hotkey for Hold-to-Talk. If using Electron Capture, elevate privilleges to have it become global">Hold-to-Talk Hot-key</label>
-					<input type="text" id="pptHotKey"  placeholder="press a key here" style="padding-left: 7px;" onkeypress="event.preventDefault;event.stopPropagation();return false;" onkeyup="event.preventDefault;event.stopPropagation();return false;" onkeydown="setHotKey();"/>
-					<button onclick="setHotKey(false);" style="margin: 0 0 0 4px; border-radius: 5px; padding: 3px 3px;">Clear</button>
-					<br /><br />
-					<label title="Draw on the Screen">Draw-on-Screen</label>
-					<button id='startDrawScreen' title="CTRL (cmd) + ALT + D to toggle" onclick="drawOnScreen();" style="margin: 0 0 0 4px; border-radius: 5px; padding: 3px 3px;">Enable</button>
-					<button class='hidden drawActive' onclick="drawOnScreenObject.erase();" style="margin: 0 0 0 4px; border-radius: 5px; padding: 3px 3px;">Clear</button>
-					<button class='hidden drawActive' onclick="drawOnScreenObject.stop();" style="margin: 0 0 0 4px; border-radius: 5px; padding: 3px 3px;" title="CTRL (cmd) + ALT + D to toggle" >Stop</button>
-					<button class='hidden drawActive' onclick="drawOnScreenObject.color(this);" data-color='red' style="background-color:red; margin: 0 0 0 4px; border-radius: 5px; padding: 3px 3px;">✏️</button>
-					<button class='hidden drawActive' onclick="drawOnScreenObject.color(this);" data-color='blue' style="background-color:blue; margin: 0 0 0 4px; border-radius: 5px; padding: 3px 3px;">✏️</button>
-					<button class='hidden drawActive' onclick="drawOnScreenObject.color(this);" data-color='green' style="background-color:green; margin: 0 0 0 4px; border-radius: 5px; padding: 3px 3px;">✏️</button>
-					<button class='hidden drawActive' onclick="drawOnScreenObject.color(this);" data-color='black' style="background-color:black; margin: 0 0 0 4px; border-radius: 5px; padding: 3px 3px;">✏️</button>
-					<button class='hidden drawActive' onclick="drawOnScreenObject.color(this);" data-color='white' style="background-color:white; margin: 0 0 0 4px; border-radius: 5px; padding: 3px 3px;">🎨</button>
-					<br /><br />
-					<button class="generalButton" onclick="cycleStyleOptions();" id='toggleWaveformButton' title="Audio-only sources can be stylized in different ways">Cycle between several audio-visualizations styles</button>
-					<button class="generalButton" onclick="clearStorage();" title="Clear site's local storage and settings">Clear site's local browser storage and saved settings</button>
-					
-				</span>
+
 		</div>
 		<nav id="context-menu" class="context-menu">
 			<ul class="context-menu__items">
