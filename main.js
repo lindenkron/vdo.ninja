@@ -1711,8 +1711,8 @@ async function main(){ // main asyncronous thread; mostly initializes the user s
 	if (urlParams.has('streamid') || urlParams.has('view') || urlParams.has('v') || urlParams.has('pull')) { // the streams we want to view; if set, but let blank, we will request no streams to watch.  
 		session.view = urlParams.get('streamid') || urlParams.get('view') || urlParams.get('v') || urlParams.get('pull') || null; // this value can be comma seperated for multiple streams to pull
 
-		getById("headphonesDiv2").style.display = "inline-block";
-		getById("headphonesDiv").style.display = "inline-block";
+		// getById("headphonesDiv2").style.display = "inline-block";
+		// getById("headphonesDiv").style.display = "inline-block";
 		getById("addPasswordBasic").style.display = "none";
 
 		
@@ -3872,8 +3872,8 @@ async function main(){ // main asyncronous thread; mostly initializes the user s
 		}
 
 		if (session.audioDevice === false && session.outputDevice === false) {
-			getById("headphonesDiv2").style.display = "inline-block";
-			getById("headphonesDiv").style.display = "inline-block";
+			// getById("headphonesDiv2").style.display = "inline-block";
+			// getById("headphonesDiv").style.display = "inline-block";
 		}
 		getById("addPasswordBasic").style.display = "none";
 		

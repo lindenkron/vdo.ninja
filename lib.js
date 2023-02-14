@@ -1045,7 +1045,7 @@ var checkStrengthRoom = function() {
 	var result1 = checkStrength(getById('videoname1').value);
 	var result2 = getById('passwordRoom').value.length;
 	var target = getById('securityLevelRoom');
-	target.style.display = "block";
+	target.style.display = "flex";
 	if (result1) {
 		if (result2) {
 			target.innerHTML = "<span style='color:green'>"+miscTranslations["share-with-trusted"]+"</span>";
@@ -4676,7 +4676,7 @@ function updateMixerRun(e=false){  // this is the main auto-mixing code.  It's a
 				vid.container = container;
 			}
 			container.style.position = "absolute";
-			container.style.display = "block";
+			container.style.display = "flex";
 			
 			// ANIMATED  - CONTAINER ; width/height/z-index/cover///////////////
 			if (layout){
@@ -6092,7 +6092,7 @@ function drawOnScreen(){
 	canvas.height = parseInt(getById("gridlayout").clientHeight/2);
 	canvas.style.width = "100%";
 	canvas.style.height = "100%";
-	canvas.style.display = "block";
+	canvas.style.display = "flex";
 	canvas.style.position = "absolute";
 	canvas.style.bottom = "0";
 	canvas.style.left = "0";
@@ -6794,7 +6794,7 @@ function updateUserList(){
 			if (!added){
 				getById("connectUsers").style.display = "none";
 			} else {
-				getById("connectUsers").style.display = "block";
+				getById("connectUsers").style.display = "flex";
 			}
 		} catch(e){}
 		updateUserListActive=false;
@@ -10054,7 +10054,7 @@ function toggleMute(apply = false, event=false) { // TODO: I need to have this b
 			getById("header").classList.add('red');
 			
 			if (session.localMuteElement){
-				session.localMuteElement.style.display = "block";
+				session.localMuteElement.style.display = "flex";
 			}
 			
 		}
@@ -10254,7 +10254,7 @@ function toggleChat(event = null) { // TODO: I need to have this be MUTE, toggle
 		session.chat = true;
 		getById("chattoggle").className = "las la-comment-dots my-float toggleSize";
 		getById("chatbutton").className = "float2";
-		getById("chatModule").style.display = "block";
+		getById("chatModule").style.display = "flex";
 		getById("chatInput").focus(); // give it keyboard focus
 	} else {
 		session.chat = false;
@@ -14627,7 +14627,7 @@ async function toggleCoDirector(ele){
 		}
 	}
 	
-	getById("codirectorSettings").style.display = "block";
+	getById("codirectorSettings").style.display = "flex";
 }
 
 
@@ -14847,7 +14847,7 @@ async function createRoomCallback(passAdd, passAdd2) {
 		} else {
 			getById("codirectorSettings_changeurl").checked = false;
 		}
-		getById("codirectorSettings").style.display = "block";
+		getById("codirectorSettings").style.display = "flex";
 	}
 	
 	
@@ -16674,7 +16674,7 @@ function gotDevices(deviceInfos) {
 							// skip, already matched
 						} else if (adMatch[j] == deviceInfo.deviceId){
 							option.checked = true;
-							listele.style.display = "block";
+							listele.style.display = "flex";
 							option.style.display = "none"; 
 							getById("multiselect1").checked = false;
 							try{
@@ -16684,7 +16684,7 @@ function gotDevices(deviceInfos) {
 							break;
 						} else if (deviceInfo.label.replace(/[\W]+/g, "_").toLowerCase().includes(adMatch[j])){
 							option.checked = true;
-							listele.style.display = "block";
+							listele.style.display = "flex";
 							option.style.display = "none"; 
 							getById("multiselect1").checked = false;
 							try{
@@ -16698,7 +16698,7 @@ function gotDevices(deviceInfos) {
 				
 				if ((typeof adMatch !== "object") && (counter == 2)){
 					option.checked = true;
-					listele.style.display = "block";
+					listele.style.display = "flex";
 					option.style.display = "none"; 
 					getById("multiselect1").checked = false;
 					try{
@@ -17044,7 +17044,7 @@ function addScreenDevices(device) {
 	if (device.kind == "audio") {
 		const audioInputSelect =  getById('audioSource3');
 		const listele = document.createElement('li');
-		listele.style.display = "block";
+		listele.style.display = "flex";
 
 		const option = document.createElement('input');
 		option.type = "checkbox";
@@ -17321,7 +17321,7 @@ function gotDevices2(deviceInfos) {
 			}
 			if (matched == false) { // Not a gUM device
 				var listele = document.createElement('li');
-				listele.style.display = "block";
+				listele.style.display = "flex";
 				var option = document.createElement('input');
 				option.type = "checkbox";
 				option.value = track.id;
@@ -22960,7 +22960,7 @@ function updateConstraintSliders() {
 		if (session.effect!==false){
 			//if ((iOS) || (iPad)){
 			//} else {
-			getById("effectsDiv3").style.display = "block";
+			getById("effectsDiv3").style.display = "flex";
 			getById("effectSelector3").value = session.effect || "0";
 			//}
 		}
@@ -22971,7 +22971,7 @@ function updateConstraintSliders() {
 		//if ((iOS) || (iPad)){
 	//	} else {
 			if (session.effect!==false){
-				getById("effectsDiv3").style.display = "block";
+				getById("effectsDiv3").style.display = "flex";
 				try{
 					getById("effectSelector3").value = session.effect || "0";
 				} catch(E){}
@@ -23545,7 +23545,7 @@ function updateDirectorsAudio(dataN, UUID) {
 				var label = document.createElement("span");
 				label.innerText = data.trackLabel;
 				label.style.marginBottom = "10px";
-				label.style.display = "block";
+				label.style.display = "flex";
 				label.id = "remoteAudioLabel_"+UUID;
 				label.dataset.UUID = UUID;
 				audioEle.appendChild(label);
@@ -23942,7 +23942,7 @@ function updateDirectorsAudio(dataN, UUID) {
 				var label = document.createElement("span");
 				label.innerText = data.trackLabel;
 				label.style.margin = "20px 0 10px 0";
-				label.style.display = "block";
+				label.style.display = "flex";
 				label.id = "remoteAudioLabel_"+UUID+"_"+n+ "_"+UUID;
 				audioEle.appendChild(label);
 			}
@@ -24230,7 +24230,7 @@ function updateDirectorsVideo(data, UUID) {
 		var label = document.createElement("span");
 		label.innerText = data.trackLabel;
 		label.style.marginBottom = "10px";
-		label.style.display = "block";
+		label.style.display = "flex";
 		label.id = "remoteVideoLabel_"+UUID;
 		label.dataset.UUID = UUID;
 		videoEle.appendChild(label);
@@ -27462,7 +27462,7 @@ function fullscreenPageToggle(state=null){
 }
 
 function resetGen() {
-	getById("gencontent").style.display = "block";
+	getById("gencontent").style.display = "flex";
 	getById("gencontent2").style.display = "none";
 	getById("gencontent2").className = ""; //container-inner
 	getById("gencontent").className = "container-inner"; //
@@ -27566,7 +27566,7 @@ function generateQRPageCallback(hash) {
 		viewstr = 'https://' + location.host + location.pathname + '?view=' + sid + viewstr + title + wss;
 		getById("gencontent").style.display = "none";
 		getById("gencontent").className = ""; //
-		getById("gencontent2").style.display = "block";
+		getById("gencontent2").style.display = "flex";
 		getById("gencontent2").className = "container-inner"; 
 		
 		getById("gencontent2").innerHTML = '<br /><div id="qrcode" style="background-color:white;display:inline-block;color:black;max-width:380px;padding:35px 40px 40px 40px;">\
@@ -28763,7 +28763,7 @@ function getChatMessage(msg, label = false, director = false, overlay = false) {
 				var spanOverlay = document.createElement("span");
 				spanOverlay.innerHTML = "<b><i>" + label + "</i></b> " + msg + "<br />";
 				textOverlay.appendChild(spanOverlay);
-				textOverlay.style.display = "block";
+				textOverlay.style.display = "flex";
 				var showtime = msg.length * 200 + 3000;
 				if (showtime > 8000) {
 					showtime = 8000;
@@ -28843,7 +28843,7 @@ function updateClosedCaptions(msg, label, UUID) {
 			textOverlay.appendChild(spanOverlay);
 			textOverlay.style.height = "unset";
 			textOverlay.style.textAlign = "left";
-			textOverlay.style.display = "block";
+			textOverlay.style.display = "flex";
 			textOverlay.style.position = "fixed";
 			textOverlay.style.bottom = "0";
 			
@@ -30984,8 +30984,8 @@ function effectsDynamicallyUpdate(event, ele){
 	}
 	
 	if (session.effect === "7"){
-		getById("selectEffectAmount").style.display = "block";
-		getById("selectEffectAmount3").style.display = "block";
+		getById("selectEffectAmount").style.display = "flex";
+		getById("selectEffectAmount3").style.display = "flex";
 		session.effectValue = 1.0;
 		getById("selectEffectAmountInput").min = 1;
 		getById("selectEffectAmountInput").max = 1.99;
@@ -31019,8 +31019,8 @@ function effectsDynamicallyUpdate(event, ele){
 			updateRenderOutpipe();
 		} 
 		if ((session.effect === "3") && (session.effectValue_default==false)){
-			getById("selectEffectAmount").style.display = "block";
-			getById("selectEffectAmount3").style.display = "block";
+			getById("selectEffectAmount").style.display = "flex";
+			getById("selectEffectAmount3").style.display = "flex";
 			
 			getById("selectEffectAmountInput").min = 0;
 			getById("selectEffectAmountInput").max = 20;
@@ -31092,11 +31092,11 @@ function loadTFLITEImages(){
 		session.selectImageTFLITE_contents = getById("selectImageTFLITE_contents");
 	}
 	if (document.getElementById("selectImageTFLITE")){
-		document.getElementById("selectImageTFLITE").style.display = "block";
+		document.getElementById("selectImageTFLITE").style.display = "flex";
 		document.getElementById("selectImageTFLITE").appendChild(session.selectImageTFLITE_contents);
 		session.selectImageTFLITE_contents.classList.remove("hidden");
 	} else if (document.getElementById("selectImageTFLITE3")){
-		document.getElementById("selectImageTFLITE3").style.display = "block";
+		document.getElementById("selectImageTFLITE3").style.display = "flex";
 		document.getElementById("selectImageTFLITE3").appendChild(session.selectImageTFLITE_contents);
 		session.selectImageTFLITE_contents.classList.remove("hidden");
 	}
@@ -32635,10 +32635,10 @@ addEventToAll(".column", 'animationend', function(e, ele) {
 	if (e.animationName == 'inlightbox') {
 		ele.classList.add("skip-animation");
 		mapToAll(".close", function(target) {
-			target.style.display = "block";
+			target.style.display = "flex";
 		}, ele);
 		mapToAll(".container-inner", function(target) {
-			target.style.display = "block";
+			target.style.display = "flex";
 		}, ele);
 	} else if (e.animationName == 'outlightbox') {
 		ele.classList.remove('in-animation');
@@ -32661,10 +32661,10 @@ addEventToAll("#audioSource", 'mousedown touchend focusin focusout', function(e,
 			ele.classList.remove('bottom');
 		}, parentElement = getById('multiselect-trigger'));
 		mapToAll('.multiselect-contents', function(ele) {
-			ele.style.display = "block";
+			ele.style.display = "flex";
 			mapToAll('input[type="checkbox"]', function(ele2) {
-				ele2.parentNode.style.display = "block";
-				ele2.style.display = "inline-block";
+				ele2.parentNode.style.display = "flex";
+				ele2.style.display = "flex";
 			}, ele);
 		}, parentElement = getById('multiselect-trigger').parentNode);
 	}
@@ -32681,12 +32681,12 @@ addEventToAll("#audioSource3", 'mousedown touchend focusin focusout', function(e
 			target.classList.remove('bottom');
 		}, getById('multiselect-trigger3'));
 		mapToAll(".multiselect-contents", function(target) {
-			target.style.display = "block";
+			target.style.display = "flex";
 		}, getById('multiselect-trigger3').parentNode);
 		mapToAll(".multiselect-contents", function(target) {
 			mapToAll('input[type="checkbox"]', function(target2) {
 				target2.style.display = "inline-block";
-				target2.parentNode.style.display = "block";
+				target2.parentNode.style.display = "flex";
 			}, target);
 		}, getById('multiselect-trigger3').parentNode);
 	}
@@ -32703,12 +32703,12 @@ addEventToAll("#multiselect-trigger", 'mousedown touchend focusin focusout', fun
 			target.classList.remove('bottom');
 		}, getById('multiselect-trigger'));
 		mapToAll(".multiselect-contents", function(target) {
-			target.style.display = "block";
+			target.style.display = "flex";
 		}, ele.parentNode);
 		mapToAll(".multiselect-contents", function(target) {
 			mapToAll('input[type="checkbox"]', function(target2) {
 				target2.style.display = "inline-block";
-				target2.parentNode.style.display = "block";
+				target2.parentNode.style.display = "flex";
 			}, target);
 		}, ele.parentNode);
 	} else { // close the dropdown
@@ -32740,12 +32740,12 @@ addEventToAll("#multiselect-trigger3", 'mousedown touchend focusin focusout', fu
 			target.classList.remove('bottom');
 		}, ele);
 		mapToAll(".multiselect-contents", function(target) {
-			target.style.display = "block";
+			target.style.display = "flex";
 		}, ele.parentNode);
 		mapToAll(".multiselect-contents", function(target) {
 			mapToAll('input[type="checkbox"]', function(target2) {
 				target2.style.display = "inline-block";
-				target2.parentNode.style.display = "block";
+				target2.parentNode.style.display = "flex";
 			}, target);
 		}, ele.parentNode);
 	} else { // close the dropdown
