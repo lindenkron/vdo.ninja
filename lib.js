@@ -22945,7 +22945,7 @@ function dropDownButtonAction(ele) {
 		//getById('container-5').classList.remove('hidden');
 		//getById('container-8').classList.remove('hidden');
 		//getById('container-6').classList.remove('hidden');
-		document.querySelectorAll("div.column.card").forEach(child=>{
+		document.querySelectorAll("div.tile.card").forEach(child=>{
 			child.classList.remove('hidden');
 		});
 	}
