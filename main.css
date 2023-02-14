@@ -1474,8 +1474,10 @@ body.darktheme{
 }
 
 .roomJoinSettings {
-	width: 50%;
-	margin: auto;
+    display: flex;
+    width: 50%;
+    gap: 10px;
+    flex-direction: column;
 }
 
 #getPermissions{
@@ -2098,7 +2100,6 @@ label {
 
 .container-inner > div, .container-inner > span > div, .container-inner button:not(.gowebcam), .message-card, .cameraTip {
     border-radius: 5px;
-    box-shadow: 10px 8px 32px -10px #8883;
 }
 
 #dropButton{
@@ -2290,9 +2291,8 @@ label {
 .container-inner {
 	display: none;
 	background-color: rgb(221, 221, 221);
-	max-height: 100%;
-	min-height: 90%;
-	margin-bottom:30px;
+    flex-direction: column;
+    align-items: center;
 }
 .canvasStats{
 	background-color: black;
@@ -2863,7 +2863,6 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
 
 .audioTitle {
 	text-align: left;
-	padding: 7px 0px;
 }
 .multiselect .multiselect-trigger:hover {
 	cursor: pointer;
@@ -2907,9 +2906,12 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
     border-radius: 4px;
 }
 #headphonesDiv {
+    display: flex;
+    flex-direction: column;
     width: 100%;
 	background-color: #f3f3f3;
 	border: 1px solid #ccc;
+	border-radius: 5px;
 }
 button.toggleSettings{
     display: flex;
@@ -2976,6 +2978,7 @@ button.toggleSettings{
 }
 #videoSettings {
     width: 100%;
+    margin-top: -10px;
     padding: 10px;
     border-width: 0px 1px 1px 1px;
     border-style: solid;
@@ -3135,6 +3138,7 @@ button.toggleSettings{
 	border: 1px solid #ccc;
 	vertical-align: middle;
 	text-align: left;
+	border-radius: 5px;
 }
 #videoMenu3{
     background-color: #f3f3f3;
@@ -3166,7 +3170,8 @@ div.multiselect {
 	background-color:#f3f3f3;
 }
 .multiselect .multiselect-contents {
-    display: block;
+    display: flex;
+    flex-direction: column;
     font-size: 80%;
     border-top: 0;
     background-color: white;
@@ -4324,24 +4329,26 @@ input:checked + .slider:before {
 	overflow-wrap: break-word;
 }
 .largeTextEntry {
-	width: 90%;
-	margin: 10px 5%;
-	font-size: .8em;
-	padding: 0.4em;
-	display: block;
-	
+    width: 100%;
+    padding: 0.4em;
 }
+
 .promptModalInner {
-	position: relative;
-	padding: 1em;
-	width: 100%;
+    display: flex;
+    padding: 1em;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.promptModalInner button {
+	width: 10%;
+	background-color: #fff;
+	border: 1px solid #999;
+	border-radius: 5px;
 }
 
 .promptModalMessage {
-	position: relative;
-	display: block;
-	width: 93%;
-	margin: 0 5%;
 }
 
 #iframe_source{
