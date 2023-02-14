@@ -1465,9 +1465,7 @@ body.darktheme{
 }
 
 .previewWebcam {
-	max-width: 640px;
-	max-width: 83vw;
-	height: 30vh;
+	max-width: 50%;
 	opacity:1;
 	animation: fadeIn 0.2s;
 	border-radius:5px;
@@ -1491,12 +1489,13 @@ body.darktheme{
 }
 
 .gowebcam {
-	font-size: 110%;
-	border: 3px solid #DDDDDD;
-	cursor: pointer;
-	background-color: #DDDDDD;
-	margin: 20px;
-	padding: 10px 50px;
+    font-size: 115%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    background-color: #DDDDDD;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
 }
 @-webkit-keyframes pulsate {
     0%   { box-shadow: 0 0 31px #244e1c44; transform: scale(1.0);}
@@ -1504,12 +1503,11 @@ body.darktheme{
     100% { box-shadow: 0 0 31px #244e1c44; transform: scale(1.0);}
 }
 .gowebcam:enabled {
-	background-color: #26e726 !important;
-	background: radial-gradient(#26e726, #2EeF2E);
-	color: black;
-	font-weight: bold !important;
-	box-shadow: 0 0 31px 0px #244e1c44;
-    animation: pulsate 2s ease-out infinite;
+    background-color: #26e726 !important;
+    background: radial-gradient(#26e726, #2EeF2E);
+    color: black;
+    font-weight: bold;
+    box-shadow: 0 0 10px 1px #00000055;
 }
 #mainmenu {
 	height:100vh;
@@ -2003,6 +2001,7 @@ input[type=range]:focus::-ms-fill-upper {
 	vertical-align: middle;
 	margin: 10px 0;
 	text-align: left;
+    gap: 5px;
 }
 #audioScreenShare1 {
 	border: 1px solid #ccc;
@@ -2293,6 +2292,7 @@ label {
 	background-color: rgb(221, 221, 221);
     flex-direction: column;
     align-items: center;
+	gap: 10px;
 }
 .canvasStats{
 	background-color: black;
@@ -2861,9 +2861,6 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
     outline: 2px solid black;
 }
 
-.audioTitle {
-	text-align: left;
-}
 .multiselect .multiselect-trigger:hover {
 	cursor: pointer;
 	cursor: hand;
@@ -2904,15 +2901,17 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
     padding: 10px 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    gap: 5px;
 }
-#headphonesDiv {
+/* #headphonesDiv {
     display: flex;
     flex-direction: column;
     width: 100%;
 	background-color: #f3f3f3;
 	border: 1px solid #ccc;
 	border-radius: 5px;
-}
+    gap: 5px;
+} */
 button.toggleSettings{
     display: flex;
     justify-content: center;
@@ -2985,21 +2984,15 @@ button.toggleSettings{
     border-color: #ccc;
     border-radius: 0px 0px 5px 5px;
 }
-#audioMenu {
-}
-
-#videosource {
-	display: inline-block;
-	vertical-align: middle;
-	font-size: 100%;
-}
 
 .menuTitle {
 	display: flex;
+	gap: 5px;
 }
 
 .menuContent {
 	display: flex;
+    width: 100%;
 }
 
 #minipreview > #videosource {
@@ -3102,11 +3095,9 @@ button.toggleSettings{
 	max-width: 235px;
 }
 #outputSource {
-	display: inline-block;
-	vertical-align: middle;
 	padding: 4px;
 	font-size: 93%;
-	max-width: 100%;
+	flex: 1;
 }
 #outputSource3 {
 	display: inline-block;
@@ -3131,15 +3122,18 @@ button.toggleSettings{
 	vertical-align: middle;
 }
 
-.videoMenu {
-	background-color: #f3f3f3;
+.settingsMenu {	
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
     width: 100%;
-	padding: 10px;
-	border: 1px solid #ccc;
-	vertical-align: middle;
-	text-align: left;
-	border-radius: 5px;
+    background-color: #f3f3f3;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0.8em;
 }
+
 #videoMenu3{
     background-color: #f3f3f3;
     width: 100%;
@@ -3149,20 +3143,14 @@ button.toggleSettings{
     border-radius: 4px;
 }
 
-.audioMenu{
-	background-color: rgb(243, 243, 243);
-	padding: 10px;
-	border: 1px solid rgb(204, 204, 204);
-}
-
-div.multiselect {
+.multiselect {
     width: 100%;
     white-space: nowrap;
     text-overflow: ellipsis;
     border: 1px solid #ccc;
     display: inline-block;
-    padding: 10px 10px 10px 10px;
-    border-radius: 4px;
+    padding: 0.8em;
+    border-radius: 5px;
     background-color: #f3f3f3;
 }
 .form-group .multiselect {
@@ -4879,12 +4867,15 @@ body.darktheme #directorHeader{
 body.darktheme div.multiselect {
 	background-color: #414141;
 }
-body.darktheme .videoMenu {
+body.darktheme .settingsMenu {
+	background-color: #414141;
+}
+/* body.darktheme .videoMenu {
 	background-color: #414141;
 }
 body.darktheme .audioMenu{
 	background-color: #414141;
-}
+} */
 body.darktheme #avatarDiv{
 	background-color: #414141;
 }
