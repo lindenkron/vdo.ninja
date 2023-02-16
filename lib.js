@@ -12165,7 +12165,7 @@ async function publishScreen() {
 
 	formSubmitting = false;
 
-	var quality = parseInt(getById("webcamquality2").elements.namedItem("resolution2").value) || 0;
+	var quality = parseInt(getById("screenshareQuality").elements.namedItem("resolution2").value) || 0;
 	
 	session.quality_ss = quality;
 
@@ -16376,8 +16376,8 @@ async function requestAudioStream() {
 						log('Some other kind of source/device: ', deviceInfo);
 					}
 				}
-				audioInputSelect.style.minHeight = ((audioInputSelect.childElementCount + 1) * 1.15 * 16) + 'px';
-				audioInputSelect.style.minWidth = "342px";
+				audioInputSelect.style.minHeight = ((audioInputSelect.childElementCount) * 1.15 * 16) + 'px';
+				// audioInputSelect.style.minWidth = "342px";
 				
 				if (session.audioDevice && (typeof session.audioDevice === "object") && session.audioDevice.length){
 					for (let i = 0; i !== audioInputSelect.length; ++i) {
@@ -31144,7 +31144,7 @@ function loadTFLITEImages(){
 				img.onerror = function(){this.style.display="none";}; // hide images that fail to load
 				img.crossOrigin = "Anonymous";
 				img.src = imgSrc;
-				img.style="max-width:130px;max-height:73.5px;display:inline-block;margin:10px;cursor:pointer;";
+				// img.style="max-width:130px;max-height:73.5px;display:inline-block;margin:10px;cursor:pointer;";
 				img.onclick=function(event){changeTFLiteImage(event, this);};
 				getById("selectImageTFLITE_contents").prepend(img);
 			} catch(e){};
@@ -31424,7 +31424,7 @@ async function changeTFLiteImage(ev, ele){
 			session.tfliteModule.img.classList.remove("selectedTFImage");
 		}
 		session.tfliteModule.img = document.createElement("img");
-		session.tfliteModule.img.style="max-width:130px;max-height:73.5px;display:inline-block;margin:10px;cursor:pointer;";
+		// session.tfliteModule.img.style="max-width:130px;max-height:73.5px;display:inline-block;margin:10px;cursor:pointer;";
 		session.tfliteModule.img.onclick=function(event){changeTFLiteImage(event, this);};
 		ele.parentNode.parentNode.insertBefore(session.tfliteModule.img, ele.parentNode);
 		session.tfliteModule.img.onload = () => {
@@ -32679,13 +32679,13 @@ function addEventToAll(targets, trigger, callback) { // js helper
 		}
 	}
 }
-addEventToAll(".column", 'click', function(e, ele) {
+addEventToAll(".tile", 'click', function(e, ele) {
 	if (ele.classList.contains("skip-animation")) {
 		return;
 	}
 	var bounding_box = ele.getBoundingClientRect();
 	ele.style.top = bounding_box.top + "px";
-	ele.style.left = (bounding_box.left - 20) + "px";
+	ele.style.left = (bounding_box.left) + "px";
 	ele.classList.add('in-animation');
 	ele.classList.remove('pointer');
 	ele.classList.remove('rounded');
@@ -32695,7 +32695,7 @@ addEventToAll(".column", 'click', function(e, ele) {
 	}
 	var empty = document.createElement("DIV");
 	empty.id = "empty-container";
-	empty.className = "column";
+	empty.className = "tile";
 	ele.parentNode.insertBefore(empty, ele.nextSibling);
 	const styles = "\
 		@keyframes outlightbox {\
@@ -32737,7 +32737,7 @@ addEventToAll(".close", 'click', function(e, ele) {
 	ele.parentNode.style.left = bounding_box.left + 'px';
 	e.stopPropagation();
 });
-addEventToAll(".column", 'animationend', function(e, ele) {
+addEventToAll(".tile", 'animationend', function(e, ele) {
 	if (e.animationName == 'inlightbox') {
 		ele.classList.add("skip-animation");
 		mapToAll(".close", function(target) {
