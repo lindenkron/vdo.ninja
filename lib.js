@@ -16188,7 +16188,7 @@ function toggle(ele, tog = false, inline = true) {
 			delete(tog.dataset.saved);
 		} else {
 			tog.dataset.saved = tog.innerHTML;
-			tog.innerHTML = "Hide This";
+			tog.innerHTML = "Hide.. <i class='las la-angle-double-up'></i>";
 		}
 	}
 }

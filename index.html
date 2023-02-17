@@ -71,6 +71,12 @@
 			<link rel="apple-touch-icon" href="images/icons/icon-512x512.png" />
 			<meta name="apple-mobile-web-app-status-bar" content="#db4938" />
 		-->
+		<script type="text/javascript" crossorigin="anonymous" id="lib-js" src="./lib.js?ver=648" defer ></script>
+		<!-- 
+		// If you wish to change branding, blank offers a good clean start.
+		<script type="text/javascript" id="main-js" src="./main.js" data-translation="blank"></script>
+		-->
+		<script type="text/javascript" crossorigin="anonymous" id="main-js" src="./main.js?ver=538" defer></script>
 	</head>
 	<body id="main" class="hidden" onload="main()">
 		<span itemprop="image" itemscope itemtype="image/png">
@@ -322,7 +328,7 @@
 							<div class="settingsMenu" id="roomNotes" style="display: none">
 								<ul class="roomNotes">
 									<span data-translate="added-notesNO" >
-										<li>Important Tips:</li>
+										<b>Important Tips:</b>
 										<li>Disabling video sharing between guests will improve performance</li>
 										<li>Invite only guests to the room that you trust.</li>
 										<li>The "Recording" option is considered experimental.</li>
@@ -890,7 +896,7 @@
 							<i class="las la-question-circle"></i> <span data-translate="click-here-for-help">Click Here for a quick overview and help</span>
 						</span>
 					</div>
-					<div id='roomnotes2' class="roomNotes" >
+					<div id='roomnotes2' class="directorNotes" style="display:none">
 						<span data-translate='welcome-to-control-room'>
 							<b>Welcome. This is the director's control-room for the group-chat.</b><br /><br />
 							You can host a group chat with friends using a room. Share the blue link to invite guests who will join the chat automatically.
@@ -955,6 +961,8 @@
 					</div>
 				</div>
 			
+			</div>
+
 			<div class='directorContainerParameters' id="customizeParameters1" style="display:none">
 				<div class='directorContainerContent' id="customizeLinksGroup1">
 					<div class='parameter'>
@@ -1677,22 +1685,22 @@
 				</span>
 				
 				<div id="avatarDiv3" class="hidden">
-						<div style="text-align: left;display: inline-block;">
-							<i class="las la-robot"></i><span data-translate="select-avatar-image"> Default Avatar / Placeholder Image: </span>
-						</div>
-						<div id="selectAvatarImage3" style="margin-top:10px;">
-							<img src="./media/avatar.webp" loading="lazy" id="defaultAvatar2" onclick="changeAvatarImage(event, this);"/>
-							<label class="selected" id="noAvatarSelected3" style="width:130px;display:inline-block;margin:0 1px; text-align: center; cursor:pointer;">
-							  <i class="las la-minus-circle" style="font-size: 3em;"></i><br />No Image Selected
-							  <button onclick="changeAvatarImage(event, this)" style="position: fixed; top: -100em; margin-left:10px; border:1px solid #555;"></button>
-							</label>
-							<!-- Reference for fix search: selectImageWrapper -->
-							<label style="width:130px;display:inline-block;margin:0 1px; text-align: center;  vertical-align: top;cursor:pointer;">
-							  <i class="las la-hdd" style="font-size: 3em;"></i><br />Select Local Image
-							  <input type="file" onchange="changeAvatarImage(event, this)" accept="image/*" style="position: fixed; top: -100em; margin-left:10px; border:1px solid #555;"> 
-							</label>
-						</div>
+					<div style="text-align: left;display: inline-block;">
+						<i class="las la-robot"></i><span data-translate="select-avatar-image"> Default Avatar / Placeholder Image: </span>
 					</div>
+					<div id="selectAvatarImage3" style="margin-top:10px;">
+						<img src="./media/avatar.webp" loading="lazy" id="defaultAvatar2" onclick="changeAvatarImage(event, this);"/>
+						<label class="selected" id="noAvatarSelected3" style="width:130px;display:inline-block;margin:0 1px; text-align: center; cursor:pointer;">
+							<i class="las la-minus-circle" style="font-size: 3em;"></i><br />No Image Selected
+							<button onclick="changeAvatarImage(event, this)" style="position: fixed; top: -100em; margin-left:10px; border:1px solid #555;"></button>
+						</label>
+						<!-- Reference for fix search: selectImageWrapper -->
+						<label style="width:130px;display:inline-block;margin:0 1px; text-align: center;  vertical-align: top;cursor:pointer;">
+							<i class="las la-hdd" style="font-size: 3em;"></i><br />Select Local Image
+							<input type="file" onchange="changeAvatarImage(event, this)" accept="image/*" style="position: fixed; top: -100em; margin-left:10px; border:1px solid #555;"> 
+						</label>
+					</div>
+				</div>
 				
 				<span id="effectsDiv3" style="user-select: none;">
 					<div class="title">
@@ -2336,11 +2344,5 @@
 			// session.hidehome = true; // If used, 'hide home' will make the landing page inaccessible, along with hiding a few go-home elements.
 			// session.record = false; // uncomment to block users from being able to record via vdo.ninja's built in recording function
 		</script>
-		<script type="text/javascript" crossorigin="anonymous" id="lib-js" src="./lib.js?ver=648"></script>
-		<!-- 
-		// If you wish to change branding, blank offers a good clean start.
-		<script type="text/javascript" id="main-js" src="./main.js" data-translation="blank"></script>
-		-->
-		<script type="text/javascript" crossorigin="anonymous" id="main-js" src="./main.js?ver=538"></script>
 	</body>
 </html>
