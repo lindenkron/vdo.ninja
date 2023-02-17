@@ -330,7 +330,7 @@
     "guests-only-see-director": "Guests can only see the Director's Video",
     "scenes-can-see-director": "Director will also be a performer",
     "default-codec-select": "Preferred Video Codec:  ",
-    "enter-the-rooms-control": "Enter the Room's Control Center",
+    "enter-the-rooms-control": "Join room as Director",
     "show-tips": "Show me some tips.. <i class='las la-angle-double-down'></i>",
     "added-notes": "\n<u>\n<i>Important Tips:</i><br><br>\n</u>\n<li>Disabling video sharing between guests will improve performance</li>\n<li>Invite only guests to the room that you trust.</li>\n<li>The \"Recording\" option is considered experimental.</li>",
     "back": "Back",

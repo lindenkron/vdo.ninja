@@ -724,40 +724,61 @@ hr {
     flex-direction: column;
 }
 
-.directorHeaderWrapper {
+/* .directorHeaderWrapper {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
     margin: 5px;
     width: 100%;
-}
+} */
 
 .directorWrapper {
-	padding: 0;
-	width: 100%;
 	display: flex;
-	gap: 5px;
 	flex-wrap: wrap;
 	justify-items: stretch;
-	border: 0;
-	margin: 0;
+    padding: 10px;
+	width: 100%;
+	gap: 5px;
 }
 
-.directorWrapper .vidcon video {
+.directorHeaderWrapper {
+    display: flex;
+    flex: 1;
+    gap: 5px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.guestsWrapper:empty {
+	display:none;
+}
+
+.guestsWrapper {
+    display: flex;
+    align-self: flex-start;
+    gap: 10px;
+    padding: 10px;
+    background: var(--container-color);
+    border-radius: 5px;
+    margin: 0px 10px 10px 10px;
+}
+
+.guestsWrapper .vidcon {
+	display: inline-block;
+	width: 269.7px !important;
+	background: #2b2b2bdd;
+	color: #FCFCFC;
+}
+
+.guestsWrapper .vidcon video {
     width: calc(100% - 10px);
     min-width: 0;
     margin: 0 5px;
+	height: unset;
     padding: 0;
     border-radius: 5px;
 }
 
-.directorWrapper .vidcon {
-	display: inline-block;
-	width: 269.7px !important;
-	background: #7E7E7E;
-	color: #FCFCFC;
-	vertical-align: top;
-}
 
 .directorBox {
 	background-color: #606383 !important;
@@ -1115,9 +1136,9 @@ button.glyphicon-button.active.focus {
 		max-width: 87%;
 	}
 	
-	.roomnotes{
+	/* .roomnotes{
 		display:none!important;
-	}
+	} */
 	
 	#head5 {
 		margin-right: 1px;
@@ -1278,9 +1299,9 @@ button.btnArmTransferRoom.selected{
 	#subControlButtons {
 		transform: scale(0.52);
 	}
-	#controlButtons {
+	/* #controlButtons {
 		height:30px
-	}
+	} */
 }
 
 #header:empty{
@@ -1452,6 +1473,9 @@ body.darktheme{
     padding: 10;
     flex: 1;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 }
 
 .enterRoomDirector:hover,
@@ -1776,10 +1800,10 @@ input[type=range]:focus::-ms-fill-upper {
 		top: 0;
 		right: 0;
 	}
-	select {
+	/* select {
 		height: 30px;
 		font-size: 120%;
-	}
+	} */
 	#reshare {
 		max-width: 650px !important;
 		font-size: 96% !important;
@@ -1882,6 +1906,7 @@ input[type=range]:focus::-ms-fill-upper {
 	text-align: center;
 	border-radius: 10px;
 	position: absolute;
+	user-select: none;
 	z-index: 1;
 	top: -10px;
 	overflow: visible;
@@ -3268,6 +3293,10 @@ button.toggleSettings{
     z-index: 1;
 }
 
+#videoMenu .menuContent {
+	flex-wrap: nowrap;
+}
+
 .settingsMenu input:not([type=checkbox]), .settingsMenu select {
 	padding: 4px;
     font-size: 93%;
@@ -3335,6 +3364,7 @@ button.toggleSettings{
     text-overflow: ellipsis;
     white-space: nowrap;
 	color: black;
+    padding: 4px 3px;
 }
 .select .select-trigger:hover {
 	cursor: pointer;
@@ -3606,6 +3636,12 @@ div#chatBody a {
     flex: 1;
 }
 
+.directorNotes {
+	background-color: var(--container-color);
+    border-radius: 5px;
+    padding: 10px;
+}
+
 .showTipsButton {
 	background-color: #ccc !important;
     color: black;
@@ -3617,6 +3653,8 @@ div#chatBody a {
     padding: 10;
     flex: 1;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 /* Because there needs to be a span for data-translate */
 .roomNotes > span {
@@ -3643,7 +3681,7 @@ div#chatBody a {
 	display: flex;
 	position: relative;
 	padding: 10px;
-	width: calc(50% - 2.5px);
+    flex: 1;
 	border-radius: 5px;
 }
 .directorContainerContent {
@@ -3731,6 +3769,11 @@ a.task {
     gap: 5px;
     padding: 5px;
     justify-content: center;
+}
+
+.controlsWrapper button {
+	padding: 5px 2px;
+	border-radius: 3px;
 }
 
 .controlsRow {
@@ -4010,17 +4053,8 @@ i.las.la-circle {
 	box-shadow: inset 0px 0px 17px #4b4b4b;
 	outline: none;
 }
-div#guestFeeds {
-	background: var(--container-color);
-	gap: 10px;
-	margin: 5px;
-	padding: 10px;
-	border-radius: 5px;
-}
 
-.guestsWrapper:empty {
-	display:none;
-}
+
 #hiddenElements{
 	visibility:hidden;
 	position: absolute;
@@ -4987,6 +5021,8 @@ input:checked + .slider:before {
 	content: "\f074"; }
 .la-angle-double-down:before {
 	content: "\f103"; }
+.la-angle-double-up:before {
+	content: "\f102"; }
 @media (prefers-color-scheme: dark) {
 	:root {
 		--color-mode: dark;
