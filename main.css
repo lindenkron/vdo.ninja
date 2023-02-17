@@ -259,10 +259,7 @@ button.red {
 
 button {
 	-webkit-app-region: no-drag;
-	padding: 5px 2px;
-	user-select: none;
 	cursor: pointer;
-	border-radius: 2px;
 }
 
 
@@ -283,9 +280,9 @@ button.white:active {
 	margin: 10px 0px;
 	cursor: pointer;
 	border-radius: 2px;
-	background-color: black;
+	background-color: #26e726 ;
 	color: white;
-	border: 1px solid black;
+	border: 1px solid black ;
 }
 #meshcastMenu{
 	display: inline-block;
@@ -503,11 +500,10 @@ button.white:active {
 .credits {
 	color: #101020;
 	position: fixed;
-	bottom: 0;
-	right: 0;
+    bottom: 12px;
+    right: 50px;
 	z-index: -1;
 	font-size: 80%;
-	margin-right:100px;
 }
 
 .credits>a {
@@ -1106,22 +1102,10 @@ button.glyphicon-button.active.focus {
 	height:100%!important;
 }
 
-.labelSmall {
-	display:none;
-}
 
 @media only screen and (max-width: 640px){
 	#subControlButtons {
 		transform: scale(0.9) translateY(10%);
-	}
-	
-	.labelSmall {
-		display:inherit;
-		padding:5px;
-	}
-	
-	.labelLarge {
-		display:none!important;
 	}
 	
 	.goScreenshare{
@@ -1404,11 +1388,11 @@ html {
 	outline: 0;
 }
 
-li {
+/* li {
 	margin: 0.1em 0;
 	padding-left: 0.1em;
 	line-height: 1.3em;
-}
+} */
 
 body {
 	-webkit-font-smoothing: antialiased;
@@ -1455,6 +1439,26 @@ body.darktheme{
 	width: 100%;
 }
 
+.enterRoomDirector,
+.enterRoomPartipant {
+	background-color: #26e726 !important;
+    background: radial-gradient(#26e726, #2EeF2E);
+    color: black;
+    font-weight: bold;
+    font-size: 115%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 1px #00000055;
+    padding: 10;
+    flex: 1;
+    white-space: nowrap;
+}
+
+.enterRoomDirector:hover,
+.enterRoomPartipant:hover {
+	filter: brightness(0.75);
+}
+
 .previewWebcam {
 	opacity:1;
 	animation: fadeIn 0.2s;
@@ -1462,10 +1466,11 @@ body.darktheme{
 }
 
 .settingsWrapper {
-    display: flex;
+	display: flex;
     gap: 10px;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 #getPermissions{
@@ -1484,7 +1489,6 @@ body.darktheme{
 .startSharing {
     font-size: 115%;
     border: 1px solid #ccc;
-    cursor: pointer;
     background-color: #DDDDDD;
     padding: 10px;
     width: 100%;
@@ -2132,11 +2136,6 @@ label {
 	background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M 13 4 C 11.90625 4 11 4.90625 11 6 L 11 18 C 11 19.09375 11.90625 20 13 20 L 19 20 C 20.09375 20 21 19.09375 21 18 L 21 6 C 21 4.90625 20.09375 4 19 4 Z M 13 6 L 19 6 L 19 18 L 13 18 Z M 7 14 L 7 18 C 7 21.300781 9.699219 24 13 24 L 15 24 L 15 26 L 11 26 L 11 28 L 21 28 L 21 26 L 17 26 L 17 24 L 19 24 C 22.300781 24 25 21.300781 25 18 L 25 14 L 23 14 L 23 18 C 23 20.21875 21.21875 22 19 22 L 13 22 C 10.78125 22 9 20.21875 9 18 L 9 14 Z'/%3E%3C/svg%3E")!important;
 }
 
-
-.container-inner > div, .container-inner > span > div, .container-inner button:not(.startSharing), .message-card, .cameraTip {
-    border-radius: 5px;
-}
-
 #dropButton{
     font-size: 2em;
     display: flex;
@@ -2335,6 +2334,7 @@ label {
 	/* background-color: rgb(221, 221, 221); */
     flex-direction: column;
     align-items: center;
+	min-width: 300px;
 	gap: 10px;
     padding: 0px 50px;
 }
@@ -3052,6 +3052,17 @@ button.toggleSettings{
 .menuContent {
 	display: flex;
     width: 100%;
+    flex-wrap: wrap;
+}
+
+.menuCheckRow {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: flex-start;
+    padding: 10px 0px;
+    gap: 10px;
+
 }
 
 .selectImage {
@@ -3107,6 +3118,20 @@ button.toggleSettings{
 	max-height:100%!important;
 	max-width:100%!important;
 	border-radius: 0!important;
+}
+
+.randomNameGenerator {
+	padding: 2px 10px;
+	border-radius: 5px;
+}
+
+.randomNameGenerator:active {
+	background-color: #e7d426;
+}
+
+.randomNameGenerator i {
+	color: black;
+	font-size: 150%;
 }
 
 /* #videoSourceSelect {
@@ -3243,7 +3268,7 @@ button.toggleSettings{
     z-index: 1;
 }
 
-.settingsMenu input, .settingsMenu select {
+.settingsMenu input:not([type=checkbox]), .settingsMenu select {
 	padding: 4px;
     font-size: 93%;
     overflow: hidden;
@@ -3576,12 +3601,29 @@ div#chatBody a {
 }
 
 .roomNotes {
-	background: var(--container-color);
-	padding: 10px;
-	width: 100%;
-	border-radius: 5px;
-
 	color: #ccc;
+    text-align: left;
+    flex: 1;
+}
+
+.showTipsButton {
+	background-color: #ccc !important;
+    color: black;
+    font-weight: bold;
+    font-size: 115%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 1px #00000055;
+    padding: 10;
+    flex: 1;
+    white-space: nowrap;
+}
+/* Because there needs to be a span for data-translate */
+.roomNotes > span {
+    display: flex;
+    gap: 3px;
+    flex-direction: column;
+    padding-left: 15px;
 }
 
 .directorContainer .documentation, .directorContainerParameters .documentation {
@@ -4939,6 +4981,12 @@ input:checked + .slider:before {
 	content: "\f0c1"; }
 .la-envelope-open:before {
 	content: "\f2b6"; }
+.la-signature:before {
+	content: "\f5b7"; }
+.la-random:before {
+	content: "\f074"; }
+.la-angle-double-down:before {
+	content: "\f103"; }
 @media (prefers-color-scheme: dark) {
 	:root {
 		--color-mode: dark;
@@ -4982,7 +5030,7 @@ body.darktheme h2 {
 body.darktheme button {
 	filter: brightness(0.70);
 }
-body.darktheme .tile .las {
+body.darktheme > .tile .las {
 	color: #f8f7f7;
 }
 body.darktheme label {
