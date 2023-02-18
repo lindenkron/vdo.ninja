@@ -367,7 +367,7 @@
     "cancel": "Cancel",
     "invisible-guests": "Not Visible",
     "available-languages": "Available Languages:",
-    "add-more-here": "Add More Here!",
+    "add-more-here": "<i class='las la-exclamation-circle'></i>Add More Here!",
     "add-to-calendar": "Add details to your Calendar:",
     "add-to-google-calendar": "Add to Google Calendar",
     "add-to-outlook-calendar": "Add to Outlook Calendar",
