@@ -10528,7 +10528,7 @@ async function toggleSettings(forceShow = false) { // TODO: I need to have this 
 			getById("popupSelector").style.display = "none";
 		}, 200);
 		toggleSettingsState = false;
-		document.getElementById('videoSettings3').style.display = "none";
+		// document.getElementById('videoSettings3').style.display = "none";
 	}
 }
 
@@ -25557,7 +25557,7 @@ function listCameraSettings() {
 		input.max = parseInt(session.totalRoomBitrate);
 
 		if (getById("popupSelector_constraints_video").style.display == "none") {
-			getById("advancedOptionsCamera").style.display = "inline-block";
+			getById("advancedOptionsCamera").style.display = "flex";
 		}
 
 		input.value = session.controlRoomBitrate;
@@ -25748,7 +25748,7 @@ function listCameraSettings() {
 				}
 
 				if (getById("popupSelector_constraints_video").style.display == "none") {
-					getById("advancedOptionsCamera").style.display = "inline-block";
+					getById("advancedOptionsCamera").style.display = "flex";
 				} 
 				
 				var manualInput = document.createElement("input");
@@ -25952,7 +25952,7 @@ function listCameraSettings() {
 				}
 
 				if (getById("popupSelector_constraints_video").style.display == "none") {
-					getById("advancedOptionsCamera").style.display = "inline-block";
+					getById("advancedOptionsCamera").style.display = "flex";
 				}
 
 				input.id = "constraints_" + i;
@@ -25993,7 +25993,7 @@ function listCameraSettings() {
 				}
 				
 				if (getById("popupSelector_constraints_video").style.display == "none") {
-					getById("advancedOptionsCamera").style.display = "inline-block";
+					getById("advancedOptionsCamera").style.display = "flex";
 				}
 
 				input.id = "constraints_" + i;
