@@ -1684,37 +1684,8 @@
 					
 				</span>
 			-->
-				<span id="popupSelector_user_settings" class="popupSelector_constraints" style="display: none; visibility:hidden">
-					<label title="Choose a hotkey for Hold-to-Talk. If using Electron Capture, elevate privilleges to have it become global">Hold-to-Talk Hot-key</label>
-					<input type="text" id="pptHotKey"  placeholder="press a key here"  onkeypress="event.preventDefault;event.stopPropagation();return false;" onkeyup="event.preventDefault;event.stopPropagation();return false;" onkeydown="setHotKey();"/>
-					<button class='hotkeyClearButton' onclick="setHotKey(false);" >Clear</button>
-					<label title="Draw on the Screen">Draw-on-Screen</label>
-					<button id='startDrawScreen' class='startDrawButton' title="CTRL (cmd) + ALT + D to toggle" onclick="drawOnScreen();">Enable</button>
-					<div id='drawButtons' class='drawButtons hidden'>
-						<button class='drawActive' onclick="drawOnScreenObject.stop();" title="CTRL (cmd) + ALT + D to toggle" style="background-color: #e4cbbd">Stop</button>
-						<button class='drawActive' onclick="drawOnScreenObject.color(this);" data-color='red' style="background-color:red;">✏️</button>
-						<button class='drawActive' onclick="drawOnScreenObject.color(this);" data-color='blue' style="background-color:blue;">✏️</button>
-						<button class='drawActive' onclick="drawOnScreenObject.color(this);" data-color='green' style="background-color:green;">✏️</button>
-						<button class='drawActive' onclick="drawOnScreenObject.color(this);" data-color='black' style="background-color:black;">✏️</button>
-						<button class='drawActive' onclick="drawOnScreenObject.color(this);" data-color='white' style="background-color:white;">🎨</button>
-						<button class='drawActive' onclick="drawOnScreenObject.erase();">Clear</button>
-					</div>
-					<label title="More">Extra features</label>
-					<button class="generalButton" onclick="cycleStyleOptions();" id='toggleWaveformButton' title="Audio-only sources can be stylized in different ways">Cycle between several audio-visualizations styles</button>
-					<button class="generalButton" onclick="clearStorage();" title="Clear site's local storage and settings">Clear site's local browser storage and saved settings</button>
-				</span>
-				
-				<span id="popupSelector_constraints_video" style="display: none;">
-				</span>
-
-				<span id="popupSelector_constraints_audio" class="popupSelector_constraints" style="display: none;">
-				</span>
-
-				<span id="popupSelector_constraints_loading" style="display: none; visibility:hidden">
-					<i class='las la-spinner icn-spinner' style='margin:30px;font-size:400%;color:white;'></i>
-				</span>
-
 				<div class="settingsWrapper">
+					<!-- Video, Audio Source, Audio Output, Digital Video effects & Solo Link -->
 					<div id="consentWarning" class="startupWarning hidden">
 						<i class="las la-exclamation-circle"></i>
 						<p><span data-translate="privacy-disabled">Privacy warning: The director will be able to remotely change your camera, microphone, and URL.</span></p>
@@ -1799,7 +1770,6 @@
 							<p><span id="headphoneTipContext1"></span></p>
 						</div>
 					</div>
-					<!-- FIX THIS AS WELL -->
 					<div id="avatarDiv3" class="settingsMenu hidden">
 						<div class="menuTitle">
 							<i class="las la-robot"></i>
@@ -1862,13 +1832,13 @@
 							<a onclick="copyFunction(this,event)" data-drag="1" draggable="true" id="grabDirectorSoloLink" data-menu="context-menu" class="task" ></a>
 						</div>
 					</div>
-
+					<!-- Buttons -->
 					<div class="extraSettingsButtons">
 						<button id="shareScreenGear" style="display: none" onclick="grabScreen()"><i class="las la-desktop"></i>Share Screen</button>
 						<button id="pIpStartButton" style="display: none"><i class="las la-compress-arrows-alt"></i>Preview PiP Video</button>
 					</div>
 	
-					<div class="toggleSettingsButtons">
+					<div class="mainSettingsButtons">
 						<button onclick="toggleSettings()" class="toggleSettings"><span data-translate="close-settings">Close Settings</span></button>
 	
 						<button data-hide-mobile="true" onclick="this.classList.toggle('highlight');toggle(getById('popupSelector_user_settings'),false,false);  getById('popupSelector_user_settings').style.visibility='visible';">
@@ -1880,8 +1850,54 @@
 						<button id='advancedOptionsAudio' onclick="this.classList.toggle('highlight');toggle(getById('popupSelector_constraints_audio'),false,false); getById('popupSelector_constraints_loading').style.visibility='visible';" class="advancedToggle">
 						<i class="las la-sliders-h"></i>Audio</button>
 					</div>
+					<!-- Expandable options -->
+					<div id="popupSelector_user_settings" class="settingsMenu" style="display: none; visibility:hidden">
+						<div class="menuTitle" title="Choose a hotkey for Hold-to-Talk. If using Electron Capture, elevate privilleges to have it become global">
+							<span data-translate="hold-to-talk-hotkey">Hold-to-Talk Hot-key:</span>
+						</div>
+						<div class="menuContent">
+							<input type="text" id="pptHotKey"  placeholder="press a key here"  onkeypress="event.preventDefault;event.stopPropagation();return false;" onkeyup="event.preventDefault;event.stopPropagation();return false;" onkeydown="setHotKey();"/>	
+							<button style="background-color: #e4cbbd" onclick="setHotKey(false);" >Clear</button>
+						</div>
+						<div class="menuTitle" title="Choose a hotkey for Hold-to-Talk. If using Electron Capture, elevate privilleges to have it become global">
+							<span data-translate="draw-on-screen" title="Draw on the Screen">Draw on the screen:</span>
+						</div>
+						<div class="menuContent">
+							<button id='startDrawScreen' class='startDrawButton' title="CTRL (cmd) + ALT + D to toggle" onclick="drawOnScreen();">Enable</button>
+							<div id='drawButtons' class='drawButtons hidden'>
+								<button class='drawActive' onclick="drawOnScreenObject.stop();" title="CTRL (cmd) + ALT + D to toggle" style="background-color: #e4cbbd">Stop</button>
+								<button class='drawActive' onclick="drawOnScreenObject.color(this);" data-color='red' style="background-color:red;">✏️</button>
+								<button class='drawActive' onclick="drawOnScreenObject.color(this);" data-color='blue' style="background-color:blue;">✏️</button>
+								<button class='drawActive' onclick="drawOnScreenObject.color(this);" data-color='green' style="background-color:green;">✏️</button>
+								<button class='drawActive' onclick="drawOnScreenObject.color(this);" data-color='black' style="background-color:black;">✏️</button>
+								<button class='drawActive' onclick="drawOnScreenObject.color(this);" data-color='white' style="background-color:white;">✏️</button>
+								<button class='drawActive' onclick="drawOnScreenObject.erase();">Clear</button>
+							</div>
+						</div>
+						<div class="menuTitle" title="Choose a hotkey for Hold-to-Talk. If using Electron Capture, elevate privilleges to have it become global">
+							<span data-translate="extra-features" title="More">Extra features:</span>
+						</div>
+						<div class="menuContent">
+							<button class="generalButton" onclick="cycleStyleOptions();" id='toggleWaveformButton' title="Audio-only sources can be stylized in different ways">
+								<span data-translate="cycle-between-audio-visualization-styles">Cycle between several audio-visualizations styles</span>
+							</button>
+							<button class="generalButton" onclick="clearStorage();" title="Clear site's local storage and settings">
+								<span data-translate="clear-site-local-data">Clear site's local browser storage and saved settings</span>
+							</button>	
+						</div>
+					</div>
+					
+					<div id="popupSelector_constraints_video" style="display: none;">
+					</div>
+	
+					<div id="popupSelector_constraints_audio" class="popupSelector_constraints" style="display: none;">
+					</div>
+	
+					<div id="popupSelector_constraints_loading" style="display: none; visibility:hidden">
+						<i class='las la-spinner icn-spinner'></i>
+					</div>
 				</div>
-			</div> <!-- maybe not ? -->
+			</div> 
 		</div>
 
 		
