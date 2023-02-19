@@ -3081,8 +3081,7 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
 	padding: 10px;
 }
 .selected {
-	border: solid 3px black;
-	padding: 4px;
+	border: solid 2px black;
 }
 #avatarDiv {
 	user-select: none;
@@ -3127,6 +3126,10 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
     border-style: solid;
     border-color: #ccc;
     border-radius: 0px 0px 5px 5px;
+}
+
+#avatarDiv3 .menuContent {
+	gap: 5px;
 }
 
 .settingsWrapper {
@@ -3182,7 +3185,24 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
 .selectImageWrapper > i {
 	font-size: 300%;
 }
+.selectImageWrapper > span { */
+    font-size: 1.6vw;
+}
+.selectImageWrapper > img {
+	border-radius: 5px;
+}
 .selectImageWrapper {
+	display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex: 1 30%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: #00000033;
+}
+/* .selectImageWrapper {
     display: flex;
 	position: relative;
     flex-direction: column;
@@ -3191,7 +3211,7 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
 	border-radius: 5px;
     background-color: #00000033;
     padding-bottom: 5px;
-}
+} */
 .selectImageContent img:hover {
 	cursor:pointer;
 }
@@ -5174,7 +5194,7 @@ body.darktheme #avatarDiv{
 	background-color: #414141;
 }
 body.darktheme .selected {
-	border: solid 3px #f8f7f7;
+	border: solid 2px #f8f7f7;
 }
 body.darktheme .avatarLabel {
 	color: #f8f7f7;		  
