@@ -1858,9 +1858,10 @@ input[type=range]:focus::-ms-fill-upper {
 		font-size: 92%;
 		width: 385px !important
 	}
-	.popupSelector_constraints{
+	/* .popupSelector_constraints{
 		margin:25px 15% 0 1%;
-	}
+	} */
+	/* Replace .mobileHide with data-mobile.  Avoid having to wrap things in elements, messing with styling. */
 	.mobileHide{
 		display: none !important;
 	}
@@ -1877,9 +1878,10 @@ input[type=range]:focus::-ms-fill-upper {
 
 @media only screen and (max-height: 355px) {
 	
-	.popupSelector_constraints{
+	/* Possibly needs to be fixed later */
+	/* .popupSelector_constraints{
 		margin:20px 12% 0 2%;
-	}
+	} */
 
 	#popupSelector {
 		padding: 0 0 20px 0 !important;
@@ -1997,34 +1999,6 @@ input[type=range]:focus::-ms-fill-upper {
 #popupSelector_constraints_video label {
 	color: white;
 	font-weight: bold;
-}
-
-.startDrawButton {
-	border-radius: 3px;
-	background-color: #bde4c7;
-	height: 30px;
-}
-
-.hotkeyClearButton {
-	border-radius: 3px;
-	background-color: #e4cbbd;
-	height: 30px;
-}
-
-.drawButtons {
-	display: flex;
-	gap: 5px;
-}
-
-.drawButtons button {
-	flex: 1;
-	border-radius: 3px;
-	min-height:0;
-	height: 30px;
-}
-
-#pptHotKey {
-	padding: 5px;
 }
 
 .constraintsContainer {
@@ -3009,16 +2983,17 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
     flex: 1;
 }
 
-.toggleSettingsButtons {
+.mainSettingsButtons {
 	display: flex;
 	gap: 5px;
+	flex: 1;
 }
-.toggleSettingsButtons button {
+.mainSettingsButtons button {
 	display: flex;
     align-items: center;
     justify-content: center;
     flex: 1;
-    padding: 5px;
+    padding: 10px 5px;
     border-radius: 5px;
 }
 
@@ -3102,6 +3077,7 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
     width: 100%;
     flex-wrap: wrap;
     align-items: center;
+    gap: 5px;
 }
 
 .menuCheckRow {
@@ -3112,6 +3088,25 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
     padding: 5px 0px;
     gap: 10px;
 
+}
+
+.startDrawButton {
+	border-radius: 3px;
+	background-color: #bde4c7;
+	height: 30px;
+}
+
+.drawButtons {
+	display: flex;
+	gap: 5px;
+    flex: 1;
+}
+
+.drawButtons button {
+	flex: 1;
+	border-radius: 3px;
+	min-height:0;
+	height: 30px;
 }
 
 .selectImage {
@@ -3134,7 +3129,7 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
 .selectImageWrapper > i {
 	font-size: 300%;
 }
-.selectImageWrapper > span { */
+.selectImageWrapper > span {
     font-size: 1.6vw;
 }
 .selectImageWrapper > img {
@@ -3299,11 +3294,17 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
     z-index: 1;
 }
 
-.settingsMenu input:not([type=checkbox]), .settingsMenu select {
+.menuContent input:not([type=checkbox]), .settingsMenu select {
 	padding: 4px;
     font-size: 93%;
     overflow: hidden;
     flex: 1 100%;
+}
+
+.menuContent button {
+    flex: 1;
+    padding: 5px 2px;
+    border-radius: 5px;
 }
 
 .menuContent > i {    
@@ -3372,7 +3373,7 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
     border-top: 0;
     background-color: white;
     border-radius: 4px;
-    padding: 2px 2px 0px 4px;
+    padding: 2px 2px 2px 4px;
 }
 .multiselect .multiselect-contents li {
 	list-style: none;
