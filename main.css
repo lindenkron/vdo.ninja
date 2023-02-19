@@ -173,18 +173,18 @@ a {
 }
 a:link {
 	text-decoration: none;
-	color: #B9DFF9;
+	color: #8dd0ff;
 }
 a:visited {
 	text-decoration: none;
-	color: #99BFD9;
+	color: #8dd0ff;
 }
 a:hover {
-	color: #048AE8;
+	color: #d8efff;
 }
 
 a:active {
-	color: #D9E4EB;
+	color: #8dd0ff;
 }
 
 input {
@@ -479,34 +479,13 @@ button.white:active {
 }
 
 .credits {
-	color: #101020;
+	color: #999;
 	position: fixed;
     bottom: 12px;
     right: 50px;
 	z-index: -1;
 	font-size: 80%;
-}
-
-.credits>a {
-	color: #101020;
-}
-
-.credits>a:visited {
-	color: #101020;
-}
-
-
-
-body.darktheme .credits {
-	color: #707a93;
-}
-
-body.darktheme .credits>a {
-	color: #707a93;
-}
-
-body.darktheme .credits>a:visited {
-	color: #707a93;
+    text-transform: capitalize;
 }
 
 .chevron {
@@ -684,10 +663,6 @@ hr {
 	margin: 20px 0px;
 	background-color: #d2d2d2;
 	padding: 10px 30px;
-}
-
-.invite_setting_group h4 {
-	margin: 10px 0px 20px;
 }
 
 .invite_setting_item {
@@ -1432,9 +1407,26 @@ body {
 /* Any Element directly inside the container-inner */
 .settingsWrapper,
 .previewWebcam,
-.startSharing {
+.startSharing,
+.generateLink {
 	max-width: 600px;
 	width: 100%;
+}
+
+.generateLink {
+	background-color: #26e726 !important;
+    background: radial-gradient(#26e726, #2EeF2E);
+    color: black;
+    font-weight: bold;
+    font-size: 115%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 1px #00000055;
+    padding: 10;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .enterRoomDirector,
@@ -1453,7 +1445,6 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-}
 
 .enterRoomDirector:hover,
 .enterRoomPartipant:hover {
@@ -1466,13 +1457,10 @@ body {
 	border-radius: 5px;
 }
 
-.settingsWrapper {
-	display: flex;
-    gap: 10px;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
+.generateLink:hover {
+	filter: brightness(0.75);
 }
+
 
 #getPermissions{
 	font-size: 110%;
@@ -1568,16 +1556,45 @@ div[data-action-type='toggle-group'] {
     width: 100%;
     justify-content: center;
 }
+.whatIsVDON > span {
+	max-width: 850px;
+}
 
-.whatIsVDON span {
+.highlightBox {
     display: flex;
+    flex-direction: column;
+    flex: 1;
     gap: 5px;
-    border-left: 4px solid #f1b250;
     background: #000;
     padding: 10px;
-    box-shadow: 0px 0px 5px 0px #f1b250;
     text-align: left;
-    flex-direction: column;
+}
+.highlightBox[data-highlight-type="tips"] {
+	border-left: 4px solid #8bf150;
+    box-shadow: 0px 0px 5px 0px #8bf150;
+}
+
+.highlightBox[data-highlight-type="attention"] {
+	border-left: 4px solid #f1b250;
+    box-shadow: 0px 0px 5px 0px #f1b250;
+}
+
+.highlightBox[data-highlight-type="warning"] {
+	border-left: 4px solid #f15050;
+    box-shadow: 0px 0px 5px 0px #f15050;
+}
+
+
+ul[data-list-style="none"] {
+	list-style: none;
+}
+ul[data-list-style="triangle"] {
+    list-style: disclosure-closed;
+	margin-left: 14px;
+}
+ul[data-list-style="shuriken"] {
+	list-style: url('./media/vdon-shuriken.png');
+	margin-left: 14px;
 }
 
 .outer {
@@ -2099,9 +2116,6 @@ h2 {
 	cursor: pointer;
 }
 
-label {
-	color: #000;
-}
 .generalButton{
 	border-radius: 3px;
 }
@@ -2347,13 +2361,6 @@ label {
 	display: inline-block;
 	overflow: scroll;
     padding: 3px;
-}
-.soloButton{
-	font-size: 0.7em; 
-	word-wrap: break-word;
-	white-space: nowrap;
-	overflow: hidden; 
-	text-overflow: ellipsis;
 }
 .lowerRaisedHand{
 	margin: auto;margin-bottom:10px;display:none;background-color:yellow;
@@ -2842,7 +2849,7 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
 	box-shadow: 1px 1px 2px #cfcfcf !important;
 }
 .popup-message {
-	display: none;
+    display: none;
 	position: absolute;
 	z-index: 35;
 	padding: 5px;
@@ -2863,7 +2870,7 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
     cursor: pointer;
     position: fixed;
     right: 20px;
-    color: #d9e4eb;
+    color: orange;
     font-size: 140%;
 }
 
@@ -3063,16 +3070,27 @@ button.toggleSettings{
     border-radius: 0px 0px 5px 5px;
 }
 
+.settingsWrapper {
+	display: flex;
+    gap: 10px;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 .menuTitle {
 	display: flex;
+	width: 100%;
 	gap: 5px;
     align-items: center;
+	font-weight: bold;
 }
 
 .menuContent {
 	display: flex;
     width: 100%;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .menuCheckRow {
@@ -3080,7 +3098,7 @@ button.toggleSettings{
     flex-direction: column;
     flex: 1;
     align-items: flex-start;
-    padding: 10px 0px;
+    padding: 5px 0px;
     gap: 10px;
 
 }
@@ -3165,6 +3183,13 @@ button.toggleSettings{
     justify-content: center;
     align-items: center;
 }
+
+#grabDirectorSoloLink {
+	background-color: white;
+	padding: 5px;
+    border-radius: 5px;
+}
+
 .gone {
 	position:absolute;
 	top: -150px;
@@ -3210,26 +3235,6 @@ button.toggleSettings{
 	color: #0000;
 	font-size: 0em;
 	pointer-events:none;
-}
-
-#grabDirectorSoloLinkParent {
-    width: 100%;
-    background-color: #f3f3f3;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-#grabDirectorSoloLink{
-    width: 100%;
-    font-weight: bold;
-    line-break: anywhere;
-    display: inline-flex;
-	padding: 2px;
-    cursor: grab;
-    background-color: #FFF;
-    color: #B9DFF9;
-    border-radius: 4px;
 }
 
 #videoSettings3 {
@@ -3288,16 +3293,27 @@ button.toggleSettings{
     z-index: 1;
 }
 
-#videoMenu .menuContent {
-	flex-wrap: nowrap;
-}
-
 .settingsMenu input:not([type=checkbox]), .settingsMenu select {
 	padding: 4px;
     font-size: 93%;
     overflow: hidden;
     flex: 1 100%;
 }
+
+.menuContent > i {
+	padding: 0px 5px;
+	font-size: 140%;
+	cursor: pointer;
+}
+
+#videoMenu .menuContent {
+	flex-wrap: nowrap;
+}
+
+.refreshVideoButton {
+}
+
+
 
 #selectEffectAmount {
     display: flex;
@@ -3361,7 +3377,7 @@ button.toggleSettings{
 	color: black;
     padding: 4px 3px;
 }
-.select .select-trigger:hover {
+/* .select .select-trigger:hover {
 	cursor: pointer;
 	cursor: hand;
 	text-decoration: none;
@@ -3387,7 +3403,7 @@ button.toggleSettings{
 }
 .select .select-contents li {
 	list-style: none;
-}
+} */
 ::-webkit-input-placeholder {
 	color: #555 !important;
 }
@@ -3656,7 +3672,6 @@ div#chatBody a {
     display: flex;
     gap: 3px;
     flex-direction: column;
-    padding-left: 15px;
 }
 
 .directorContainer .documentation, .directorContainerParameters .documentation {
@@ -4034,13 +4049,24 @@ i.las.la-circle {
     max-width: 112px;
 }
 
+.soloLinkWrapper{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0.7em;
+    overflow: hidden;
+	gap: 5px;
+}
+
 .soloLink {
 	background-color: rgba(22, 110, 0, 0.192);
 	cursor: grab;
 	font-size: 1.2em;
 	font-weight: 700;
-	padding: 2px;
-	overflow: hidden;
+	padding: 5px;
+	border-radius: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .vidcon>h2 {
 	font-size: 1em;
@@ -5036,6 +5062,12 @@ input:checked + .slider:before {
 	content: "\f1a1"; }
 .la-at:before {
 	content: "\f1fa"; }
+.la-exchange-alt:before {
+	content: "\f362"; }
+.la-window-restore:before {
+	content: "\f2d2"; }
+.la-window-maximize:before {
+	content: "\f2d0"; }
 @media (prefers-color-scheme: dark) {
 	:root {
 		--color-mode: dark;
@@ -5113,7 +5145,7 @@ body.darktheme #headphonesDiv3{
 	background-color: #414141;
 }
 body.darktheme select{
-	background-color: #b2b2b2;
+	background-color: #e4e4e4;
 }
 body.darktheme .white {
 	filter: brightness(0.85);
@@ -5206,9 +5238,6 @@ body.darktheme .alertModal{
 }
 body.darktheme .directorContainer{
 	filter: brightness(0.85);
-}
-body.darktheme #grabDirectorSoloLinkParent{
-	background-color: #414141;
 }
 body.darktheme #grabDirectorSoloLink{
 	background-color: rgba(22, 110, 0, 0.192);
