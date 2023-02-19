@@ -1663,13 +1663,13 @@ ul[data-list-style="shuriken"] {
 select{
 	-webkit-app-region: no-drag;
 }
-.advancedToggle {
+/* .advancedToggle {
 	display:none;
     align-items: center;
     justify-content: center;
 	background-color:#EFEFEF;
 	padding: 10px;
-}
+} */
 
 .highlight {
 	background-color:#95a7b9;
@@ -1908,7 +1908,10 @@ input[type=range]:focus::-ms-fill-upper {
 		margin:25px 15% 0 1%;
 	}
 	.mobileHide{
-		display:none !important;
+		display: none !important;
+	}
+	*[data-hide-mobile="true"] {
+		display: none !important;
 	}
 	/* #effectSelector {
 		max-width: 100%;
@@ -1986,10 +1989,9 @@ input[type=range]:focus::-ms-fill-upper {
 #popupSelector {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     background: #2b2b2b;
     transition: all 0.2s linear 0s;
-    padding: 20px;
+    padding: 10px;
     position: fixed;
     top: 0px;
     height: 100%;
@@ -3048,7 +3050,7 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
 	height: 42px;
 }
 
-button.toggleSettings{
+.toggleSettings button {
     display: flex;
     justify-content: center;
     width: 30%;
@@ -3060,7 +3062,20 @@ button.toggleSettings{
 
 .toggleSettingsButtons {
 	display: flex;
-	gap: 10px;
+	gap: 5px;
+}
+.toggleSettingsButtons button {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.extraSettingsButtons {
+	/* display: flex; */
+	display: none;
 }
 #advancedOptionsGeneral {
 	padding: 10px;
@@ -3095,14 +3110,7 @@ button.toggleSettings{
 	border: 1px solid #ccc;
 	vertical-align: middle;
 } */
-#effectsDiv3 {
-    width: 100%;
-    background-color: #f3f3f3;
-    padding: 10px 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-#avatarDiv3 {
+/* #avatarDiv3 {
 	text-align: left;
 	width: 450px;
 	background-color: #f3f3f3;
@@ -3110,7 +3118,7 @@ button.toggleSettings{
 	border: 1px solid #ccc;
 	vertical-align: middle;
 	margin: 17px 0 0 0;
-}
+} */
 #videoSettings {
     width: 100%;
     margin-top: -13px;
@@ -3288,32 +3296,10 @@ button.toggleSettings{
 	pointer-events:none;
 }
 
-#videoSettings3 {
-	background-color: #f3f3f3;
-	width: 100%;
-	padding: 7px 10px 1px 10px;
-	border: 1px solid #ccc;
-	font-size: 90%;
-	margin: 10px 0 0 0;
-}
-#videoSource3 {
-	display: inline-block;
-	vertical-align: middle;
-	padding: 2px;
-	font-size: 93%;
-	max-width: 235px;
-}
 #outputSource {
 	padding: 4px;
 	font-size: 93%;
 	flex: 1;
-}
-#outputSource3 {
-	display: inline-block;
-	vertical-align: middle;
-	padding: 2px;
-	font-size: 93%;
-	max-width: 100%;
 }
 /* #addPasswordBasic {
 	width: 450px;
@@ -3351,8 +3337,8 @@ button.toggleSettings{
     flex: 1 100%;
 }
 
-.menuContent > i {
-	padding: 0px 5px;
+.menuContent > i {    
+	padding: 0px 0px 0px 5px;
 	font-size: 140%;
 	cursor: pointer;
 }
@@ -4389,9 +4375,6 @@ a#reshare {
 	display: block;
 	margin: auto;
 }
-#shareScreenGear{
-	display:none;
-}
 
 div.message-card {
 	padding: 10px;
@@ -5192,9 +5175,6 @@ body.darktheme #avatarDiv{
 }
 body.darktheme .selected {
 	border: solid 3px #f8f7f7;
-}
-body.darktheme #selectAvatarImage label {
-	color: #f8f7f7;
 }
 body.darktheme .avatarLabel {
 	color: #f8f7f7;		  
