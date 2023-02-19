@@ -2895,7 +2895,7 @@ async function main(){ // main asyncronous thread; mostly initializes the user s
 		`;
 		document.head.appendChild(styleTmp);
 	}
-	getById("credits").innerHTML = "Version: " + session.version + " - " + getById("credits").innerHTML;
+	getById("credits").innerHTML = "Version: " + session.version + " | " + getById("credits").innerHTML;
 	
 	if (urlParams.has('ssb') || urlParams.has('screensharebutton')) {
 		session.screensharebutton = true;
@@ -3909,7 +3909,8 @@ async function main(){ // main asyncronous thread; mostly initializes the user s
 		if (session.webcamonly == true) { // mobile or manual flag 'webcam' pflag set
 			getById("head1").innerHTML = '';
 		} else {
-			getById("head1").innerHTML = '<span style="color:#CCC" data-translate="please-select-option-to-join">Please select an option to join.</span>';
+			getById("head1").getElementsByClassName("left")[0].innerHTML = '<span style="color:#CCC" data-translate="please-select-option-to-join">Please select an option to join.</span>';
+			// getById("head1").innerHTML = '<span style="color:#CCC" data-translate="please-select-option-to-join">Please select an option to join.</span>';
 		}
 
 		if (session.roomid.length > 0) {
@@ -3954,7 +3955,7 @@ async function main(){ // main asyncronous thread; mostly initializes the user s
 				
 			};
 			joinRoom(session.roomid); // this is a scene, so we want high resolutions
-			getById("main").style.overflow = "hidden";
+			// getById("main").style.overflow = "hidden"; 
 
 			if (session.chatbutton === true) {
 				getById("chatbutton").classList.remove("hidden");

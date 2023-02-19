@@ -267,7 +267,11 @@
 		</span>
 		<div id="mainmenu" style="opacity: 0;">
 			<div class="whatIsVDON">
-				<span data-translate="info-blob"></span>
+				<div class="highlightBox"data-highlight-type="attention" style="max-width: 850px">
+					<ul data-list-style="shuriken">
+					<span data-translate="info-blob"></span>
+					</ul>
+				</div>
 			</div>
 			<div id="container-1" title="Add Group Chat to OBS"  alt="Add Group Chat to OBS" tabindex="2" role="button" aria-pressed="false" onkeyup="enterPressedClick(event,this);" class="tile columnfade pointer rounded card">
 				
@@ -336,13 +340,13 @@
 								<span data-translate="show-tips">Show me some tips.. <i class="las la-angle-double-down"></i></span>
 							</button>
 							<div class="settingsMenu" id="roomNotes" style="display: none">
-								<ul class="roomNotes">
-									<span data-translate="added-notesNO" >
+								<ul class="roomNotes" data-list-style="shuriken">
+									<span data-translate="added-notes" >
 										<b>Important Tips:</b>
 										<li>Disabling video sharing between guests will improve performance</li>
 										<li>Invite only guests to the room that you trust.</li>
 										<li>The "Recording" option is considered experimental.</li>
-										<li><a href="https://params.vdo.ninja" ><u>Advanced URL parameters</u></a> are available to customize rooms.</li>
+										<li><a href="https://params.vdo.ninja" >Advanced URL parameters</a> are available to customize rooms.</li>
 									</span>
 								</ul>
 							</div>
@@ -473,39 +477,44 @@
 						</div>
 						
 						<div id="effectsDiv" class="settingsMenu">
-							<div style="text-align: left;">
-								<i class="las la-robot"></i><span data-translate="select-digital-effect"> Digital Video Effects </span>
+							<div class="menuTitle">
+								<i class="las la-robot"></i>
+								<span data-translate="select-digital-effect"> Digital Video Effects</span>
+								<span data-warnSimdNotice="true" style='display:none; cursor:pointer; color: red;' title="Improve performance and quality with this tip" onclick="smdInfo();">
+									<i class="las la-info-circle"></i>
+								</span>
+								<span data-effectsNotice="true" style='display:none; cursor:pointer; color: red;' title="Improve performance and quality with this tip" onclick="warnUser('Use a Chromium Based Browser');">
+									<i class="las la-info-circle"></i>
+								</span>
 							</div>
-							<select id="effectSelector" alt="Digital video effect options"  onchange="effectsDynamicallyUpdate(event, this);">
-								<option value="0" data-translate="no-effects-applied">No effects applied</option>	
-								<option value="3" data-translate="blurred-background">Blurred background</option>
-								<option value="4" data-translate="digital-greenscreen">Digital greenscreen</option>	
-								<option value="5" data-translate="virtual-background">Virtual background</option>
-								<option value="6" data-translate="face-mesh" title="experimental">Face mesh (slow load) 👨‍🔬</option>
-								<option value="7" data-translate="digital-zoom">Digital zoom</option>
-								<option value="anon" data-translate="anonymous-mask" title="experimental">Anonymous mask 👨‍🔬</option>
-								<option value="dog" data-translate="dog-face" title="experimental">Dog ears and nose 👨‍🔬</option>
-								<option value="1" disabled title='Enable the Chrome experimental features flag to use: chrome://flags/#enable-experimental-web-platform-features' class='facetracker' data-translate="face-tracker">Face Tracker</option>
-							</select>
-							<span data-warnSimdNotice="true" style='display:none; font-size: 140%; margin-left:10px; vertical-align: middle; cursor:pointer' title="Improve performance and quality with this tip" onclick="smdInfo();">
-								<i class="las la-info-circle"></i>
-							</span>
-							<span data-effectsNotice="true" style='display:none; font-size: 140%; margin-left:10px; vertical-align: middle; cursor:pointer' title="Improve performance and quality with this tip" onclick="warnUser('Use a Chromium Based Browser');">
-								<i class="las la-info-circle"></i>
-							</span>
-							
-							<div id="selectImageTFLITE" class="selectImage" style="display:none;">
-								
-							</div>
-							<div id="selectEffectAmount" style="display:none;">
-								<label for="selectEffectAmountInput">Effect Amount:</label>
-								<input id="selectEffectAmountInput" name="selectEffectAmountInput" title="Adjust the amount of effect applied" type="range" oninput="changeEffectAmount(event, this)" onchange="changeEffectAmount(event, this)" min="0" step="1" max="20">
+							<div class="menuContent">
+								<select id="effectSelector" alt="Digital video effect options"  onchange="effectsDynamicallyUpdate(event, this);">
+									<option value="0" data-translate="no-effects-applied">No effects applied</option>	
+									<option value="3" data-translate="blurred-background">Blurred background</option>
+									<option value="4" data-translate="digital-greenscreen">Digital greenscreen</option>	
+									<option value="5" data-translate="virtual-background">Virtual background</option>
+									<option value="6" data-translate="face-mesh" title="experimental">Face mesh (slow load) 👨‍🔬</option>
+									<option value="7" data-translate="digital-zoom">Digital zoom</option>
+									<option value="anon" data-translate="anonymous-mask" title="experimental">Anonymous mask 👨‍🔬</option>
+									<option value="dog" data-translate="dog-face" title="experimental">Dog ears and nose 👨‍🔬</option>
+									<option value="1" disabled title='Enable the Chrome experimental features flag to use: chrome://flags/#enable-experimental-web-platform-features' class='facetracker' data-translate="face-tracker">Face Tracker</option>
+								</select>							
+								<div id="selectImageTFLITE" class="selectImage" style="display:none;">		
+								</div>
+								<div id="selectEffectAmount" style="display:none;">
+									<label for="selectEffectAmountInput">Effect Amount:</label>
+									<input id="selectEffectAmountInput" name="selectEffectAmountInput" title="Adjust the amount of effect applied" type="range" oninput="changeEffectAmount(event, this)" onchange="changeEffectAmount(event, this)" min="0" step="1" max="20">
+								</div>
 							</div>
 							
 						</div>
 						<div id="addPasswordBasic" class="settingsMenu" >
-							<i class="las la-key"></i><span data-translate="add-a-password"> Add a Password</span>
-							<input type="text" id="passwordBasicInput" placeholder="Optional"/>
+							<div class="menuTitle">
+								<i class="las la-key"></i><span data-translate="add-a-password">Add a Password</span>
+							</div>
+							<div class="menuContent">
+								<input type="text" id="passwordBasicInput" placeholder="Optional"/>
+							</div>
 						</div>
 						
 						<div id="SafariWarning" class="startupWarning hidden">
@@ -581,17 +590,29 @@
 								</option>
 							</select>
 						</div>
-						<div id="headphonesDiv2">
-							<i class="las la-headphones"></i>
-							<span data-translate="select-output-source"> Audio Output Destination: <button onclick="playtone(true)" class="white" style="padding:3px 5px 2px 5px; margin:0; margin-left:15px; position: relative; " type="button">Test</button></span>
-							<select id="outputSourceScreenshare" style="background-color: #FFF; margin-top:5px; padding:10px 5px; width:100%; display:inline-block; vertical-align: middle;" onclick="requestOutputAudioStream();">
-								<option value="default">
-									Default Device
-								</option>
-							</select>
+						<div id="headphonesDiv2" class="settingsMenu">
+							<div class="menuTitle">
+								<i class="las la-headphones"></i>
+								<span data-translate="select-output-source"> Audio Output Destination: <button onclick="playtone(true)" type="button">Test</button></span>
+							</div>
+							<div class="menuContent">
+								<select id="outputSourceScreenshare" style="background-color: #FFF; margin-top:5px; padding:10px 5px; width:100%; display:inline-block; vertical-align: middle;" onclick="requestOutputAudioStream();">
+									<option value="default">
+										Default Device
+									</option>
+								</select>
+							</div>
+						</div>
+						<div class="menuContent">
+							<div id="audioScreenCaptureDocs"class="highlightBox" data-highlight-type="tips">
+								<ul data-list-style="none">
+									<span data-translate="application-audio-capture" >
+										<li data-list-style="shuriken" ><i class="las la-window-maximize"></i> For application-specific audio capture, <a href='https://docs.vdo.ninja/audio'>see here</a></li>
+									</span>
+								</ul>
+							</div>
 						</div>
 					</div>
-					<div id="audioScreenCaptureDocs" data-translate="application-audio-capture">For application-specific audio capture, <a href='https://docs.vdo.ninja/audio' style='color: #007AC8;'>see here</a></div>
 				</div>
 				<div class="outer close">
 					<div class="inner">
@@ -608,46 +629,32 @@
 				<i style="overflow:hidden;" class="las la-envelope-open"></i>
 				<div id="gencontent2" style="display:none;background-color: rgb(221, 221, 221); max-height: 100%;min-height: 90%;"></div>
 				<div id="gencontent" class="container-inner">
-					
-					<br />
-					<br />
-					<span data-translate="here-you-can-pre-generate">Here you can pre-generate a reusable Browser Source link and a related guest invite link.</span>
-					<br />
-					<br />
-					<p>
-						<input type="text" autocorrect="off" autocapitalize="none" style="padding: 5px; font-size: 120%;" id="videoname4" onkeyup="enterPressed(event, generateQRPage);" placeholder="Give this media source a name (optional)" size="35" maxlength="70" />
-						<br />
-						<br />
-					</p>
-					<button style="padding: 20px;" class='gobutton' onclick="generateQRPage()">
-						<span data-translate="generate-invite-link">GENERATE THE INVITE LINK</span>
-					</button>
-					<br />
-					<span style="margin: 20px; max-width: 420px; text-align: left; margin: auto auto;display:block;">
-						<div class="invite_setting_group">
-							<h4>
+					<div class="settingsWrapper">
+						<span data-translate="here-you-can-pre-generate">Here you can pre-generate a reusable Browser Source link and a related guest invite link.</span>
+						<button class='generateLink' onclick="generateQRPage()">
+							<span data-translate="generate-invite-link">GENERATE THE INVITE LINK</span>
+						</button>
+						<div class="settingsMenu">
+							<div class="menuTitle">
+								<i class="las la-desktop"></i>
 								<span data-translate="quality-paramaters">Quality settings</span>
-							</h4>
-							<div class="invite_setting_item">
-								<input type="checkbox" id="invite_bitrate" />
-								<label for="invite_bitrate">
+							</div>
+							<div class="menuCheckRow">
+								<div>
+									<input type="checkbox" id="invite_bitrate" />
 									<span data-translate="unlock-video-bitrate" title="Ideal for 1080p60 gaming, if your computer and upload are up for it" >Unlock the video bitrate (20mbps)</span>
-								</label>
-							</div>
-							<div class="invite_setting_item">
-								<input type="checkbox" id="invite_vp9" />
-								<label for="invite_vp9">
+								</div>
+								<div>
+									<input type="checkbox" id="invite_vp9" />
 									<span data-translate="force-vp9-video-codec" title="Better video compression and quality at the cost of increased CPU encoding load">Use the VP9 video codec</span>
-								</label>
-							</div>
-							<div class="invite_setting_item">
-								<input type="checkbox" id="invite_stereo" />
-								<label for="invite_stereo">
+								</div>
+								<div>
+									<input type="checkbox" id="invite_stereo" />
 									<span data-translate="enable-stereo-and-pro" title="Disable digital audio-effects and increase audio bitrate">Enable stereo and pro HD audio</span>
-								</label>
+								</div>
 							</div>
-							<div class="invite_setting_item">
-								<label for="invite_quality" data-translate="video-resolution">Target video resolution: </label>
+							<div class="menuContent">
+								<div data-translate="video-resolution">Video resolution: </div>
 								<select id="invite_quality" name="invite_quality">
 									<option value="-1" selected>User selectable</option>
 									<option value="0">1080p (high-quality)</option>
@@ -656,54 +663,54 @@
 								</select>
 							</div>
 						</div>
-						<div class="invite_setting_group">
-							<h4>
+						<div class="settingsMenu">
+							<div class="menuTitle">
+								<i class="las la-user"></i>
 								<span data-translate="general-paramaters">User options</span>
-							</h4>
-							<div class="invite_setting_item">
-								<input type="checkbox" id="invite_effects" />
-								<label for="invite_effects">
+							</div>
+							<div class="menuCheckRow">
+								<div>
+									<input type="checkbox" id="invite_effects" />
 									<span data-translate="allow-effects-invite" title="The guest will be able to select digital video effects to apply.">Allow video effects to be used</span>
-								</label>
-							</div>
-							<div class="invite_setting_item">
-								<input type="checkbox" id="invite_automic" />
-								<label for="invite_automic">
+								</div>
+								<div>
+									<input type="checkbox" id="invite_automic" />
 									<span data-translate="hide-mic-selection" title="The guest will not have a choice over audio-options">Force select the default microphone</span>
-								</label>
-							</div>
-							<div class="invite_setting_item">
-								<input type="checkbox" id="invite_hidescreen" />
-								<label for="invite_hidescreen">
+								</div>
+								<div>
+									<input type="checkbox" id="invite_hidescreen" />
 									<span data-translate="hide-screen-share" title="The guest will only be able to select their webcam as an option">Hide the screenshare option</span>
-								</label>
-							</div>
-							<div class="invite_setting_item">
-								<input type="checkbox" id="invite_obfuscate" />
-								<label for="invite_obfuscate">
+								</div>
+								<div>
+									<input type="checkbox" id="invite_obfuscate" />
 									<span data-translate="obfuscate_url" title="Encode the URL so that it's harder for a guest to modify the settings.">Obfuscate the invite URL</span>
-								</label>
+								</div>
 							</div>
-							<div class="invite_setting_item">
-								<span data-translate="add-a-password-to-stream" title="Add a password to make the stream inaccessible to those without the password"> Add a password:</span>
+							<div class="menuContent">
+								<span data-translate="add-a-label-to-link" title="Give this media source a label (optional)"> Add a label:</span>
+								<input type="text" autocorrect="off" autocapitalize="none" id="videoname4" onkeyup="enterPressed(event, generateQRPage);" placeholder="Add a optional label name" size="35" maxlength="70" />
+							</div>
+							<div class="menuContent">
+								<span data-translate="add-a-password-to-link" title="Add a password to make the stream inaccessible to those without the password"> Add a password:</span>
 								<input type="text" autocorrect="off" autocapitalize="none" id="invite_password" placeholder="Add an optional password" />
 							</div>
 						</div>
-						<div class="invite_setting_group">
-							<h4>
+						<div class="settingsMenu">
+							<div class="menuTitle">
+								<i class="las la-exchange-alt"></i>
 								<span data-translate="interview-paramaters">Two-way chat</span>
-							</h4>
-							<div class="invite_setting_item">
-								<input type="checkbox" id="invite_hostlink" />
-								<label for="invite_hostlink">
-									<span data-translate="generate-host-link" title="A link for the host speaker to chat with the guest; 2-way interview chat.">Create a link for the host speaker</span>
-								</label>
 							</div>
-							<div class="invite_setting_item">
+							<div class="menuCheckRow">
+								<div>
+									<input type="checkbox" id="invite_hostlink" />
+									<span data-translate="generate-host-link" title="A link for the host speaker to chat with the guest; 2-way interview chat.">Create a link for the host speaker</span>
+								</div>
+							</div>
+							<div class="menuContent">
 								<span data-translate="add-the-guest-to-a-room" title="Add the guest to a group-chat room; it will be created automatically if needed."> Add the guest to a room:</span>
 								<input type="text" autocorrect="off" autocapitalize="none" id="invite_joinroom" placeholder="Enter Room name here" oninput="document.getElementById('invitegroupchat').style.display='block';" />
 							</div>
-							<div class="invite_setting_item">
+							<div class="menuContent">
 								<span id="invitegroupchat" style="display: none;" title="Customize the room settings for this guest">
 									<label for="invite_group_chat_type" data-translate="invite-group-chat-type">This room guest can:</label>
 									<select id="invite_group_chat_type" name="invite_group_chat_type">
@@ -714,11 +721,18 @@
 								</span>
 							</div>
 						</div>
-						<div class="invite_setting_group_links">See the 
-							<a style="text-decoration: none; color: blue;" target="_blank" href="https://docs.vdo.ninja/advanced-settings">documentation</a> for a list of all options and details.<br /><br />
-							Try out the advanced <a style="text-decoration: none; color: blue;" target="_blank" href="https://invite.vdo.ninja/">invite generator</a> here as well.
+						<div class="menuContent">
+							<div class="highlightBox" data-highlight-type="tips">
+								<ul data-list-style="none">
+									<span data-translate="inviteGeneratorNote" >
+										<li data-list-style="shuriken" >See the <a target="_blank" href="https://docs.vdo.ninja/advanced-settings">documentation</a> for a list of all options and details.
+											<br>Try out the advanced <a target="_blank" href="https://invite.vdo.ninja/">invite generator</a> here as well.
+										</li>
+									</span>
+								</ul>
+							</div>
 						</div>
-					</span>
+					</div>
 				</div>
 				<div class="outer close">
 					<div class="inner">
@@ -734,10 +748,8 @@
 				<i style="overflow:hidden;" class="las la-file-alt"></i>
 				<div class="container-inner">
 					
-					<br /><br />
 					<span data-translate="select-the-video-files-to-share">SELECT THE VIDEO FILES TO SHARE</span><br /><br />
 					<input id="fileselector" onchange="session.publishFile(this,event);" type="file" accept="video/*,audio/*" alt="Hold CTRL (or CMD) to select multiple files" title="Hold CTRL (or CMD) to select multiple files" multiple/>
-					<br /><br />
 					<div class='warning message-card'>
 						<h1>Warning</h1>
 						<p>Media file streaming is still quite experimental. Please do not rely on it heavily for your productions. Feedback welcome.</p>
@@ -750,7 +762,6 @@
 						<h1>Safari Users</h1>
 						<p>Safari does not support this feature. Consider Chrome or Firefox instead.</p>
 					</div>
-					<br /><br />
 					To host a file for download, rather than for streaming, try the following instead: 
 					<input id="fileselector2" onchange="session.hostFile(this,event);" type="file" title="Transfer any file"/>
 				</div>
@@ -1595,13 +1606,13 @@
 				<span id="videoMenu3">
 					<i class="las la-video"></i><span data-translate="video-source">Video Source:</span>
 					<select id="videoSource3" ></select>			
-					<span id="refreshVideoButton" title="Activate or Reload this video device.">
+					<!-- <span id="refreshVideoButton" title="Activate or Reload this video device.">
 						<i style="top: 3px; cursor: pointer; font-size: 120%;  position: relative; left: 10px;" class="las la-sync-alt"></i>
-					</span>
-					<span id="gear_webcam3" style="display: none; cursor:pointer;" onclick="toggleQualityGear3();">
+					</span> -->
+					<!-- <span id="gear_webcam3" style="display: none; cursor:pointer;" onclick="toggleQualityGear3();">
 						&nbsp;&nbsp;
 						<i class="las la-cog" style="font-size: 135%; top:1px; vertical-align: middle;" aria-hidden="true"></i>
-					</span>
+					</span> -->
 					<span id="videoSettings3" style="display: none;">
 						<center>
 						<form id="webcamquality3">
@@ -1716,8 +1727,6 @@
 				
 				<button id="pIpStartButton" style="width: 135px; background-color:#EFEFEF;padding:20px;text-align:center;display:none;"><b>Preview PiP VIdeo</b><br /><i style="padding:5px; font-size:300%;color:black;" class="las la-compress-arrows-alt"></i></button>
 				
-				
-				<div class="hidden" id="grabDirectorSoloLinkParent" title="The solo view link of the Director's video."><i class="las la-user"></i> Director's solo link:<a onclick="copyFunction(this,event)" data-drag="1" draggable="true" id="grabDirectorSoloLink" data-menu="context-menu" class="task" ></a></div>
 
 				<div class="toggleSettingsButtons">
 					<button onclick="toggleSettings()" class="toggleSettings"><span data-translate="close-settings">Close Settings</span></button>
@@ -1763,9 +1772,157 @@
 				<span id="popupSelector_constraints_loading" style="display: none; visibility:hidden">
 					<i class='las la-spinner icn-spinner' style='margin:30px;font-size:400%;color:white;'></i>
 				</span>
-				
 
+				<div class="settingsWrapper">
+					<div id="consentWarning" class="startupWarning hidden">
+						<i class="las la-exclamation-circle"></i>
+						<p><span data-translate="privacy-disabled">Privacy warning: The director will be able to remotely change your camera, microphone, and URL.</span></p>
+					</div>
+					<div id="guestTips" style="display:none">
+						<p data-translate="for-the-best-possible-experience-make-sure">For the best possible experience, make sure</p>
+						<span><i class="las la-plug"></i><span data-translate="your-device-is-powered">Your device is powered</span></span>
+						<span><i class="las la-ethernet"></i><span data-translate="your-connection-is-hardwired-instead-of-wifi">Your connection is hardwired instead of wifi</span></span>
+						<span><i class="las la-headphones"></i><span data-translate="you-are-using-headphones-earphones">You are using headphones / earphones</span></span>
+					</div>
+					<div id="videoMenu" class="settingsMenu">
+						<div class="menuTitle">
+							<i class="las la-video"></i><span data-translate="video-source">Video Source</span>
+						</div>
+						<div class="menuContent">
+							<select id="videoSourceSelect" alt="Video source list"></select>
+							<i id="refreshVideoButton" 
+							class="las la-sync-alt refreshVideoButton" 
+							onclick="toggle(document.getElementById('videoSettings'));" 
+							title="Activate or Reload this video device."></i>
+							<!-- <span id="gear_webcam" onclick="toggle(document.getElementById('videoSettings'));">
+								<i class="las la-cog" style="font-size: 140%; vertical-align: middle;" aria-hidden="true"></i>
+							</span> -->
+						</div>
+						<div id="cameraTip1" class="cameraTip hidden">
+							<i class="las la-info-circle"></i>
+							<p><span id="cameraTipContext1"></span></p>
+						</div>
+					</div>
+					<div id="videoSettings" style="display: none;">
+						<form id="webcamquality">
+							<input type="radio" id="fullhd" alt="1080p60 video capture" name="resolution" value="0" />
+							<label for="fullhd">
+								<span data-translate="max-resolution">Max Resolution</span>
+							</label> |
+							
+							<input type="radio" checked id="halfhd" alt="720p60 video capture"  name="resolution" value="1" />
+							<label for="halfhd">
+								<span data-translate="balanced">Balanced</span>
+							</label> |
+							
+							<input type="radio" id="nothd" name="resolution" alt="360p30 video capture"  value="2" />
+							<label for="nothd">
+								<span data-translate="smooth-cool">Smooth and Cool</span>
+							</label>
+							<div id="webcamstats" style="padding: 5px 0 0 0;"></div>
+						</form>
+					</div>
+					<div id="audioMenu" class="form-group multiselect" alt="tip: Hold CTRL (command) to select Multiple" title="tip: Hold CTRL (command) to select Multiple">
+						<span class='gear_microphone hidden'>
+							<input type="checkbox" id='micStereoMonoInput' alt="Mono microphone audio"  onchange="toggleMonoStereoMic(this);">Mono
+						</span>
+						<a id="multiselect-trigger" class="form-control multiselect-trigger" >
+							<div class="menuTitle">
+								<i class="las la-microphone-alt"></i><span data-translate="select-audio-source">Audio Source(s)</span>
+								<i id='chevarrow1' class="chevron bottom" aria-hidden="true"></i>
+								<div class="meter" id="meter1"></div><div class="meter2" id="meter2"></div>
+							</div>
+						</a>
+						<ul id="audioSource" class="multiselect-contents" >
+							<li>
+								<input type="checkbox" id="multiselect1" name="multiselect1" style="display: none;" checked value="ZZZ" />
+								<label for="multiselect1">
+									<span data-translate="no-audio">No Audio</span>
+								</label>
+							</li>
+						</ul>
+						<div id="audioTip1" class="cameraTip hidden">
+							<i class="las la-info-circle"></i>
+							<p><span id="audioTipContext1"></span></p>
+						</div>
+					</div>
+					<div id="headphonesDiv" class="settingsMenu">
+						<div class="menuTitle">
+							<i class="las la-headphones"></i><span data-translate="select-output-source">Audio Output Destination</span>
+						</div>
+						<div class="menuContent">
+							<select id="outputSource" alt="Audio output device" ></select>
+						</div>
+						<div id="headphoneTip1" class="cameraTip hidden">
+							<i class="las la-info-circle"></i>
+							<p><span id="headphoneTipContext1"></span></p>
+						</div>
+					</div>
+					<!-- IX THIS AS WELL -->
+					<div id="avatarDiv" class="hidden">
+						<div style="text-align: left;display: inline-block;">
+							<i class="las la-robot"></i><span data-translate="select-avatar-image"> Default Avatar / Placeholder Image </span>
+						</div>
+						<div id="selectAvatarImage" style="margin-top:10px;">
+							<img src="./media/avatar.webp" loading="lazy" id="defaultAvatar1"  onclick="changeAvatarImage(event, this);"/>
+							<label class="selected" id="noAvatarSelected">
+							<i class="las la-minus-circle" style="font-size: 3em;"></i><br />No Image Selected
+							<button onclick="changeAvatarImage(event, this)" style="position: fixed; top: -100em; margin-left:10px; border:1px solid #555;"></button>
+							</label>
+							<!-- Reference for fix search: selectImageWrapper -->
+							<label style="width:130px;display:inline-block;margin:10px 1px; text-align: center; cursor:pointer;">
+							<i class="las la-hdd" style="font-size: 3em;"></i><br />Select Local Image
+							<input type="file" onchange="changeAvatarImage(event, this)" accept="image/*" style="position: fixed; top: -100em; margin-left:10px; border:1px solid #555;"> 
+							</label>
+						</div>
+					</div>
+					
+					<div id="effectsDiv" class="settingsMenu">
+						<div class="menuTitle">
+							<i class="las la-robot"></i>
+							<span data-translate="select-digital-effect"> Digital Video Effects</span>
+							<span data-warnSimdNotice="true" style='display:none; cursor:pointer; color: red;' title="Improve performance and quality with this tip" onclick="smdInfo();">
+								<i class="las la-info-circle"></i>
+							</span>
+							<span data-effectsNotice="true" style='display:none; cursor:pointer; color: red;' title="Improve performance and quality with this tip" onclick="warnUser('Use a Chromium Based Browser');">
+								<i class="las la-info-circle"></i>
+							</span>
+						</div>
+						<div class="menuContent">
+							<select id="effectSelector" alt="Digital video effect options"  onchange="effectsDynamicallyUpdate(event, this);">
+								<option value="0" data-translate="no-effects-applied">No effects applied</option>	
+								<option value="3" data-translate="blurred-background">Blurred background</option>
+								<option value="4" data-translate="digital-greenscreen">Digital greenscreen</option>	
+								<option value="5" data-translate="virtual-background">Virtual background</option>
+								<option value="6" data-translate="face-mesh" title="experimental">Face mesh (slow load) 👨‍🔬</option>
+								<option value="7" data-translate="digital-zoom">Digital zoom</option>
+								<option value="anon" data-translate="anonymous-mask" title="experimental">Anonymous mask 👨‍🔬</option>
+								<option value="dog" data-translate="dog-face" title="experimental">Dog ears and nose 👨‍🔬</option>
+								<option value="1" disabled title='Enable the Chrome experimental features flag to use: chrome://flags/#enable-experimental-web-platform-features' class='facetracker' data-translate="face-tracker">Face Tracker</option>
+							</select>							
+							<div id="selectImageTFLITE" class="selectImage" style="display:none;">		
+							</div>
+							<div id="selectEffectAmount" style="display:none;">
+								<label for="selectEffectAmountInput">Effect Amount:</label>
+								<input id="selectEffectAmountInput" name="selectEffectAmountInput" title="Adjust the amount of effect applied" type="range" oninput="changeEffectAmount(event, this)" onchange="changeEffectAmount(event, this)" min="0" step="1" max="20">
+							</div>
+						</div>
+					</div>
+					<div id="grabDirectorSoloLinkParent" class="settingsMenu" title="The solo view link of the Director's video.">
+						<div class="menuTitle">
+							<i class="las la-user"></i>
+							<span data-translate="director-solo-link"> Director's solo link:</span>
+						</div>
+						<div class="menuContent">
+							<a onclick="copyFunction(this,event)" data-drag="1" draggable="true" id="grabDirectorSoloLink" data-menu="context-menu" class="task" ></a>
+						</div>
+					</div>
+				</div>
+			</div> <!-- maybe not ? -->
 		</div>
+
+		
+
 		<nav id="context-menu" class="context-menu">
 			<ul class="context-menu__items">
 				<li class="context-menu__item">
@@ -2162,11 +2319,10 @@
 			</div>
 		</div>
 		<div id="messagePopup" class="popup-message"></div>
-		<div id="languages" class="popup-message
-		">
+		<div id="languages" class="popup-message" style="display: none;">
 			<div class="languageMenu">
 				<b data-translate='available-languages'>Available Languages:</b>
-				<ul id="languagesList" class="laguageList">
+				<ul id="languagesList" class="laguageList" data-list-style="shuriken">
 					<li><a onclick="changeLg('en');toggle(document.getElementById('languages'));" style="cursor: pointer;">English</a></li>
 					<li><a onclick="changeLg('ru');toggle(document.getElementById('languages'));" style="cursor: pointer;" data-tz="Europe/Moscow">Russian</a></li>
 					<li><a onclick="changeLg('fr');toggle(document.getElementById('languages'));" style="cursor: pointer;" data-tz="Europe/Paris">French</a></li>

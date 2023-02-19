@@ -399,7 +399,7 @@
     "hide-screen-share": "Скрыть возможность поделиться экраном",
     "allow-remote-control": "Удаленное управление зумированием видео (на android)",
     "obfuscate_url": "Зашифровать ссылку-приглашение",
-    "add-a-password-to-stream": " Установить пароль на стрим:",
+    "add-a-password-to-link": " Установить пароль на стрим:",
     "add-the-guest-to-a-room": " Добавить гостя в комнату:",
     "invite-group-chat-type": "В этой комнате гость",
     "can-see-and-hear": "Может видеть и слышать групповое общение",

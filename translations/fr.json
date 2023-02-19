@@ -260,7 +260,7 @@
     "hide-mic-selection": "Forcer l'utilisation du micro par défaut",
     "hide-screen-share": "Masquer les options de partage d'écran",
     "allow-remote-control": "Contrôle à distance du zoom de la caméra (android)",
-    "add-a-password-to-stream": " Ajouter un mot de passe:",
+    "add-a-password-to-link": " Ajouter un mot de passe:",
     "add-the-guest-to-a-room": " Ajouter l'invité à une salle:",
     "invite-group-chat-type": "Cet invité peut:",
     "can-see-and-hear": "Peut voir et entendre le tchat de groupe",

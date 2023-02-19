@@ -260,7 +260,7 @@
     "hide-mic-selection": "Force Default Microphone",
     "hide-screen-share": "画面共有オプションを非表示",
     "allow-remote-control": "カメラズームのリモートコントロール (android)",
-    "add-a-password-to-stream": "パスワードを追加:",
+    "add-a-password-to-link": "パスワードを追加:",
     "add-the-guest-to-a-room": "ゲストをルームに追加:",
     "invite-group-chat-type": "このルームのゲストは、次のことができる:",
     "can-see-and-hear": "グループミーティングの映像・音声を視聴できる",
