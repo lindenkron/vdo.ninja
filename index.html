@@ -1799,19 +1799,23 @@
 						</div>
 					</div>
 					<!-- FIX THIS AS WELL -->
-					<div id="avatarDiv3" class="settingsMenu">
+					<div id="avatarDiv3" class="settingsMenu hidden">
 						<div class="menuTitle">
 							<i class="las la-robot"></i>
 							<span data-translate="select-avatar-image"> Default Avatar / Placeholder Image </span>
 						</div>
 						<div class="menuContent">
-							<img src="./media/avatar.webp" loading="lazy" id="defaultAvatar1"  onclick="changeAvatarImage(event, this);"/>
-							<div class="selected" id="noAvatarSelected">
-								<i class="las la-minus-circle" style="font-size: 3em;"></i><br />No Image Selected
+							<div class="selectImageWrapper">
+								<img src="./media/avatar.webp" loading="lazy" id="defaultAvatar1"  onclick="changeAvatarImage(event, this);"/>
+							</div>
+							<div class="selected selectImageWrapper" id="noAvatarSelected">
+								<i class="las la-minus-circle"></i>
+								<span data-translate="no-image-selected">No Image Selected</span>
 								<button onclick="changeAvatarImage(event, this)" style="position: fixed; top: -100em; margin-left:10px; border:1px solid #555;"></button>
 							</div>
 							<div class="selectImageWrapper">
-								<i class="las la-hdd"></i><span data-translate="select-local-image">Select Local Image</span>
+								<i class="las la-hdd"></i>
+								<span data-translate="select-local-image">Select Local Image</span>
 								<input type="file" class="fullInvisibleClickable" accept="image/*" onchange="changeAvatarImage(event, this)" > 
 							</div>
 						</div>
