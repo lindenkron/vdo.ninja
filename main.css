@@ -2892,10 +2892,10 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
 	color: white;
 }
 
-.laguageList {
+/* .laguageList {
     list-style-type: disclosure-closed;
     margin-left: 20px;
-}
+} */
 
 .context-menu--active {
 	display: block !important;

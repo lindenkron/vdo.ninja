@@ -10360,6 +10360,8 @@ function directorSendMessage(ele) {
 	if (closeButton){
 		closeButton.onclick = function() {
 			inputField.value = "";
+			target.classList.add("hidden");
+			ele.classList.remove("pressed");
 		};
 	}
 
