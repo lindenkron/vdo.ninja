@@ -412,7 +412,7 @@
     "guest-4": "Guest 4",
     "remote-hangup-connection": "Remote Hang-up",
     "change-room-settings": "Change room settings",
-    "change-room-video-quality": "Change room video quality:",
+    "current-quality": "Current Quality:",
     "highlight-director-only-video-guests-will-see": "Highlight Director (only video guests will see)",
     "allow-for-remote-co-directors": "Allow for remote co-directors",
     "allow-co-directors-to-transfer-guests": "Allow co-directors to transfer guests",

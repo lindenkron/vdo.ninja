@@ -1684,7 +1684,7 @@ select{
     font-size: 93%;
     flex: 1 0 100%;
 } */
-#effectSelector3{
+/* #effectSelector3{
 	background-color: #FFF;
 	display: inline-block;
 	vertical-align: middle;
@@ -1692,7 +1692,7 @@ select{
 	font-size: 93%;
 	max-width: 100%;
 	width: 90%;
-}
+} */
 
 /*https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/*/
 input[type=range] {
@@ -1988,6 +1988,7 @@ input[type=range]:focus::-ms-fill-upper {
 	display:none!important;
 }
 
+/* REDO ALL OF popupSelect CSS WHEN BETTER DIV STRUCTURE */
 #popupSelector {
     display: flex;
     flex-direction: column;
@@ -2014,6 +2015,7 @@ input[type=range]:focus::-ms-fill-upper {
     border: 1px solid rgb(204, 204, 204);
 	gap: 5px;
     overflow-y: auto;
+    width: 100%;
 }
 .popupSelector_constraints label {
     display: flex;
@@ -2027,16 +2029,20 @@ input[type=range]:focus::-ms-fill-upper {
 	background-color: #e4cbbd;
 }
 
+#popupSelector_constraints_audio select {
+	flex: unset;
+}
+
 #popupSelector_constraints_video {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	gap: 0px 5px;
+	gap: 5px;
 	margin-bottom: 5px;
 	border-radius: 5px;
-	padding: 10px;
+	padding: 0.8em;
     background-color: rgb(65, 65, 65);
     border: 1px solid rgb(204, 204, 204);
     overflow-y: auto;
@@ -2439,19 +2445,6 @@ h2 {
 	background-color: var(--myvideo-background);
 	object-fit: var(--fit-style);
 	max-width: var(--myvideo-max-width) !important;
-}
-#calendarButton {
-	cursor: pointer;
-	z-index: 1;
-	display:none;
-}
-#translateButton {
-	cursor: pointer;
-	z-index: 1;
-}
-#helpButton {
-	cursor: pointer;
-	z-index: 1;
 }
 
 iframe {
@@ -2886,19 +2879,37 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
     font-size: 0.9em;
 }
 
-#languages {
+#languages, #calendar {
     right: 22px;
     bottom: 40px;
 }
 
-.languageOptions {
-    float: right;
-    bottom: 10px;
+.languageOptions, .calendarOptions, .reportOptions, .helpOptions {
     cursor: pointer;
     position: fixed;
+    font-size: 140%;
+}
+
+.languageOptions {
+    bottom: 10px;
     right: 20px;
     color: orange;
-    font-size: 140%;
+}
+.calendarOptions {
+    bottom: 10px;
+    right: 50px;
+    color: orange;
+}
+.reportOptions {
+    bottom: 35px;
+    right: 50px;
+    color: orange;
+}
+
+.helpOptions {
+    bottom: 35px;
+    right: 20px;
+    color: orange;
 }
 
 /* Cus flex & absolute */
@@ -3048,10 +3059,6 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
     border-radius: 5px;
 }
 
-.extraSettingsButtons {
-	/* display: flex; */
-	display: none;
-}
 #advancedOptionsGeneral {
 	padding: 10px;
 }
@@ -3115,6 +3122,19 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
     flex-wrap: wrap;
 }
 
+.settingsMenu {	
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    width: 100%;
+    background-color: #f3f3f3;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0.8em;
+    z-index: 1;
+}
+
 .menuTitle {
 	display: flex;
 	width: 100%;
@@ -3129,6 +3149,31 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
     flex-wrap: wrap;
     align-items: center;
     gap: 5px;
+    align-items: stretch; /* Check everywhere if it breaks stuff */
+}
+
+.menuContent input:not([type=checkbox]), .menuContent select {
+	padding: 4px;
+    font-size: 93%;
+    overflow: hidden;
+    flex: 1 100%;
+}
+
+.menuContent button {
+    flex: 1;
+    /* height: 100%; */
+    padding: 5px 2px;
+    border-radius: 5px;
+}
+
+.menuContent > i {    
+	padding: 0px 0px 0px 5px;
+	font-size: 140%;
+	cursor: pointer;
+}
+
+#videoMenu .menuContent {
+	flex-wrap: nowrap;
 }
 
 .menuCheckRow {
@@ -3139,6 +3184,12 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
     padding: 5px 0px;
     gap: 10px;
 
+}
+
+*[data-grouped-style="green"] {
+	background-color: #3c493a;
+	border-radius: 5px;
+	padding: 5px;
 }
 
 .startDrawButton {
@@ -3332,47 +3383,6 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
 	vertical-align: middle;
 } */
 
-.settingsMenu {	
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 5px;
-    width: 100%;
-    background-color: #f3f3f3;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 0.8em;
-    z-index: 1;
-}
-
-.menuContent input:not([type=checkbox]), .settingsMenu select {
-	padding: 4px;
-    font-size: 93%;
-    overflow: hidden;
-    flex: 1 100%;
-}
-
-.menuContent button {
-    flex: 1;
-    padding: 5px 2px;
-    border-radius: 5px;
-}
-
-.menuContent > i {    
-	padding: 0px 0px 0px 5px;
-	font-size: 140%;
-	cursor: pointer;
-}
-
-#videoMenu .menuContent {
-	flex-wrap: nowrap;
-}
-
-.refreshVideoButton {
-}
-
-
-
 #selectEffectAmount {
     display: flex;
     align-items: center;
@@ -3487,8 +3497,7 @@ input[type=checkbox] {
 	-o-transform: scale(1.4);
 	/* Opera */
 	transform: scale(1.4);
-	padding: 5px;
-	margin: 0 5px 0 1px;
+	margin: 0 3px 0 1px;
 }
 .inMessage {
 	color: #000;
@@ -4569,22 +4578,24 @@ input:checked + .slider:before {
 	margin:5px;
 	padding:10px;
 }
+
 #promptModal, .customModelPopup, .promptModal {
 	position: absolute;
-	background-color: rgb(221 221 221);
+	/* background-color: rgb(221 221 221); */
 	box-shadow: 0 0 30px 10px #0000005c;
-	color: black;
-	font-size: 1.0em;
+	/* color: black; */
+	/* font-size: 1.0em; */
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	border-radius: 10px;
-	font-weight: bold;
-	z-index:31;
-	width:550px;
-	max-width:100%;
-	overflow: hidden;
-	overflow-wrap: break-word;
+	/* border-radius: 10px;
+	font-weight: bold; */
+	z-index:100;
+	/* width:550px;
+	max-width:100%; */
+	/* overflow: hidden; */
+	/* overflow-wrap: break-word; */
+	user-select: none;
 }
 
 #bufferSettings{
@@ -4611,10 +4622,16 @@ input:checked + .slider:before {
 
 .promptModalInner {
     display: flex;
-    padding: 1em;
     flex-direction: row;
     flex-wrap: wrap;
+	position: relative;
     gap: 5px;
+    width: 100%;
+    background-color: #f3f3f3;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0.8em;
+    z-index: 100;
 }
 
 .promptModalInner button {
@@ -4951,7 +4968,7 @@ input:checked + .slider:before {
 	content: "\f059"; }
 .la-language:before {
 	content: "\f1ab"; }
-.la.la-calendar:before {
+.la-calendar-alt:before {
 	content: "\f073"; }
 .la-exclamation-circle:before {
 	content: "\f06a"; }
@@ -5049,6 +5066,8 @@ input:checked + .slider:before {
 	content: "\f053"; }
 .la-chevron-right:before {
 	content: "\f054"; }
+.la-chevron-down:before {
+	content: "\f078"; }
 .la-binoculars:before {
 	content: "\f1e5"; }
 .la-user-cog:before {
@@ -5087,8 +5106,6 @@ input:checked + .slider:before {
 	content: "\f00c"; }
 .la-exclamation:before {
 	content: "\f12a"; }
-.la-chevron-down:before {
-	content: "\f078"; }
 .la-music:before {
 	content: "\f001"; }
 .la-thumbtack:before {
@@ -5133,6 +5150,10 @@ input:checked + .slider:before {
 	content: "\f2d2"; }
 .la-window-maximize:before {
 	content: "\f2d0"; }
+.la-keyboard:before {
+	content: "\f11c"; }
+.la-pencil-ruler:before {
+	content: "\f5ae"; }
 @media (prefers-color-scheme: dark) {
 	:root {
 		--color-mode: dark;
@@ -5217,7 +5238,8 @@ body.darktheme .directorWrapper .vidcon {
 	color: #978c8c;
 }
 body.darktheme .promptModalInner{
-	filter: brightness(0.65);
+	/* filter: brightness(0.85); */
+	background-color: var(--container-color);
 }
 body.darktheme .infoblob{
 	color: #CCC;
@@ -5290,9 +5312,6 @@ body.darktheme #videoMenu3{
 }
 body.darktheme #outputSource3{
 	background-color: #e4e4e4;
-}
-body.darktheme .promptModalInner{
-	background-color: #ccc;
 }
 body.darktheme .alertModal{
 	background-color: #ccc;

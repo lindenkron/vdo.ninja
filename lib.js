@@ -14625,11 +14625,10 @@ function toggleCoDirector_transfer(ele){
 }
 
 
-
 async function toggleCoDirector(ele){
 	//session.coDirectorAllowed = ele.checked;
 	if (!ele.checked){
-		getById("codirectorSettings").style.display = "none";
+		getById("codirectorEnableSpan").style.display = "none";
 		return;
 	}
 	if (!session.directorPassword){
@@ -14642,7 +14641,7 @@ async function toggleCoDirector(ele){
 		session.directorPassword = sanitizePassword(session.directorPassword)
 	}
 	updateURL("codirector="+session.directorPassword, true, false);
-	getById("coDirectorEnableSpan").style.display = "none";
+	// getById("codirectorEnableSpan").style.display = "none";
 	
 	await generateHash(session.directorPassword + session.salt + "abc123", 12).then(function(hash) { // million to one error. 
 		log("dir room hash is " + hash);
@@ -14658,7 +14657,7 @@ async function toggleCoDirector(ele){
 	if (session.codirector_changeURL){
 		getById("codirectorSettings_changeurl").checked = true;
 	} else {
-		getById(codirectorSettings_changeurl).checked = false;
+		getById("codirectorSettings_changeurl").checked = false;
 	}
 	
 	var token = "";
@@ -14675,7 +14674,7 @@ async function toggleCoDirector(ele){
 		}
 	}
 	
-	getById("codirectorSettings").style.display = "flex";
+	getById("codirectorEnableSpan").style.display = "flex";
 }
 
 
@@ -14868,8 +14867,8 @@ async function createRoomCallback(passAdd, passAdd2) {
 	}
 	
 	if (session.directorPassword){
-		getById("coDirectorEnable").checked = true;
-		getById("coDirectorEnableSpan").style.display = "none";
+		getById("codirectorEnable").checked = true;
+		getById("codirectorEnableSpan").style.display = "flex";
 		
 		var token = "";
 		if (session.token){
@@ -14941,7 +14940,7 @@ async function createRoomCallback(passAdd, passAdd2) {
 		getById("director_block_3").href = "https://" + location.host + location.pathname + "?scene&room=" + session.roomid + codecGroupFlag + passAdd2 + wss + token;
 		getById("director_block_3").innerText = "https://" + location.host + location.pathname + "?scene&room=" + session.roomid + codecGroupFlag + passAdd2 + wss + token;
 		
-		getById("calendarButton").style.display = "inline-block";
+		// getById("calendarButton").style.display = "inline-block";
 
 	} else {
 		getById("guestFeeds").innerHTML = '';
@@ -15217,7 +15216,7 @@ async function createDirectorOnlyBox() {
 	
 	var container = document.createElement("div");
 	container.id = "container_director"; // needed to delete on user disconnect
-	container.className = "vidcon directorMargins";
+	container.className = "vidcon";
 	
 	var buttons = "";
 	if (session.slotmode){
@@ -15383,7 +15382,7 @@ async function createDirectorScreenshareOnlyBox() { // sstype=3
 	
 	var container = document.createElement("div");
 	container.id = "container_screen_director"; // needed to delete on user disconnect
-	container.className = "vidcon directorMargins";
+	container.className = "vidcon";
 	
 	var buttons = "";
 	if (session.slotmode){
@@ -33553,7 +33552,7 @@ function createControlBoxScreenshare(UUID, soloLink, streamID) {
 	var container = document.createElement("div");
 	container.id = "container_" + UUID; // needed to delete on user disconnect
 	container.UUID = UUID;
-	container.className = "vidcon directorMargins";
+	container.className = "vidcon";
 	
 	if (session.orderby){
 		try {
