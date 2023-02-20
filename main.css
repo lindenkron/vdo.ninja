@@ -4576,6 +4576,7 @@ input:checked + .slider:before {
 	position: relative;
     gap: 5px;
     width: 100%;
+    max-width: 600px;
     background-color: #f3f3f3;
     border: 1px solid #ccc;
     border-radius: 5px;
