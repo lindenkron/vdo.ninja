@@ -22842,7 +22842,7 @@ function previewIframe(iframeSrc) { // this is pretty important if you want to a
 	iframe.allow = "autoplay;camera;microphone;fullscreen;picture-in-picture;display-capture;midi;";
 	iframe.style.width = "100%";
 	iframe.style.height = "100%";
-	iframe.style.border = "10px dashed rgb(64 65 62)";
+	// iframe.style.border = "10px dashed rgb(64 65 62)";
 
 	iframeSrc = parseURL4Iframe(iframeSrc);
 	
@@ -22869,7 +22869,7 @@ function loadIframe(iframesrc,  UUID) { // this is pretty important if you want 
 	iframe.allow = "autoplay;camera;microphone;fullscreen;picture-in-picture;display-capture;midi;";
 	iframe.style.width = "100%";
 	iframe.style.height = "100%";
-	iframe.style.border = "10px dashed rgb(64 65 62)";
+	// iframe.style.border = "10px dashed rgb(64 65 62)";
 	iframe.id = iframeID;
 	iframe.dataset.UUID = UUID;
 	iframe.loadedYoutubeListen = false;
