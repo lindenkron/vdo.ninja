@@ -7,7 +7,7 @@
 		<title>VDON Speed Test</title>
 	</head>
 	<body onload="loadIframe();">
-		<h1>
+		<h1 style="text-align: center;">
 			VDO.Ninja's video streaming quality test
 		</h1>
 		<div id="container">
@@ -273,7 +273,7 @@
 				var iframeContainer = document.createElement("span");
 
 				iframe.allow = "autoplay";
-				var srcString = "./?view=" + streamID + "&cleanoutput&privacy&noaudio&scale=0&speedtest="+zone; // No TURN servers set on the reciever. Don't want to query for TURN servers needlessly.
+				var srcString = "./?view=" + streamID + "&cleanoutput&privacy&noaudio&scale=0&css=speedtest.css&speedtest="+zone; // No TURN servers set on the reciever. Don't want to query for TURN servers needlessly.
 
 				if (urlParams.has("turn")) {
 					srcString = srcString + "&turn=" + urlParams.get("turn");
