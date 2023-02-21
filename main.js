@@ -3639,9 +3639,12 @@ async function main(){ // main asyncronous thread; mostly initializes the user s
 			//}
 
 			if (session.webcamonly == true) { // mobile or manual flag 'webcam' pflag set
-				getById("head1").innerHTML = '<span style="color:#CCC;" data-translate="please-accept-permissions">- Please accept any camera permissions</span>';
+				// getById("head1").innerHTML = '';
+				document.getElementById("head1").getElementsByClassName("left")[0].innerHTML = '';
+				// getById("head1").innerHTML = '<span style="color:#CCC;" data-translate="please-accept-permissions">- Please accept any camera permissions</span>';
 			} else {
-				getById("head1").innerHTML = '<br /><span style="color:#CCC" data-translate="please-select-which-to-share">- Please select which you wish to share</span>';
+				document.getElementById("head1").getElementsByClassName("left")[0].innerHTML = '';
+				// getById("head1").innerHTML = '<br /><span style="color:#CCC" data-translate="please-select-which-to-share">- Please select which you wish to share</span>';
 			}
 		}
 	}
@@ -3907,9 +3910,11 @@ async function main(){ // main asyncronous thread; mostly initializes the user s
 		getById("header").style.alignSelf = "center";
 
 		if (session.webcamonly == true) { // mobile or manual flag 'webcam' pflag set
-			getById("head1").innerHTML = '';
+			// getById("head1").innerHTML = '';
+			document.getElementById("head1").getElementsByClassName("left")[0].innerHTML = '';
 		} else {
-			getById("head1").getElementsByClassName("left")[0].innerHTML = '<span style="color:#CCC" data-translate="please-select-option-to-join">Please select an option to join.</span>';
+			document.getElementById("head1").getElementsByClassName("left")[0].innerHTML = '';
+			// getById("head1").getElementsByClassName("left")[0].innerHTML = '<span style="color:#CCC" data-translate="please-select-option-to-join">Please select an option to join.</span>';
 			// getById("head1").innerHTML = '<span style="color:#CCC" data-translate="please-select-option-to-join">Please select an option to join.</span>';
 		}
 
