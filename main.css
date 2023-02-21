@@ -1880,7 +1880,7 @@ input[type=range]:focus::-ms-fill-upper {
 	}
 	.tile {
 		float: none !important;
-		padding: 15px 10px 1px 10px !important;
+		/* padding: 15px 10px 1px 10px !important; */
 	}
 	/* div.multiselect, .videoMenu, #videoSettings {
 		max-width: 100% !important;
