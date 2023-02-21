@@ -1569,6 +1569,14 @@ div[data-action-type='toggle-group'] {
     padding: 10px;
     text-align: left;
 }
+
+.highlightBoxHeader {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 140%;
+}
+
 .highlightBox[data-highlight-type="tips"] {
 	border-left: 4px solid #8bf150;
     box-shadow: 0px 0px 5px 0px #8bf150;
@@ -2829,7 +2837,7 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
 }
 
 #languages, #calendar {
-    right: 22px;
+    right: 50px;
     bottom: 40px;
 }
 
@@ -2845,18 +2853,18 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
     color: orange;
 }
 .calendarOptions {
-    bottom: 10px;
-    right: 50px;
+    bottom: 35px;
+    right: 20px;
     color: orange;
 }
 .reportOptions {
-    bottom: 35px;
-    right: 50px;
+    bottom: 60px;
+    right: 20px;
     color: orange;
 }
 
 .helpOptions {
-    bottom: 35px;
+    bottom: 85px;
     right: 20px;
     color: orange;
 }
@@ -5094,6 +5102,10 @@ input:checked + .slider:before {
 	content: "\f11c"; }
 .la-pencil-ruler:before {
 	content: "\f5ae"; }
+.la-cloud-download-alt:before {
+	content: "\f381"; }
+.la-cloud-upload-alt:before {
+	content: "\f382"; }
 @media (prefers-color-scheme: dark) {
 	:root {
 		--color-mode: dark;

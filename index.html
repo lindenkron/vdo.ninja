@@ -731,25 +731,40 @@
 			
 			<div id="container-5" class="tile columnfade pointer rounded card hidden">
 				<h2><span data-translate="share-local-video-file">Stream Media File</span></h2>
-				<i style="overflow:hidden;" class="las la-file-alt"></i>
+				<i class="las la-file-alt"></i>
 				<div class="container-inner">
-					
-					<span data-translate="select-the-video-files-to-share">SELECT THE VIDEO FILES TO SHARE</span><br /><br />
-					<input id="fileselector" onchange="session.publishFile(this,event);" type="file" accept="video/*,audio/*" alt="Hold CTRL (or CMD) to select multiple files" title="Hold CTRL (or CMD) to select multiple files" multiple/>
-					<div class='warning message-card'>
-						<h1>Warning</h1>
-						<p>Media file streaming is still quite experimental. Please do not rely on it heavily for your productions. Feedback welcome.</p>
-					</div>
-					<div class='warning message-card hidden' id='chrome_warning_fileshare'>
-						<h1>Chrome/Edge users</h1>
-						<p>Keep this tab visible, else the video playback will stop</p>
-					</div>
-					<div class='warning message-card hidden' id='safari_warning_fileshare'>
-						<h1>Safari Users</h1>
-						<p>Safari does not support this feature. Consider Chrome or Firefox instead.</p>
-					</div>
-					To host a file for download, rather than for streaming, try the following instead: 
-					<input id="fileselector2" onchange="session.hostFile(this,event);" type="file" title="Transfer any file"/>
+					<div class="settingsWrapper">
+						<div class="settingsMenu">
+							<div class="menuTitle">
+								<i class="las la-cloud-upload-alt"></i>
+								<span data-translate="host-file-for-streaming">Host file for streaming:</span>
+							</div>
+							<div class="menuContent">
+								<input id="fileselector" onchange="session.publishFile(this,event);" type="file" accept="video/*,audio/*" alt="Hold CTRL (or CMD) to select multiple files" title="Hold CTRL (or CMD) to select multiple files" multiple/>
+							</div>
+
+							<div class="menuTitle">
+								<i class="las la-cloud-download-alt"></i>
+								<span data-translate="host-file-for-download">Host file for download:</span>								
+							</div>
+							<div class="menuContent">
+								<input id="fileselector2" onchange="session.hostFile(this,event);" type="file" title="Transfer any file"/>
+							</div>
+						</div>
+						<div class="highlightBox" data-highlight-type="warning">
+							<div class="highlightBoxHeader"><i class="las la-exclamation-circle"></i>Warning</div>
+							<p>Media file streaming is still quite experimental. Please do not rely on it heavily for your productions. Feedback welcome.</p>
+						</div>
+						
+						<div class="highlightBox hidden" id="chrome_warning_fileshare" data-highlight-type="warning">
+							<div class="highlightBoxHeader"><i class="las la-exclamation-circle"></i>Chrome/Edge users</div>
+							Keep this tab visible, else the video playback will stop
+						</div>
+						<div class="highlightBox hidden" id="safari_warning_fileshare" data-highlight-type="warning">
+							<div class="highlightBoxHeader"><i class="las la-exclamation-circle"></i>Safari Users</div>
+							Safari does not support this feature. Consider Chrome or Firefox instead.
+						</div>
+					</div>					
 				</div>
 				
 				<div class="outer close">
@@ -763,11 +778,11 @@
 			
 			<div id="container-6" class="tile columnfade pointer rounded card hidden">
 				<h2><span data-translate="share-website-iframe">Share Website</span></h2>
-				<i style="overflow:hidden;" class="las la-broadcast-tower"></i>
+				<i class="las la-broadcast-tower"></i>
+				<i class="las la-external-link-alt"></i>
 				<div class="container-inner">
-					<br />
+
 					<div id="previewIframe"></div>
-					<br />
 					<span data-translate="enter-the-website-URL-you-wish-to-share">Enter the URL website you wish to share.</span><br /><br />
 					<input type="text" autocorrect="off" id="iframeURL" autocapitalize="none" style="margin:10px; border:2px solid; padding:10px; width:400px;" title="Enter an HTTPS URL" multiple/><br />
 					<button onclick="previewIframe(getById('iframeURL').value);" >Preview</button> 
