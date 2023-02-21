@@ -3167,11 +3167,17 @@ audio.fileshare::-webkit-media-controls-play-button, video.fileshare::-webkit-me
     flex: 1 100%;
 }
 
+.menuContent button > i {
+	font-size: 140%;
+}
+
 .menuContent button {
+    display: flex;
     flex: 1;
-    /* height: 100%; */
     padding: 5px 2px;
     border-radius: 5px;
+    align-items: center;
+    justify-content: center;
 }
 
 .menuContent > i {    
@@ -5167,6 +5173,10 @@ input:checked + .slider:before {
 	content: "\f381"; }
 .la-cloud-upload-alt:before {
 	content: "\f382"; }
+.la-film:before {
+	content: "\f008"; }
+.la-share-alt-square:before {
+	content: "\f1e1"; }
 @media (prefers-color-scheme: dark) {
 	:root {
 		--color-mode: dark;
