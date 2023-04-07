@@ -465,7 +465,7 @@ button.white:active {
 	position: fixed;
 	overflow-wrap: anywhere;
 	padding:2% 3%;
-}.
+}
 .avatarSelection{
 	vertical-align: top;
     margin: 10px 0;
@@ -3487,11 +3487,23 @@ div#roomnotes2 {
     flex-wrap: wrap;
     gap: 4px;
 }
+
+.darktheme .controlsGrid .group {
+    background-color: #300000;
+}
+
 .controlsGrid .group {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     gap: 4px;
+    padding: 4px 4px 4px 4px;
+    background-color: #764141;
+    border-radius: 0px 0px 4px 4px;
+    margin-top: -6px;
+    border: 1px solid var(--green-accent);
+    border-top: 1px solid var(--blue-accent);
+    box-shadow: inset 0 10px 5px -10px rgba(0, 0, 0, 1);
 }
 
 .controlsGrid .row {
@@ -3516,14 +3528,31 @@ div#roomnotes2 {
 	flex: 1 13%;
 }
 
+.darktheme .controlsGrid .flexBreak {
+    border-bottom: 1px #ccc dotted;
+}
+
+.controlsGrid .flexBreak {
+    width: 100%;
+    border-bottom: 1px #fff dotted;
+}
+
 .controlsGrid button {
 	display: flex;
     align-items: center;
     justify-content: center;
     margin: 0;
-    padding: 5px;
+    padding: 5px 2px;
     border-radius: 4px;
+    overflow: hidden;
 }
+
+.controlsGrid button span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .controlsGrid button.center {
 	align-self: center;
 }
@@ -3569,12 +3598,21 @@ div#roomnotes2 {
     font-size: 12px;
 }
 
+.darktheme .controlsGrid .hideDropMenu {
+    background-color: #1e0000;
+}
+
 .controlsGrid .hideDropMenu{
 	user-select: none;
 	grid-column: 1;
 	width: 100%;
 	font-size: 80%;
 	cursor: pointer;
+    background-color: #893434;
+    border-radius: 4px;
+    padding: 4px 4px 5px 4px;
+    margin-bottom: 0px;
+    border: 1px solid var(--blue-accent);
 }
 .controlsGrid .orderspan {
 	font-size: 50%;
